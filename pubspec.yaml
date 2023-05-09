@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -78,16 +79,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Manrope
-      fonts:
-        - asset: assets/fonts/Manrope-Regular.ttf
-        - asset: assets/fonts/Manrope-Bold.ttf
-        - asset: assets/fonts/Manrope-Medium.ttf
-        - asset: assets/fonts/Manrope-SemiBold.ttf
-        - asset: assets/fonts/Manrope-Light.ttf
-        - asset: assets/fonts/Manrope-ExtraLight.ttf
-        - asset: assets/fonts/Manrope-ExtraBold.ttf
+  # fonts:
+  #   - family: Manrope
+  #     fonts:
+  #       - asset: assets/fonts/Manrope-Regular.ttf
+  #       - asset: assets/fonts/Manrope-Bold.ttf
+  #       - asset: assets/fonts/Manrope-Medium.ttf
+  #       - asset: assets/fonts/Manrope-SemiBold.ttf
+  #       - asset: assets/fonts/Manrope-Light.ttf
+  #       - asset: assets/fonts/Manrope-ExtraLight.ttf
+  #       - asset: assets/fonts/Manrope-ExtraBold.ttf
    
   #
   # For details regarding fonts from package dependencies,

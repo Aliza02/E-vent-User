@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:eventually_user/models/onboardpage_model.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/constant.dart';
 
@@ -29,17 +30,11 @@ class _onboardState extends State<onboard> {
   Container buildDot(int index, BuildContext context, int color) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.015,
-      width: MediaQuery.of(context).size.width * 0.034,
-      // currentindex == index
-      //     ? MediaQuery.of(context).size.width * 0.1
-      //     : MediaQuery.of(context).size.width * 0.05,
+      width: MediaQuery.of(context).size.width * 0.03,
       margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.008),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100.0),
+        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width),
         color: currentindex == index ? Color(color) : Color(0xFFD9D9D9),
-        // currentindex == index
-        //     ? Colors.white
-        //     : Colors.grey.withOpacity(0.4),
       ),
     );
   }
@@ -117,15 +112,14 @@ class _onboardState extends State<onboard> {
                 Container(
                   height: height * 0.17,
                   margin: EdgeInsets.fromLTRB(0.0, height * 0.1, 0.0, 0.0),
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.1),
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.13),
                   alignment: Alignment.center,
                   child: Text(
                     content[index].description,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
+                    style: GoogleFonts.signika(
+                      color: Color(0xFF555555),
                       fontSize: width * 0.05,
-                      fontFamily: constant.font,
                     ),
                   ),
                 ),
@@ -133,7 +127,6 @@ class _onboardState extends State<onboard> {
                     ? Container(
                         width: width * 0.7,
                         height: height * 0.08,
-                        // alignment: Alignment.center,
                         margin:
                             EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
                         child: ElevatedButton(
@@ -148,11 +141,10 @@ class _onboardState extends State<onboard> {
                           },
                           child: Text(
                             'Plan Your First Event',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: constant.font,
+                            style: GoogleFonts.signika(
+                              color: Color(0xFF555555),
+                              fontSize: width * 0.06,
                               fontWeight: FontWeight.bold,
-                              fontSize: width * 0.05,
                             ),
                           ),
                         ),
@@ -164,7 +156,8 @@ class _onboardState extends State<onboard> {
                         height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.2,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100.0),
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.width),
                           color: Color(constant.pageIndicator[currentindex]),
                         ),
                         child: GestureDetector(
