@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:eventually_user/models/onboardpage_model.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/constant.dart';
 
@@ -117,7 +116,8 @@ class _onboardState extends State<onboard> {
                   child: Text(
                     content[index].description,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.signika(
+                    style: TextStyle(
+                      fontFamily: constant.onboardingFont,
                       color: Color(0xFF555555),
                       fontSize: width * 0.05,
                     ),
@@ -137,12 +137,13 @@ class _onboardState extends State<onboard> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/signin');
+                            Navigator.pushNamed(context, '/login');
                           },
                           child: Text(
                             'Plan Your First Event',
-                            style: GoogleFonts.signika(
+                            style: TextStyle(
                               color: Color(0xFF555555),
+                              fontFamily: constant.onboardingFont,
                               fontSize: width * 0.06,
                               fontWeight: FontWeight.bold,
                             ),
