@@ -24,6 +24,7 @@ class _loginState extends State<login> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Color(0xFFFAFAFA),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: width * 0.05),
@@ -35,7 +36,7 @@ class _loginState extends State<login> {
               Container(
                 padding: EdgeInsets.all(0.0),
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
-                child: logo(width: width, height: height * 0.2),
+                child: logo(width: width, height: height),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.008, 0.0, 0.0),
@@ -56,43 +57,61 @@ class _loginState extends State<login> {
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF555555),
+                    fontSize: width * 0.04,
                   ),
                 ),
               ),
               Container(
+                height: height * 0.07,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.03, 0.0, 0.0),
                 child: textFormField(title: 'Email'),
               ),
               Container(
+                height: height * 0.07,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.03, 0.0, 0.0),
                 child: PasswordField(title: 'Password'),
               ),
+              SizedBox(
+                height: height * 0.01,
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    activeColor: Color(0xFFCB585A),
-                    shape: RoundedRectangleBorder(
+                  SizedBox(
+                    height: height * 0.01,
+                    width: width * 0.08,
+                    child: Checkbox(
+                      activeColor: Color(0xFFCB585A),
                       side: BorderSide(
                         color: Color(0xFFCB585A),
-                        width: 1.0,
+                        width: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(5.0),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Color(0xFFCB585A),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      value: isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isChecked = value!;
+                        });
+                      },
                     ),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
                   ),
-                  Text(
-                    'Remember me',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontFamily: constant.font,
-                      // fontWeight: FontWeight.w700,
-                      color: Color(0xFF464646),
+                  Container(
+                    // margin: EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
+                    child: Text(
+                      'Remember me',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: width * 0.04,
+                        fontFamily: constant.font,
+                        // fontWeight: FontWeight.w700,
+                        color: Color(0xFF464646),
+                      ),
                     ),
                   ),
                   Spacer(),
@@ -102,6 +121,7 @@ class _loginState extends State<login> {
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w700,
                       color: Color(0xFFCB585A),
+                      fontSize: width * 0.04,
                     ),
                   ),
                 ],
@@ -109,17 +129,7 @@ class _loginState extends State<login> {
               Container(
                 width: width * 0.4,
                 height: height * 0.06,
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                decoration: BoxDecoration(
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Color(0xFFCB585A).withOpacity(0.8),
-                    //     spreadRadius: 1,
-                    //     blurRadius: 10,
-                    //     offset: Offset(0, 3),
-                    //   ),
-                    // ],
-                    ),
+                margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
                 child: button(label: 'Login'),
               ),
               SizedBox(height: height * 0.03),
@@ -140,6 +150,7 @@ class _loginState extends State<login> {
                       color: Color(0xff555555),
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w400,
+                      fontSize: width * 0.04,
                     ),
                   ),
                   Expanded(
@@ -154,6 +165,9 @@ class _loginState extends State<login> {
                 ],
               ),
               googleButton(),
+              SizedBox(
+                height: height * 0.04,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

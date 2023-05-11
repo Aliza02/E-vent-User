@@ -29,6 +29,14 @@ class _PasswordFieldState extends State<PasswordField> {
         hintStyle: TextStyle(
           fontFamily: constant.font,
           color: Colors.grey,
+          fontSize: width * 0.04,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(width * 0.04),
+          borderSide: BorderSide(
+            color: Color(0xFFCB585A),
+            width: 1.3,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(width * 0.04),
@@ -48,6 +56,7 @@ class _PasswordFieldState extends State<PasswordField> {
                 ? Icons.visibility_outlined
                 : Icons.visibility_off_outlined,
             color: Colors.grey,
+            size: width * 0.05,
           ),
         ),
       ),

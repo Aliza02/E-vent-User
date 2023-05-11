@@ -24,8 +24,16 @@ class _textFormFieldState extends State<textFormField> {
         filled: true,
         hintText: widget.title,
         hintStyle: TextStyle(
+          fontSize: width * 0.04,
           color: Colors.grey,
           fontFamily: constant.font,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(width * 0.04),
+          borderSide: BorderSide(
+            color: Color(0xFFCB585A),
+            width: 1.3,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(width * 0.04),

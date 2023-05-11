@@ -26,7 +26,8 @@ class _buttonState extends State<button> {
             color: Colors.white,
           )),
       style: ElevatedButton.styleFrom(
-        shadowColor: Color(0xFFCB585A).withOpacity(0.5),
+        elevation: 10.0,
+        shadowColor: Color(0xFFCB585A).withOpacity(0.4),
         backgroundColor: Color(0xFFCB585A),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
