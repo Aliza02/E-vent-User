@@ -6,6 +6,7 @@ import '../constants/constant.dart';
 
 class textFormField extends StatefulWidget {
   String title;
+
   textFormField({required this.title});
 
   @override
@@ -18,6 +19,7 @@ class _textFormFieldState extends State<textFormField> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return TextFormField(
+      textAlignVertical: TextAlignVertical.center,
       // controller: widget.textcontroller,
       decoration: InputDecoration(
         fillColor: Color(0xFFEFEFEF).withOpacity(0.5),
@@ -29,14 +31,14 @@ class _textFormFieldState extends State<textFormField> {
           fontFamily: constant.font,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(width * 0.04),
+          borderRadius: BorderRadius.circular(width * 0.02),
           borderSide: BorderSide(
             color: Color(0xFFCB585A),
             width: 1.3,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(width * 0.04),
+          borderRadius: BorderRadius.circular(width * 0.02),
           borderSide: BorderSide(
             color: Color(0xFFCB585A),
             width: 1.3,

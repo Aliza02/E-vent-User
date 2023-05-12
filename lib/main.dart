@@ -1,5 +1,6 @@
 import 'package:eventually_user/screens/login.dart';
 import 'package:eventually_user/screens/onboard.dart';
+import 'package:eventually_user/screens/signup.dart';
 import 'package:eventually_user/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/login',
+        initialRoute: '/signup',
         routes: {
           '/onboard': (context) => onboard(),
           '/login': (context) => login(),
+          '/signup': (context) => signup(),
         });
   }
 }

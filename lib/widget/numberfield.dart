@@ -1,35 +1,34 @@
-import 'package:eventually_user/constants/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../constants/constant.dart';
 
-class PasswordField extends StatefulWidget {
-  // TextEditingController passwordcontroller;
+class numberField extends StatefulWidget {
   String title;
-  PasswordField({required this.title});
+
+  numberField({required this.title});
 
   @override
-  State<PasswordField> createState() => _PasswordFieldState();
+  State<numberField> createState() => _numberFieldState();
 }
 
-class _PasswordFieldState extends State<PasswordField> {
-  bool obscureText = true;
+class _numberFieldState extends State<numberField> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return TextFormField(
-      // controller: widget.passwordcontroller,
-      obscureText: obscureText,
+      keyboardType: TextInputType.number,
+      // controller: widget.textcontroller,
       decoration: InputDecoration(
         fillColor: Color(0xFFEFEFEF).withOpacity(0.5),
         filled: true,
         hintText: widget.title,
         hintStyle: TextStyle(
-          fontFamily: constant.font,
-          color: Colors.grey,
           fontSize: width * 0.04,
+          color: Colors.grey,
+          fontFamily: constant.font,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(width * 0.02),
@@ -43,20 +42,6 @@ class _PasswordFieldState extends State<PasswordField> {
           borderSide: BorderSide(
             color: Color(0xFFCB585A),
             width: 1.3,
-          ),
-        ),
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              obscureText = !obscureText;
-            });
-          },
-          child: Icon(
-            obscureText == true
-                ? Icons.visibility_outlined
-                : Icons.visibility_off_outlined,
-            color: Colors.grey,
-            size: width * 0.05,
           ),
         ),
       ),

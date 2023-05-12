@@ -36,7 +36,7 @@ class _loginState extends State<login> {
               Container(
                 padding: EdgeInsets.all(0.0),
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
-                child: logo(width: width, height: height),
+                child: logo(width: width * 0.9, height: height * 0.15),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.008, 0.0, 0.0),
