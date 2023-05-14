@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../constants/constant.dart';
+import '../widget/heading.dart';
 import '../widget/logo.dart';
 import '../widget/numberfield.dart';
 
@@ -45,18 +46,10 @@ class _otp_verificationState extends State<otp_verification> {
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
                 child: logo(width: width * 0.9, height: height * 0.15),
               ),
-              Container(
-                padding: EdgeInsets.all(0.0),
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.008, 0.0, 0.0),
-                child: Text(
-                  'Verification',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: constant.font,
-                    fontSize: width * 0.11,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
+              heading(
+                title: 'Verification',
+                heightFromTop: height * 0.008,
+                fontSize: width * 0.11,
               ),
               Container(
                 // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, height * 0.08),

@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../widget/button.dart';
 import '../widget/googleButton.dart';
+import '../widget/heading.dart';
 import '../widget/textfield.dart';
 import '../widget/passwordfield.dart';
 
@@ -38,17 +39,10 @@ class _loginState extends State<login> {
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
                 child: logo(width: width * 0.9, height: height * 0.15),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.008, 0.0, 0.0),
-                child: Text(
-                  'Hello Again!',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: constant.font,
-                    fontSize: width * 0.11,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
+              heading(
+                title: 'Welcome Back',
+                heightFromTop: height * 0.008,
+                fontSize: width * 0.11,
               ),
               Container(
                 child: Text(

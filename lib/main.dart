@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/otpverification',
+        initialRoute: '/login',
         routes: {
           '/onboard': (context) => onboard(),
           '/login': (context) => login(),

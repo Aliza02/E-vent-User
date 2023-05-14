@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../widget/button.dart';
 import '../widget/googleButton.dart';
+import '../widget/heading.dart';
 import '../widget/numberfield.dart';
 import '../widget/textfield.dart';
 import '../widget/passwordfield.dart';
@@ -39,17 +40,10 @@ class _signupState extends State<signup> {
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
                 child: logo(width: width * 0.4, height: height * 0.08),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.008, 0.0, 0.0),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: constant.font,
-                    fontSize: width * 0.11,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
+              heading(
+                title: 'Sign Up',
+                heightFromTop: height * 0.008,
+                fontSize: width * 0.11,
               ),
               Container(
                 child: Text(
