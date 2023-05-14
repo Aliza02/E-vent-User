@@ -70,7 +70,7 @@ class _signupState extends State<signup> {
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: numberField(title: 'Phone Number'),
+                child: numberField(title: 'Phone Number', maxLength: 11),
               ),
               Container(
                 height: height * 0.05,

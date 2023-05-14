@@ -6,8 +6,9 @@ import '../constants/constant.dart';
 
 class numberField extends StatefulWidget {
   String title;
+  int maxLength;
 
-  numberField({required this.title});
+  numberField({required this.title, required this.maxLength});
 
   @override
   State<numberField> createState() => _numberFieldState();
@@ -19,12 +20,16 @@ class _numberFieldState extends State<numberField> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return TextFormField(
+      maxLength: widget.maxLength,
+      cursorColor: Color(0xFFCB585A),
+      textAlign: widget.maxLength == 11 ? TextAlign.start : TextAlign.center,
       keyboardType: TextInputType.number,
       // controller: widget.textcontroller,
       decoration: InputDecoration(
         fillColor: Color(0xFFEFEFEF).withOpacity(0.5),
         filled: true,
         hintText: widget.title,
+        counterText: "",
         hintStyle: TextStyle(
           fontSize: width * 0.04,
           color: Colors.grey,
