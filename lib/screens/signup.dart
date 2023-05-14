@@ -8,6 +8,7 @@ import '../widget/button.dart';
 import '../widget/googleButton.dart';
 import '../widget/heading.dart';
 import '../widget/numberfield.dart';
+import '../widget/subheading.dart';
 import '../widget/textfield.dart';
 import '../widget/passwordfield.dart';
 
@@ -45,16 +46,9 @@ class _signupState extends State<signup> {
                 heightFromTop: height * 0.008,
                 fontSize: width * 0.11,
               ),
-              Container(
-                child: Text(
-                  'Create an Account',
-                  style: TextStyle(
-                    fontFamily: constant.font,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF555555),
-                    fontSize: width * 0.04,
-                  ),
-                ),
+              subHeading(
+                title: "Create an Account",
+                fontSize: width * 0.04,
               ),
               Container(
                 height: height * 0.05,

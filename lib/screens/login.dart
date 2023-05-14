@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../widget/button.dart';
 import '../widget/googleButton.dart';
 import '../widget/heading.dart';
+import '../widget/subheading.dart';
 import '../widget/textfield.dart';
 import '../widget/passwordfield.dart';
 
@@ -44,16 +45,9 @@ class _loginState extends State<login> {
                 heightFromTop: height * 0.008,
                 fontSize: width * 0.11,
               ),
-              Container(
-                child: Text(
-                  'Welcome back, you' + 've been missed.',
-                  style: TextStyle(
-                    fontFamily: constant.font,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF555555),
-                    fontSize: width * 0.04,
-                  ),
-                ),
+              subHeading(
+                title: "Welcome back, you've been missed.",
+                fontSize: width * 0.04,
               ),
               Container(
                 height: height * 0.07,

@@ -6,6 +6,7 @@ import '../constants/constant.dart';
 import '../widget/heading.dart';
 import '../widget/logo.dart';
 import '../widget/numberfield.dart';
+import '../widget/subheading.dart';
 
 class otp_verification extends StatefulWidget {
   const otp_verification({super.key});
@@ -51,17 +52,9 @@ class _otp_verificationState extends State<otp_verification> {
                 heightFromTop: height * 0.008,
                 fontSize: width * 0.11,
               ),
-              Container(
-                // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, height * 0.08),
-                child: Text(
-                  'Verify your Account',
-                  style: TextStyle(
-                    fontFamily: constant.font,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF555555),
-                    fontSize: width * 0.04,
-                  ),
-                ),
+              subHeading(
+                title: "Verify your Account",
+                fontSize: width * 0.04,
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
@@ -80,7 +73,6 @@ class _otp_verificationState extends State<otp_verification> {
                 // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, height * 0.08),
                 child: Text(
                   'Enter the OTP code we just sent ',
-                  textDirection: TextDirection.ltr,
                   style: TextStyle(
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w400,
@@ -93,7 +85,6 @@ class _otp_verificationState extends State<otp_verification> {
                 padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                 child: Text(
                   ' you on your registered Email.',
-                  textDirection: TextDirection.ltr,
                   style: TextStyle(
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w400,
