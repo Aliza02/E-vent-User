@@ -17,6 +17,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        // theme: ThemeData(
+        // colorScheme: ColorScheme(
+        //   primary: Color(0xFFCB585A),
+        //   onPrimary: Colors.white,
+        //   secondary: Color(0xFF555555),
+        //   onSecondary: Colors.black,
+        //   surface: Colors.white,
+        //   onSurface: Colors.black,
+        //   background: Color(0xFFFAFAFA),
+        //   onBackground: Colors.black,
+        //   brightness: Brightness.light,
+        //   error:  Color(0xFFCB585A),
+        //   onError: Colors.white,
+        // ),
+
+        // ),
         initialRoute: '/login',
         routes: {
           '/onboard': (context) => onboard(),
