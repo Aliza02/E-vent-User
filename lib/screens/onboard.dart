@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,14 +6,14 @@ import 'package:eventually_user/models/onboardpage_model.dart';
 
 import '../constants/constant.dart';
 
-class onboard extends StatefulWidget {
-  const onboard({super.key});
+class Onboard extends StatefulWidget {
+  const Onboard({super.key});
 
   @override
-  State<onboard> createState() => _onboardState();
+  State<Onboard> createState() => _OnboardState();
 }
 
-class _onboardState extends State<onboard> {
+class _OnboardState extends State<Onboard> {
   int currentindex = 0;
   PageController? _pagescontroller;
 
@@ -30,10 +31,11 @@ class _onboardState extends State<onboard> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.015,
       width: MediaQuery.of(context).size.width * 0.03,
-      margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.008),
+      // margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.008),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width),
-        color: currentindex == index ? Color(color) : Color(0xFFD9D9D9),
+        // borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width),
+        shape: BoxShape.circle,
+        color: currentindex == index ? Color(color) : const Color(0xFFD9D9D9),
       ),
     );
   }
@@ -57,9 +59,21 @@ class _onboardState extends State<onboard> {
             return Column(
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(width * 0.41, 0.0, 0.0, 0.0),
+                  alignment: Alignment.center,
+                  // margin: EdgeInsets.fromLTRB(width * 0.10, 0.0, 0.0, 0.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      currentindex > 0
+                          ? IconButton(
+                              onPressed: () {
+                                _pagescontroller?.jumpToPage(currentindex - 1);
+                              },
+                              icon: const Icon(CupertinoIcons.back),
+                            )
+                          : SizedBox(
+                              width: width * .1,
+                            ),
                       Row(
                         children: List.generate(
                           content.length,
@@ -69,13 +83,15 @@ class _onboardState extends State<onboard> {
                       ),
                       currentindex < content.length - 1
                           ? Container(
-                              margin:
-                                  EdgeInsets.fromLTRB(width * 0.2, 0, 0.0, 0.0),
+                              // margin:
+                              //     EdgeInsets.fromLTRB(width * 0.2, 0, 0.0, 0.0),
                               padding: EdgeInsets.all(width * 0.01),
-                              child: TextButton(
-                                onPressed: () {
+                              child: InkWell(
+                                onTap: () {
                                   _pagescontroller?.jumpToPage(2);
                                 },
+                                borderRadius:
+                                    BorderRadius.circular(width * .15),
                                 child: Text(
                                   'skip',
                                   style: TextStyle(
@@ -84,7 +100,8 @@ class _onboardState extends State<onboard> {
                                     fontSize: width * 0.05,
                                   ),
                                 ),
-                              ))
+                              ),
+                            )
                           : Container(
                               height: MediaQuery.of(context).size.height * 0.01,
                               width: MediaQuery.of(context).size.width * 0.03,
@@ -94,9 +111,10 @@ class _onboardState extends State<onboard> {
                                   0.0,
                                   0.0),
                               padding: EdgeInsets.all(width * 0.01),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.white,
-                              )),
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -118,7 +136,7 @@ class _onboardState extends State<onboard> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: constant.onboardingFont,
-                      color: Color(0xFF555555),
+                      color: const Color(0xFF555555),
                       fontSize: width * 0.05,
                     ),
                   ),
@@ -131,7 +149,7 @@ class _onboardState extends State<onboard> {
                             EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFC6F988),
+                            backgroundColor: const Color(0xFFC6F988),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25.0),
                             ),
@@ -142,7 +160,7 @@ class _onboardState extends State<onboard> {
                           child: Text(
                             'Plan Your First Event',
                             style: TextStyle(
-                              color: Color(0xFF555555),
+                              color: const Color(0xFF555555),
                               fontFamily: constant.onboardingFont,
                               fontSize: width * 0.06,
                               fontWeight: FontWeight.bold,
@@ -157,14 +175,15 @@ class _onboardState extends State<onboard> {
                         height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.2,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                              MediaQuery.of(context).size.width),
+                          // borderRadius: BorderRadius.circular(
+                          //     MediaQuery.of(context).size.width),
+                          shape: BoxShape.circle,
                           color: Color(constant.pageIndicator[currentindex]),
                         ),
                         child: GestureDetector(
                           onTap: () {
                             _pagescontroller?.nextPage(
-                                duration: Duration(milliseconds: 10),
+                                duration: const Duration(milliseconds: 10),
                                 curve: Curves.bounceOut);
                           },
                           child: Center(

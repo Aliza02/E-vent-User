@@ -3,6 +3,7 @@ import 'package:eventually_user/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 import '../widget/button.dart';
 import '../widget/googleButton.dart';
@@ -156,7 +157,7 @@ class _signupState extends State<signup> {
                   ),
                 ],
               ),
-              googleButton(),
+              GoogleButton(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -169,9 +170,9 @@ class _signupState extends State<signup> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
+                  InkWell(
+                    onTap: () {
+                      Get.back();
                     },
                     child: Text(
                       'Sign In',

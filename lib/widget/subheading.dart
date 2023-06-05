@@ -16,10 +16,14 @@ class subHeading extends StatefulWidget {
 class _subHeadingState extends State<subHeading> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
       child: Text(
         widget.title,
+        textAlign: TextAlign.center,
+        maxLines: 2,
+        softWrap: true,
         style: TextStyle(
+          overflow: TextOverflow.ellipsis,
           fontFamily: constant.font,
           fontWeight: FontWeight.w400,
           color: Color(0xFF555555),

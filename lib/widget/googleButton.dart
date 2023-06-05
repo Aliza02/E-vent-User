@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../constants/constant.dart';
 
-class googleButton extends StatefulWidget {
-  const googleButton({super.key});
+class GoogleButton extends StatefulWidget {
+  const GoogleButton({super.key});
 
   @override
-  State<googleButton> createState() => _googleButtonState();
+  State<GoogleButton> createState() => _GoogleButtonState();
 }
 
-class _googleButtonState extends State<googleButton> {
+class _GoogleButtonState extends State<GoogleButton> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -20,7 +19,8 @@ class _googleButtonState extends State<googleButton> {
       margin: EdgeInsets.only(top: height * 0.02),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(width * 0.07),
+        shape: BoxShape.circle,
+        // borderRadius: BorderRadius.circular(width * 0.07),
         border: Border.all(
           color: Color(0xFFEBE9F1),
           width: 1.3,

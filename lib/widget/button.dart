@@ -1,7 +1,9 @@
+import 'package:eventually_user/bindings/allControllerBindings.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 class button extends StatefulWidget {
   String label;
@@ -18,6 +20,15 @@ class _buttonState extends State<button> {
     double height = MediaQuery.of(context).size.height;
     return ElevatedButton(
       onPressed: () {},
+      // onPressed: () {
+      //   if (GetUtils.isEmail(Get.find<TextEditingController>().text)) {
+      //     storage.write('email', emailController.text);
+      //   } else {
+      //     Get.snackbar(
+      //         'Error writing', 'email provided was invalid',
+      //         snackPosition: SnackPosition.BOTTOM);
+      //   }
+      // },
       child: Text(widget.label,
           style: TextStyle(
             fontFamily: constant.font,

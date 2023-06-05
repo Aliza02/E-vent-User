@@ -8,14 +8,14 @@ import '../widget/logo.dart';
 import '../widget/numberfield.dart';
 import '../widget/subheading.dart';
 
-class otp_verification extends StatefulWidget {
-  const otp_verification({super.key});
+class OtpVerification extends StatefulWidget {
+  const OtpVerification({super.key});
 
   @override
-  State<otp_verification> createState() => _otp_verificationState();
+  State<OtpVerification> createState() => _OtpVerificationState();
 }
 
-class _otp_verificationState extends State<otp_verification> {
+class _OtpVerificationState extends State<OtpVerification> {
   Container buildOTPFields(int index, BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
