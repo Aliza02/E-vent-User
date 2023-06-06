@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
 import 'package:eventually_user/models/onboardpage_model.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/constant.dart';
 
@@ -25,6 +27,12 @@ class _OnboardState extends State<Onboard> {
   void dispose() {
     _pagescontroller!.dispose();
     super.dispose();
+  }
+
+  _storedonBoaredInfo() async {
+    int isViewed = 0;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('onboard', isViewed);
   }
 
   Container buildDot(int index, BuildContext context, int color) {
@@ -87,7 +95,8 @@ class _OnboardState extends State<Onboard> {
                               //     EdgeInsets.fromLTRB(width * 0.2, 0, 0.0, 0.0),
                               padding: EdgeInsets.all(width * 0.01),
                               child: InkWell(
-                                onTap: () {
+                                onTap: () async {
+                                  await _storedonBoaredInfo();
                                   _pagescontroller?.jumpToPage(2);
                                 },
                                 borderRadius:
@@ -154,8 +163,9 @@ class _OnboardState extends State<Onboard> {
                               borderRadius: BorderRadius.circular(25.0),
                             ),
                           ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/login');
+                          onPressed: () async {
+                            await _storedonBoaredInfo();
+                            Get.toNamed('/login');
                           },
                           child: Text(
                             'Plan Your First Event',
@@ -181,7 +191,8 @@ class _OnboardState extends State<Onboard> {
                           color: Color(constant.pageIndicator[currentindex]),
                         ),
                         child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            await _storedonBoaredInfo();
                             _pagescontroller?.nextPage(
                                 duration: const Duration(milliseconds: 10),
                                 curve: Curves.bounceOut);
