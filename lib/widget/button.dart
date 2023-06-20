@@ -19,7 +19,19 @@ class _buttonState extends State<button> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {Get.toNamed('/homepage');},
+      /*onPressed: () {
+        String? currentRoute = ModalRoute.of(context)?.settings.name;
+
+        if (currentRoute == '/homepage') {
+          Get.toNamed('/homepage');
+        } else if (currentRoute == '/login') {
+          Get.toNamed('/login');
+        } else {
+          // Handle any other cases or just do nothing
+        }
+      },*/
+
       // onPressed: () {
       //   if (GetUtils.isEmail(Get.find<TextEditingController>().text)) {
       //     storage.write('email', emailController.text);

@@ -1,4 +1,5 @@
 import 'package:eventually_user/constants/constant.dart';
+import 'package:eventually_user/screens/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/login.dart';
 import '../screens/onboard.dart';
 import '../screens/otp_verification.dart';
+import 'package:eventually_user/screens/home_page/home_page.dart';
 import '../screens/signup.dart';
 // import '../widget/textfield.dart';
 import 'bindings/allControllerBindings.dart';
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/signup', page: () => const signup()),
         GetPage(name: '/otpverification', page: () => const OtpVerification()),
         GetPage(name: '/forgetpassword', page: () => const ForgetPassword()),
+        GetPage(name: '/homepage', page: () => const HomePage()),
       ],
       initialRoute: isViewed != 0 ? '/onboard' : '/login',
       // routes: {

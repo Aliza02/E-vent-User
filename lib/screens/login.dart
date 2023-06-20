@@ -128,7 +128,15 @@ class _LoginState extends State<Login> {
                 width: width * 0.4,
                 height: height * 0.06,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
-                child: button(label: 'Login'),
+                child: InkWell(
+                  // onTap: (){
+                  //   Get.toNamed('/homepage');
+                  // },
+                  child: button(
+                    label: 'Login',
+                  ),
+
+                ),
               ),
               SizedBox(height: height * 0.03),
               Row(
