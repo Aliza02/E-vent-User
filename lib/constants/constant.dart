@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class Constant {
@@ -16,3 +14,16 @@ class Constant {
 }
 
 Constant constant = Constant();
+
+TextStyle kBlackTextStyle = const TextStyle(
+  color: Colors.black,
+  fontSize: 16,
+  fontFamily: 'Manrope',
+  fontWeight: FontWeight.w800,
+);
+TextStyle kRedTextStyle = TextStyle(
+  color: Color(constant.red),
+  fontSize: 16,
+  fontFamily: 'Manrope',
+  fontWeight: FontWeight.w800,
+);

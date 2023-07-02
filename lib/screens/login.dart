@@ -132,10 +132,9 @@ class _LoginState extends State<Login> {
                   // onTap: (){
                   //   Get.toNamed('/homepage');
                   // },
-                  child: button(
+                  child: Button(
                     label: 'Login',
                   ),
-
                 ),
               ),
               SizedBox(height: height * 0.03),

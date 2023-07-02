@@ -1,25 +1,24 @@
-import 'package:eventually_user/bindings/allControllerBindings.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
-class button extends StatefulWidget {
+class Button extends StatefulWidget {
   String label;
-  button({required this.label});
+  Button({super.key, required this.label});
 
   @override
-  State<button> createState() => _buttonState();
+  State<Button> createState() => _ButtonState();
 }
 
-class _buttonState extends State<button> {
+class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return ElevatedButton(
-      onPressed: () {Get.toNamed('/homepage');},
+      onPressed: () {
+        Get.toNamed('/homepage');
+      },
       /*onPressed: () {
         String? currentRoute = ModalRoute.of(context)?.settings.name;
 

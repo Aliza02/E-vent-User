@@ -4,16 +4,15 @@ class CategoryBox extends StatelessWidget {
   final String name;
   final String image;
 
-  CategoryBox({Key? key, required this.image, required this.name}): super(key: key);
+  CategoryBox({Key? key, required this.image, required this.name})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
       onTap: () {},
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -28,7 +27,7 @@ class CategoryBox extends StatelessWidget {
             ),
             Text(
               name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Manrope-Bold',
                 fontSize: 14,
                 //fontWeight: FontWeight.bold,

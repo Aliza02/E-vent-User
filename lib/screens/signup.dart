@@ -1,8 +1,6 @@
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/widget/logo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 import '../widget/button.dart';
@@ -123,7 +121,7 @@ class _signupState extends State<signup> {
                 width: width * 0.4,
                 height: height * 0.06,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.035, 0.0, 0.0),
-                child: button(label: 'Create Account'),
+                child: Button(label: 'Create Account'),
               ),
               SizedBox(height: height * 0.03),
               Row(

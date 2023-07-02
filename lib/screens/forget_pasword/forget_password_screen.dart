@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../constants/constant.dart';
 import '../../widget/googleButton.dart';
@@ -23,7 +22,6 @@ class ForgetPassword extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-
           title:
               heading(title: 'Forgot Password', heightFromTop: 0, fontSize: 28),
           leading: InkWell(
@@ -34,7 +32,6 @@ class ForgetPassword extends StatelessWidget {
             child: const Icon(CupertinoIcons.back),
           ),
         ),
-
         body: SingleChildScrollView(
           child: SafeArea(
             child: Center(
@@ -53,7 +50,7 @@ class ForgetPassword extends StatelessWidget {
                     ),
                     textFormField(title: 'enter Email'),
                     SizedBox(height: height * .02),
-                    button(label: 'Enter'),
+                    Button(label: 'Enter'),
                     SizedBox(height: height * .015),
                     Row(
                       children: [

@@ -19,11 +19,13 @@ class _OnboardState extends State<Onboard> {
   int currentindex = 0;
   PageController? _pagescontroller;
 
+  @override
   void initState() {
     super.initState();
     _pagescontroller = PageController(initialPage: 0);
   }
 
+  @override
   void dispose() {
     _pagescontroller!.dispose();
     super.dispose();

@@ -1,13 +1,8 @@
 //import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../widget/all_widgets.dart';
-import '../../widget/searchbar.dart';
-class HomePage extends StatefulWidget {
 
+class HomePage extends StatefulWidget {
   // const HomePage({Key? key}) : super(key: key);
   const HomePage({Key? key}) : super(key: key);
   @override
@@ -31,18 +26,27 @@ class _HomePageState extends State<HomePage> {
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(Icons.menu, color: Color(0xFFCB585A),),
+              icon: const Icon(
+                Icons.menu,
+                color: Color(0xFFCB585A),
+              ),
               onPressed: () {/*drawer for user profile*/},
             );
           },
         ),
         actions: [
-          IconButton(onPressed: (){/*notification button*/}, icon: const Icon(Icons.notifications, color: Color(0xFFCB585A),)),
+          IconButton(
+            onPressed: () {/*notification button*/},
+            icon: const Icon(
+              Icons.notifications,
+              color: Color(0xFFCB585A),
+            ),
+          ),
         ],
       ),
       body: Column(
         children: [
-          SearchBar(),
+          Searchbar(),
           //row containing Categories heading and see all button
           Container(
             child: Padding(
@@ -50,20 +54,28 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Categories',
-                    style: TextStyle(fontFamily: 'Manrope-ExtraBold', fontWeight: FontWeight.bold, fontSize: 22) ,//Theme.of(context).textTheme.headline4,
+                    style: TextStyle(
+                        fontFamily: 'Manrope-ExtraBold',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22), //Theme.of(context).textTheme.headline4,
                   ),
-              GestureDetector(
-                onTap: (){/*see all logic goes here*/},
-                child: Text(
-                  'See All', style: TextStyle(fontFamily: 'Manrope-Bold', fontWeight: FontWeight.bold, color: Color(0xFFCB585A), fontSize: 12),),
-              )
+                  GestureDetector(
+                    onTap: () {/*see all logic goes here*/},
+                    child: const Text(
+                      'See All',
+                      style: TextStyle(
+                          fontFamily: 'Manrope-Bold',
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFCB585A),
+                          fontSize: 12),
+                    ),
+                  )
                 ],
               ),
             ),
           ),
-
 
           //categories shown below:
           //categories shown below:
@@ -76,8 +88,7 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return categories[index];
                 },
-              )
-          ),
+              )),
           //),
         ],
       ),
@@ -90,6 +101,7 @@ class CustomBottomNabBar extends StatefulWidget {
   @override
   State<CustomBottomNabBar> createState() => _CustomBottomNabBarState();
 }
+
 class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
   int _currentIndex = 0;
   void onTabTapped(int index) {
@@ -97,6 +109,7 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
       _currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -109,7 +122,8 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
         child: BottomNavigationBar(
           onTap: onTabTapped,
           showSelectedLabels: false, // Do not show labels for selected items
-          showUnselectedLabels: false, // Do not show labels for unselected items
+          showUnselectedLabels:
+              false, // Do not show labels for unselected items
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
@@ -117,7 +131,13 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
               label: 'Home',
               activeIcon: Stack(children: [
                 Icon(Icons.home, color: Color(0xFFCB585A)),
-                Positioned(top: 0.0, right: 0.0, child: Icon(Icons.brightness_1, size: 8.0, /*color: Colors.red*/))
+                Positioned(
+                    top: 0.0,
+                    right: 0.0,
+                    child: Icon(
+                      Icons.brightness_1,
+                      size: 8.0, /*color: Colors.red*/
+                    ))
               ]),
             ),
             BottomNavigationBarItem(
@@ -125,7 +145,13 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
               label: 'Messages',
               activeIcon: Stack(children: [
                 Icon(Icons.message_rounded, color: Color(0xFFCB585A)),
-                Positioned(top: 0.0, right: 0.0, child: Icon(Icons.brightness_1, size: 8.0, /*color: Colors.red*/))
+                Positioned(
+                    top: 0.0,
+                    right: 0.0,
+                    child: Icon(
+                      Icons.brightness_1,
+                      size: 8.0, /*color: Colors.red*/
+                    ))
               ]),
             ),
             BottomNavigationBarItem(
@@ -133,12 +159,18 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
               label: 'Settings',
               activeIcon: Stack(children: [
                 Icon(Icons.settings, color: Color(0xFFCB585A)),
-                Positioned(top: 0.0, right: 0.0, child: Icon(Icons.brightness_1, size: 8.0, /*color: Colors.red*/))
-              ]),)
+                Positioned(
+                    top: 0.0,
+                    right: 0.0,
+                    child: Icon(
+                      Icons.brightness_1,
+                      size: 8.0, /*color: Colors.red*/
+                    ))
+              ]),
+            )
           ],
         ),
       ),
     );
   }
 }
-

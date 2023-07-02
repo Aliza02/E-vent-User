@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../constants/constant.dart';
 import '../widget/heading.dart';
@@ -35,15 +33,15 @@ class _OtpVerificationState extends State<OtpVerification> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFFFAFAFA),
-        body: Container(
+        backgroundColor: const Color(0xFFFAFAFA),
+        body: SizedBox(
           width: width,
           height: height,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.all(0.0),
+                padding: const EdgeInsets.all(0.0),
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
                 child: logo(width: width * 0.9, height: height * 0.15),
               ),
@@ -63,7 +61,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   style: TextStyle(
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFFCB585A),
+                    color: Color(constant.red),
                     fontSize: width * 0.08,
                   ),
                 ),
@@ -76,7 +74,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   style: TextStyle(
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF555555),
+                    color: const Color(0xFF555555),
                     fontSize: width * 0.04,
                   ),
                 ),
@@ -88,7 +86,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   style: TextStyle(
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF555555),
+                    color: const Color(0xFF555555),
                     fontSize: width * 0.04,
                   ),
                 ),
