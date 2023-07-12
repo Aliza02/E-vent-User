@@ -21,7 +21,7 @@ class _OtpVerificationState extends State<OtpVerification> {
       width: width * 0.12,
       margin: EdgeInsets.fromLTRB(width * 0.02, height * 0.03, 0.0, 0.0),
       child: Center(
-        child: numberField(title: ' ', maxLength: 1),
+        child: NumberField(title: ' ', maxLength: 1),
       ),
     );
   }
@@ -43,14 +43,14 @@ class _OtpVerificationState extends State<OtpVerification> {
               Container(
                 padding: const EdgeInsets.all(0.0),
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
-                child: logo(width: width * 0.9, height: height * 0.15),
+                child: Logo(width: width * 0.9, height: height * 0.15),
               ),
-              heading(
+              Heading(
                 title: 'Verification',
                 heightFromTop: height * 0.008,
                 fontSize: width * 0.11,
               ),
-              subHeading(
+              SubHeading(
                 title: "Verify your Account",
                 fontSize: width * 0.04,
               ),

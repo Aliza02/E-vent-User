@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../orders/orders_screen.dart';
+import 'package:get/get.dart';
 
 class OrderLocation extends StatelessWidget {
   const OrderLocation({
@@ -13,7 +12,7 @@ class OrderLocation extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: mq.width * .16,
+          width: Get.width * .18,
           child: const Text(
             'Location',
             style: TextStyle(
@@ -24,9 +23,11 @@ class OrderLocation extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          width: 258,
+        const Expanded(
+          // width: 258,
           child: Text(
+            softWrap: true,
+            maxLines: 2,
             'XYZ building XZ block, Latifabad, Hyd. ',
             style: TextStyle(
               color: Color(0xFFCB585A),

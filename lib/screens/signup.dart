@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../widget/button.dart';
-import '../widget/googleButton.dart';
+import '../widget/google_button.dart';
 import '../widget/heading.dart';
 import '../widget/numberfield.dart';
 import '../widget/subheading.dart';
 import '../widget/textfield.dart';
 import '../widget/passwordfield.dart';
 
-class signup extends StatefulWidget {
-  const signup({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<signup> createState() => _signupState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _signupState extends State<signup> {
+class _SignupState extends State<Signup> {
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _signupState extends State<signup> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFFFAFAFA),
+        backgroundColor: const Color(0xFFFAFAFA),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: width * 0.08),
           width: width,
@@ -36,33 +36,33 @@ class _signupState extends State<signup> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.all(0.0),
+                padding: const EdgeInsets.all(0.0),
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: logo(width: width * 0.4, height: height * 0.08),
+                child: Logo(width: width * 0.4, height: height * 0.08),
               ),
-              heading(
+              Heading(
                 title: 'Sign Up',
                 heightFromTop: height * 0.008,
                 fontSize: width * 0.11,
               ),
-              subHeading(
+              SubHeading(
                 title: "Create an Account",
                 fontSize: width * 0.04,
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: textFormField(title: 'Full Name'),
+                child: CustomTextFormField(title: 'Full Name'),
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: numberField(title: 'Phone Number', maxLength: 11),
+                child: NumberField(title: 'Phone Number', maxLength: 11),
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: textFormField(title: 'Email'),
+                child: CustomTextFormField(title: 'Email'),
               ),
               Container(
                 height: height * 0.05,
@@ -83,13 +83,13 @@ class _signupState extends State<signup> {
                     height: height * 0.01,
                     width: width * 0.08,
                     child: Checkbox(
-                      activeColor: Color(0xFFCB585A),
-                      side: BorderSide(
+                      activeColor: const Color(0xFFCB585A),
+                      side: const BorderSide(
                         color: Color(0xFFCB585A),
                         width: 2.0,
                       ),
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Color(0xFFCB585A),
                           width: 1.0,
                         ),
@@ -103,7 +103,7 @@ class _signupState extends State<signup> {
                       },
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     // margin: EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
                     child: Text(
                       'I agree to all the term and conditions',
@@ -111,7 +111,7 @@ class _signupState extends State<signup> {
                         fontSize: width * 0.03,
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF464646),
+                        color: const Color(0xFF464646),
                       ),
                     ),
                   ),
@@ -121,12 +121,16 @@ class _signupState extends State<signup> {
                 width: width * 0.4,
                 height: height * 0.06,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.035, 0.0, 0.0),
-                child: Button(label: 'Create Account'),
+                child: Button(
+                    label: 'Create Account',
+                    onPressed: () {
+                      Get.toNamed('/homepage');
+                    }),
               ),
               SizedBox(height: height * 0.03),
               Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Color(0xFFCB585A),
                       height: 20.0,
@@ -138,13 +142,13 @@ class _signupState extends State<signup> {
                   Text(
                     'or continue with',
                     style: TextStyle(
-                      color: Color(0xff555555),
+                      color: const Color(0xff555555),
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w400,
                       fontSize: width * 0.04,
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       color: Color(0xFFCB585A),
                       height: 20.0,
@@ -155,7 +159,7 @@ class _signupState extends State<signup> {
                   ),
                 ],
               ),
-              GoogleButton(),
+              const GoogleButton(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -163,7 +167,7 @@ class _signupState extends State<signup> {
                     'Already have an account? ',
                     style: TextStyle(
                       fontSize: width * 0.04,
-                      color: Color(0xFF555555),
+                      color: const Color(0xFF555555),
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w500,
                     ),
@@ -176,7 +180,7 @@ class _signupState extends State<signup> {
                       'Sign In',
                       style: TextStyle(
                         fontSize: width * 0.04,
-                        color: Color(0xFFCB585A),
+                        color: const Color(0xFFCB585A),
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w800,
                       ),

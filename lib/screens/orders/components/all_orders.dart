@@ -25,38 +25,38 @@ class AllOrders extends StatelessWidget {
             {
               // Active Order Portion
               if (index == aStartingIndex) {
-                return const Column(children: [
-                  SizedBox(height: 10),
-                  OrderTypeTextContainer(
+                return Column(children: [
+                  const SizedBox(height: 10),
+                  const OrderTypeTextContainer(
                       text: 'Active orders', color: Colors.green),
                   OrderCard()
                 ]);
               }
-              return const OrderCard();
+              return OrderCard();
             } else if (index < cStartingIndex) // starting of Previous ORder
             {
               // Pending Order Portion
               if (index == pStartingIndex) {
-                return const Column(children: [
-                  SizedBox(height: 10),
-                  OrderTypeTextContainer(
+                return Column(children: [
+                  const SizedBox(height: 10),
+                  const OrderTypeTextContainer(
                       text: 'Previous orders', color: Color(0xFF555454)),
                   OrderCard()
                 ]);
               }
-              return const OrderCard();
+              return OrderCard();
             } else // starting of Cancelled ORder
             {
               // Cancel Order Portion
               if (index == cStartingIndex) {
-                return const Column(children: [
-                  SizedBox(height: 10),
-                  OrderTypeTextContainer(
+                return Column(children: [
+                  const SizedBox(height: 10),
+                  const OrderTypeTextContainer(
                       color: Color(0xFFDC0003), text: 'Cancelled orders'),
                   OrderCard()
                 ]);
               }
-              return const OrderCard();
+              return OrderCard();
             }
           }),
     );

@@ -4,7 +4,7 @@ class CategoryBox extends StatelessWidget {
   final String name;
   final String image;
 
-  CategoryBox({Key? key, required this.image, required this.name})
+  const CategoryBox({Key? key, required this.image, required this.name})
       : super(key: key);
 
   @override

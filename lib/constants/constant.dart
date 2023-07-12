@@ -27,3 +27,26 @@ TextStyle kRedTextStyle = TextStyle(
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w800,
 );
+TextStyle k8TextStyle = const TextStyle(
+  color: Colors.black,
+  fontSize: 8,
+  fontFamily: 'Manrope',
+  fontWeight: FontWeight.w600,
+);
+
+List<BoxShadow>? shadowsBelow = [
+  const BoxShadow(
+    color: Color(0x0C1C252C),
+    blurRadius: 8,
+    offset: Offset(0, 4),
+    spreadRadius: 0,
+  )
+];
+List<BoxShadow>? shadowsAbove = [
+  const BoxShadow(
+    color: Color(0x26000000),
+    blurRadius: 15,
+    offset: Offset(0, 4),
+    spreadRadius: 0,
+  )
+];

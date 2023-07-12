@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../orders/orders_screen.dart';
+import 'package:get/get.dart';
 
 class OrderDuration extends StatelessWidget {
   const OrderDuration({
@@ -12,7 +11,7 @@ class OrderDuration extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: mq.width * .16,
+          width: Get.width * .18,
           child: const Text(
             'Duration',
             textAlign: TextAlign.justify,

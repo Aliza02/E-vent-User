@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../orders/orders_screen.dart';
+import 'package:get/get.dart';
 
 class OrderDate extends StatelessWidget {
   const OrderDate({
@@ -13,7 +12,7 @@ class OrderDate extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: mq.width * .16,
+          width: Get.width * .18,
           child: const Text(
             'Date',
             style: TextStyle(

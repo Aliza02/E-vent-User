@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../orders_screen.dart';
+import 'package:get/get.dart';
 
 class OrderTypeTextContainer extends StatelessWidget {
   const OrderTypeTextContainer({
@@ -13,7 +12,7 @@ class OrderTypeTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: mq.width * .1),
+      padding: EdgeInsets.symmetric(horizontal: Get.width * .1),
       child: Row(
         children: [
           Container(
@@ -24,7 +23,7 @@ class OrderTypeTextContainer extends StatelessWidget {
               shape: const OvalBorder(),
             ),
           ),
-          SizedBox(width: mq.width * .02),
+          SizedBox(width: Get.width * .02),
           Text(
             text,
             textAlign: TextAlign.center,

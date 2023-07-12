@@ -1,9 +1,8 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widget/all_widgets.dart';
 
 class HomePage extends StatefulWidget {
-  // const HomePage({Key? key}) : super(key: key);
   const HomePage({Key? key}) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
@@ -11,17 +10,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<CategoryBox> categories = [
-    CategoryBox(image: 'assets/images/photographer.jpg', name: 'Photographers'),
-    CategoryBox(image: 'assets/images/venues.jpg', name: 'Venues'),
-    CategoryBox(image: 'assets/images/caterers.jpg', name: 'Caterers'),
+    const CategoryBox(
+        image: 'assets/images/photographer.jpg', name: 'Photographers'),
+    const CategoryBox(image: 'assets/images/venues.jpg', name: 'Venues'),
+    const CategoryBox(image: 'assets/images/caterers.jpg', name: 'Caterers'),
     // Add more categories here...
   ];
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      bottomNavigationBar: CustomBottomNabBar(),
+      bottomNavigationBar: const CustomBottomNabBar(),
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
@@ -30,13 +28,17 @@ class _HomePageState extends State<HomePage> {
                 Icons.menu,
                 color: Color(0xFFCB585A),
               ),
-              onPressed: () {/*drawer for user profile*/},
+              onPressed: () {
+                Get.toNamed('/product');
+              },
             );
           },
         ),
         actions: [
           IconButton(
-            onPressed: () {/*notification button*/},
+            onPressed: () {
+              Get.toNamed('/order');
+            },
             icon: const Icon(
               Icons.notifications,
               color: Color(0xFFCB585A),
@@ -46,40 +48,39 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          Searchbar(),
+          const Searchbar(),
           //row containing Categories heading and see all button
-          Container(
-            child: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Categories',
+
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Categories',
+                  style: TextStyle(
+                      fontFamily: 'Manrope-ExtraBold',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22), //Theme.of(context).textTheme.headline4,
+                ),
+                GestureDetector(
+                  onTap: () {/*see all logic goes here*/},
+                  child: const Text(
+                    'See All',
                     style: TextStyle(
-                        fontFamily: 'Manrope-ExtraBold',
+                        fontFamily: 'Manrope-Bold',
                         fontWeight: FontWeight.bold,
-                        fontSize: 22), //Theme.of(context).textTheme.headline4,
+                        color: Color(0xFFCB585A),
+                        fontSize: 12),
                   ),
-                  GestureDetector(
-                    onTap: () {/*see all logic goes here*/},
-                    child: const Text(
-                      'See All',
-                      style: TextStyle(
-                          fontFamily: 'Manrope-Bold',
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFCB585A),
-                          fontSize: 12),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
 
           //categories shown below:
           //categories shown below:
-          Container(
+          SizedBox(
               height: 140,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class CustomBottomNabBar extends StatefulWidget {
-  CustomBottomNabBar({Key? key}) : super(key: key);
+  const CustomBottomNabBar({Key? key}) : super(key: key);
   @override
   State<CustomBottomNabBar> createState() => _CustomBottomNabBarState();
 }
@@ -125,7 +126,7 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
           showUnselectedLabels:
               false, // Do not show labels for unselected items
           currentIndex: _currentIndex,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

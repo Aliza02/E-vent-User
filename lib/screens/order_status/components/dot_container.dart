@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../constants/constant.dart';
 import '../../../controllers/order_pic_controller.dart';
-import '../../orders/orders_screen.dart';
 
+// ignore: must_be_immutable
 class DotContainer extends StatelessWidget {
   OrderPicController orderPicController = Get.find<OrderPicController>();
   DotContainer({Key? key, required this.index}) : super(key: key);
@@ -15,7 +15,7 @@ class DotContainer extends StatelessWidget {
       () => Container(
         width: 7,
         height: 7,
-        margin: EdgeInsets.symmetric(horizontal: mq.width * 0.01),
+        margin: EdgeInsets.symmetric(horizontal: Get.width * 0.01),
         decoration: ShapeDecoration(
           color: orderPicController.index.value == index
               ? Color(constant.red)

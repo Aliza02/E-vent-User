@@ -9,7 +9,7 @@ class Searchbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25.0),
+        padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Material(
           elevation: 10,
           shape:

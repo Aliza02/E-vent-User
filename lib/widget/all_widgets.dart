@@ -1,6 +1,6 @@
 export 'button.dart';
 export 'categories.dart';
-export 'googleButton.dart';
+export 'google_button.dart';
 export 'heading.dart';
 export 'logo.dart';
 export 'numberfield.dart';

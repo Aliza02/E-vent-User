@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
-import '../../widget/googleButton.dart';
+import '../../widget/google_button.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
@@ -23,7 +23,7 @@ class ForgetPassword extends StatelessWidget {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title:
-              heading(title: 'Forgot Password', heightFromTop: 0, fontSize: 28),
+              Heading(title: 'Forgot Password', heightFromTop: 0, fontSize: 28),
           leading: InkWell(
             onTap: () {
               Get.toNamed('/login');
@@ -41,16 +41,21 @@ class ForgetPassword extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset('assets/images/forget_pasword.svg'),
-                    subHeading(
+                    SubHeading(
                       title: 'Forgot password? No worries, lets recover it',
                       fontSize: 18,
                     ),
                     SizedBox(
                       height: height * .01,
                     ),
-                    textFormField(title: 'enter Email'),
+                    CustomTextFormField(title: 'enter Email'),
                     SizedBox(height: height * .02),
-                    Button(label: 'Enter'),
+                    Button(
+                      label: 'Enter',
+                      onPressed: () {
+                        Get.toNamed('/homepage');
+                      },
+                    ),
                     SizedBox(height: height * .015),
                     Row(
                       children: [

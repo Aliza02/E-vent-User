@@ -1,13 +1,12 @@
 //!Flutter packages
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:flutter/src/widgets/placeholder.dart';
 
 //!project headers
 import '../constants/constant.dart';
 import '../widget/logo.dart';
 import '../widget/button.dart';
-import '../widget/googleButton.dart';
+import '../widget/google_button.dart';
 import '../widget/heading.dart';
 import '../widget/subheading.dart';
 import '../widget/textfield.dart';
@@ -24,55 +23,55 @@ class _LoginState extends State<Login> {
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: const Color(0xFFFAFAFA),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-          width: width,
-          height: height,
+          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+          width: Get.width,
+          height: Get.height,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 padding: const EdgeInsets.all(0.0),
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
-                child: logo(width: width * 0.9, height: height * 0.15),
+                margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.04, 0.0, 0.0),
+                child: Logo(width: Get.width * 0.9, height: Get.height * 0.15),
               ),
-              heading(
+              Heading(
                 title: 'Welcome Back',
-                heightFromTop: height * 0.008,
-                fontSize: width * 0.11,
+                heightFromTop: Get.height * 0.008,
+                fontSize: Get.width * 0.11,
               ),
-              subHeading(
+              SubHeading(
                 title: "Welcome back, you've been missed.",
-                fontSize: width * 0.04,
+                fontSize: Get.width * 0.04,
               ),
               Container(
-                height: height * 0.07,
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.03, 0.0, 0.0),
-                child: textFormField(
+                height: Get.height * 0.07,
+                margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.03, 0.0, 0.0),
+                child: CustomTextFormField(
                   title: 'Email',
                   // controller: Get.put,
                 ),
               ),
               Container(
-                height: height * 0.07,
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.03, 0.0, 0.0),
+                height: Get.height * 0.07,
+                margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.03, 0.0, 0.0),
                 child: PasswordField(title: 'Password'),
               ),
               SizedBox(
-                height: height * 0.01,
+                height: Get.height * 0.01,
               ),
               Row(
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: height * 0.01,
-                    width: width * 0.08,
+                    height: Get.height * 0.01,
+                    width: Get.width * 0.08,
                     child: Checkbox(
                       activeColor: const Color(0xFFCB585A),
                       side: const BorderSide(
@@ -94,13 +93,13 @@ class _LoginState extends State<Login> {
                       },
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     // margin: EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
                     child: Text(
                       'Remember me',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                        fontSize: width * 0.04,
+                        fontSize: Get.width * 0.04,
                         fontFamily: constant.font,
                         // fontWeight: FontWeight.w700,
                         color: const Color(0xFF464646),
@@ -118,26 +117,29 @@ class _LoginState extends State<Login> {
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
                         color: const Color(0xFFCB585A),
-                        fontSize: width * 0.04,
+                        fontSize: Get.width * 0.04,
                       ),
                     ),
                   ),
                 ],
               ),
               Container(
-                width: width * 0.4,
-                height: height * 0.06,
-                margin: EdgeInsets.fromLTRB(0.0, height * 0.04, 0.0, 0.0),
+                width: Get.width * 0.4,
+                height: Get.height * 0.06,
+                margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.04, 0.0, 0.0),
                 child: InkWell(
                   // onTap: (){
                   //   Get.toNamed('/homepage');
                   // },
                   child: Button(
                     label: 'Login',
+                    onPressed: () {
+                      Get.toNamed('/homepage');
+                    },
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: Get.height * 0.03),
               Row(
                 children: [
                   const Expanded(
@@ -155,7 +157,7 @@ class _LoginState extends State<Login> {
                       color: const Color(0xff555555),
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w400,
-                      fontSize: width * 0.04,
+                      fontSize: Get.width * 0.04,
                     ),
                   ),
                   const Expanded(
@@ -171,7 +173,7 @@ class _LoginState extends State<Login> {
               ),
               const GoogleButton(),
               SizedBox(
-                height: height * 0.04,
+                height: Get.height * 0.04,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +181,7 @@ class _LoginState extends State<Login> {
                   Text(
                     'Don’t have an account?',
                     style: TextStyle(
-                      fontSize: width * 0.04,
+                      fontSize: Get.width * 0.04,
                       color: const Color(0xFF555555),
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w500,
@@ -192,7 +194,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       'Sign up',
                       style: TextStyle(
-                        fontSize: width * 0.04,
+                        fontSize: Get.width * 0.04,
                         color: const Color(0xFFCB585A),
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w800,

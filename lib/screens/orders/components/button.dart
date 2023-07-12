@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../orders_screen.dart';
+import 'package:get/get.dart';
 
 class ListOrderButton extends StatelessWidget {
   const ListOrderButton({
@@ -19,8 +18,8 @@ class ListOrderButton extends StatelessWidget {
         onPressed: onpressed,
         style: ElevatedButton.styleFrom(
           elevation: 4,
-          padding: EdgeInsets.symmetric(
-              horizontal: mq.width * .06, vertical: mq.height * .03),
+          padding:
+              EdgeInsets.symmetric(horizontal: Get.width * .06, vertical: 10),
           backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),

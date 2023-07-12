@@ -1,5 +1,3 @@
-import 'package:flutter/animation.dart';
-
 class OnboardingModel {
   OnboardingModel({required this.description, required this.image});
 
@@ -10,8 +8,7 @@ class OnboardingModel {
 List<OnboardingModel> content = [
   OnboardingModel(
       description:
-          'Welcome to EventuAlly, your ultimate event planning ally! Let' +
-              's get started.',
+          'Welcome to EventuAlly, your ultimate event planning ally! Let\'s get started.',
       image: "assets/images/screen1.png"),
   OnboardingModel(
       description:

@@ -7,7 +7,7 @@ import 'components/all_orders.dart';
 import 'components/button.dart';
 import 'components/order_card.dart';
 
-late Size mq;
+// late Size Get;
 
 class OrdersScreen extends StatelessWidget {
   OrdersScreen({super.key});
@@ -20,13 +20,12 @@ class OrdersScreen extends StatelessWidget {
     } else {
       controller.setAllButtonColor();
     }
-    mq = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const TextAppBar(title: 'Your Orders'),
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: mq.width * .1),
+            padding: EdgeInsets.symmetric(horizontal: Get.width * .06),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +39,7 @@ class OrdersScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(width: mq.width * .05),
+                SizedBox(width: Get.width * .05),
                 Obx(
                   () => ListOrderButton(
                     title: 'All Orders',
@@ -53,13 +52,13 @@ class OrdersScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: mq.height * .01),
+          SizedBox(height: Get.height * .01),
           Obx(
             () => controller.isFirstButtonActive.value
                 ? Expanded(
                     child: ListView.builder(
                       itemCount: 4,
-                      itemBuilder: (context, index) => const OrderCard(),
+                      itemBuilder: (context, index) => OrderCard(),
                     ),
                   )
                 : const AllOrders(),
