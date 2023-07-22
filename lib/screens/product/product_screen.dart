@@ -76,7 +76,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Select a date',
@@ -224,7 +224,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Select a location',
@@ -274,7 +274,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 ),
                 SizedBox(height: Get.height * .01),
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Select a Duration',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../widget/all_widgets.dart';
+import '../../widget/restuarant_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -46,52 +47,85 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          const Searchbar(),
-          //row containing Categories heading and see all button
-
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Categories',
-                  style: TextStyle(
-                      fontFamily: 'Manrope-ExtraBold',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22), //Theme.of(context).textTheme.headline4,
-                ),
-                GestureDetector(
-                  onTap: () {/*see all logic goes here*/},
-                  child: const Text(
-                    'See All',
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Searchbar(),
+            //row containing Categories heading and see all button
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Categories',
                     style: TextStyle(
-                        fontFamily: 'Manrope-Bold',
+                        fontFamily: 'Manrope-ExtraBold',
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFCB585A),
-                        fontSize: 12),
+                        fontSize: 22), //Theme.of(context).textTheme.headline4,
                   ),
-                )
-              ],
+                  GestureDetector(
+                    onTap: () {/*see all logic goes here*/},
+                    child: const Text(
+                      'See All',
+                      style: TextStyle(
+                          fontFamily: 'Manrope-Bold',
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFCB585A),
+                          fontSize: 12),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
 
-          //categories shown below:
-          //categories shown below:
-          SizedBox(
-              height: 140,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  return categories[index];
-                },
-              )),
-          //),
-        ],
+            //categories shown below:
+            SizedBox(
+                height: 140,
+                width: MediaQuery.of(context).size.width,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    return categories[index];
+                  },
+                )),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20,0, 20, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Most Popular',
+                    style: TextStyle(
+                        fontFamily: 'Manrope-ExtraBold',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22), //Theme.of(context).textTheme.headline4,
+                  ),
+                  GestureDetector(
+                    onTap: () {/*see all logic goes here*/},
+                    child: const Text(
+                      'See All',
+                      style: TextStyle(
+                          fontFamily: 'Manrope-Bold',
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFCB585A),
+                          fontSize: 12),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),  //(singleChildScrollable is already being used so disallow listview builder to scroll)
+                itemCount: restaurants.length,
+                itemBuilder: (context, index){
+                  return RestaurantCard(restaurant: restaurants[index]);
+                }),
+          ],
+        ),
       ),
     );
   }
@@ -126,7 +160,7 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
           showUnselectedLabels:
               false, // Do not show labels for unselected items
           currentIndex: _currentIndex,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

@@ -53,7 +53,7 @@ class OrderStatusScreen extends StatelessWidget {
               const ProductCategories(),
               SizedBox(height: Get.height * .015),
               const PriceAndPeopleText(),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(

@@ -70,17 +70,17 @@ class MyApp extends StatelessWidget {
           dialBackgroundColor: Color(constant.white),
           dayPeriodColor: Colors.white,
           dayPeriodTextColor: Color(constant.black),
-          cancelButtonStyle: TextButton.styleFrom(
-            primary: Colors.white, // Set the text color of the cancel button
-            backgroundColor: Color(
-                constant.red), // Set the background color of the cancel button
-          ),
-          confirmButtonStyle: TextButton.styleFrom(
-            primary:
-                Color(constant.red), // Set the text color of the confirm button
-            backgroundColor: Color(
-                constant.red), // Set the background color of the confirm button
-          ),
+          // cancelButtonStyle: TextButton.styleFrom(
+          //   primary: Colors.white, // Set the text color of the cancel button
+          //   backgroundColor: Color(
+          //       constant.red), // Set the background color of the cancel button
+          // ),
+          // confirmButtonStyle: TextButton.styleFrom(
+          //   primary:
+          //       Color(constant.red), // Set the text color of the confirm button
+          //   backgroundColor: Color(
+          //       constant.red), // Set the background color of the confirm button
+          // ),
           hourMinuteColor: Colors.white,
           hourMinuteTextColor: Color(constant.black),
           hourMinuteTextStyle: const TextStyle(
@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/signup', page: () => const Signup()),
         GetPage(name: '/otpverification', page: () => const OtpVerification()),
         GetPage(name: '/forgetpassword', page: () => const ForgetPassword()),
-        GetPage(name: '/homepage', page: () => const HomePage()),
+        GetPage(name: '/homepage', page: () => HomePage()),
         GetPage(name: '/order', page: () => OrdersScreen()),
         GetPage(name: '/orderstatus', page: () => OrderStatusScreen()),
         GetPage(name: '/product', page: () => const ProductScreen()),
@@ -128,6 +128,7 @@ class MyApp extends StatelessWidget {
             page: () => const ConfirmationScreen()),
         GetPage(name: '/checkout', page: () => const CheckOutScreen()),
       ],
+      //initialRoute: isViewed != null && isViewed != 0 ? '/onboard' : '/login',
       initialRoute: isViewed != 0 ? '/onboard' : '/login',
       // routes: {
       //   '/onboard': (context) => onboard(),
