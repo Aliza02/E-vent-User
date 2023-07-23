@@ -53,13 +53,13 @@ class CartScreen extends StatelessWidget {
                 const ToggleButton(),
                 SizedBox(
                   width: Get.width * .21,
-                  child: const Text(
+                  child: Text(
                     'All Items',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF555454),
+                      color: const Color(0xFF555454),
                       fontSize: 16,
-                      fontFamily: 'Manrope',
+                      fontFamily: constant.font,
                       fontWeight: FontWeight.w500,
                       // height: 20.80,
                     ),

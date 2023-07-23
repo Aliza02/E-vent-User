@@ -14,7 +14,7 @@ class ProductTitleText extends StatelessWidget {
       style: TextStyle(
         color: Color(constant.black),
         fontSize: 24,
-        fontFamily: 'Manrope',
+        fontFamily: constant.font,
         fontWeight: FontWeight.w800,
       ),
     );

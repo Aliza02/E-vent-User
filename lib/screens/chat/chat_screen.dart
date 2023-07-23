@@ -47,8 +47,8 @@ class _ChatScreenState extends State<ChatScreen> {
           appBar: AppBar(
               shape: Border(
                 bottom: BorderSide(
-                  color:
-                      kPrimaryColor, // Change the color to your desired color
+                  color: Color(
+                      constant.red), // Change the color to your desired color
                   width: 2.0,
                 ),
               ),
@@ -160,7 +160,7 @@ class _ChatScreenState extends State<ChatScreen> {
         IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(CupertinoIcons.back),
-          color: kIconColor,
+          color: Color(constant.icon),
         ),
         Stack(
           children: [
@@ -168,10 +168,10 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Container(
                 margin: const EdgeInsets.all(0),
                 child: CircleAvatar(
-                  backgroundColor: kdpColor,
+                  backgroundColor: Color(constant.lightPink),
                   child: Icon(
                     CupertinoIcons.person,
-                    color: kTextColor,
+                    color: Color(constant.grey),
                   ),
                 ),
               ),
@@ -204,12 +204,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: kTextColor),
+                      color: Color(constant.grey)),
                 ),
                 const SizedBox(width: 2),
                 Text(
                   'Online',
-                  style: TextStyle(color: kTextColor, fontSize: 12),
+                  style: TextStyle(color: Color(constant.grey), fontSize: 12),
                 ),
               ],
             ),
@@ -236,7 +236,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     setState(() => _sendFile = !_sendFile);
                   },
                   icon: const Icon(Icons.add, size: 26),
-                  color: kIconColor,
+                  color: Color(constant.icon),
                 ),
                 SizedBox(
                   width: Get.width * .03,
@@ -255,7 +255,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Message ...',
-                      hintStyle: TextStyle(color: kTextColor),
+                      hintStyle: TextStyle(color: Color(constant.grey)),
                     ),
                   ),
                 ),
@@ -279,7 +279,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   bottom: 10, right: 5, left: 10, top: 10),
               child: Icon(
                 Icons.near_me_rounded,
-                color: kPrimaryColor,
+                color: Color(constant.red),
               )
               // SvgPicture.asset(
               //   'assets/icons/send.svg',

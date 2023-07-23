@@ -34,10 +34,10 @@ class ChatOfferContainer extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: _buttonController.isCatBtnToggled.value
-                          ? kofferColor
-                          : kPrimaryColor,
+                          ? Color(constant.blue)
+                          : Color(constant.red),
                     ),
-                    color: kWhiteColor,
+                    color: Color(constant.white),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
@@ -95,7 +95,7 @@ class ChatOfferContainer extends StatelessWidget {
                                   'RS',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: kTextColor),
+                                      color: Color(constant.grey)),
                                 ),
                                 SizedBox(width: Get.width * .04),
                                 SizedBox(
@@ -125,7 +125,7 @@ class ChatOfferContainer extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                         ),
-                                        backgroundColor: kofferColor),
+                                        backgroundColor: Color(constant.blue)),
                                     child: const Text(
                                       'Next',
                                       textAlign: TextAlign.center,
@@ -151,16 +151,16 @@ class ChatOfferContainer extends StatelessWidget {
                                       border: InputBorder.none,
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                          color:
-                                              kPrimaryColor, // Specify the desired border color when the field is focused
+                                          color: Color(constant
+                                              .red), // Specify the desired border color when the field is focused
                                           width:
                                               2.0, // Specify the desired border width
                                         ),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                          color:
-                                              kPrimaryColor, // Specify the desired border color
+                                          color: Color(constant
+                                              .red), // Specify the desired border color
                                           width:
                                               2.0, // Specify the desired border width
                                         ),
@@ -194,8 +194,8 @@ class ChatOfferContainer extends StatelessWidget {
                                           ),
                                           backgroundColor: _buttonController
                                                   .isCatBtnToggled.value
-                                              ? kofferColor
-                                              : kPrimaryColor,
+                                              ? Color(constant.blue)
+                                              : Color(constant.red),
                                         ),
                                         child: const Text(
                                           'Send',
@@ -221,8 +221,8 @@ class ChatOfferContainer extends StatelessWidget {
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: _buttonController.isCatBtnToggled.value
-                          ? kofferColor
-                          : kPrimaryColor,
+                          ? Color(constant.blue)
+                          : Color(constant.red),
                     ),
                   ),
                   child: IconButton(
@@ -231,8 +231,8 @@ class ChatOfferContainer extends StatelessWidget {
                       },
                       highlightColor: Colors.transparent,
                       color: _buttonController.isCatBtnToggled.value
-                          ? kofferColor
-                          : kPrimaryColor,
+                          ? Color(constant.blue)
+                          : Color(constant.red),
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                       ),

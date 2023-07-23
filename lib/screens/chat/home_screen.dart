@@ -72,7 +72,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
             leading: IconButton(
               icon: Icon(
                 CupertinoIcons.back,
-                color: kIconColor,
+                color: Color(constant.icon),
               ),
               onPressed: () {
                 // Get.back();
@@ -118,7 +118,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                   _isSearching
                       ? CupertinoIcons.clear_circled_solid
                       : Icons.search,
-                  color: kIconColor,
+                  color: Color(constant.icon),
                 ),
               ),
             ],

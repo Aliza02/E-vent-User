@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/constant.dart';
+
 class OrderDate extends StatelessWidget {
   const OrderDate({
     super.key,
@@ -13,23 +15,23 @@ class OrderDate extends StatelessWidget {
       children: [
         SizedBox(
           width: Get.width * .18,
-          child: const Text(
+          child: Text(
             'Date',
             style: TextStyle(
-              color: Color(0xFF555454),
+              color: const Color(0xFF555454),
               fontSize: 14,
-              fontFamily: 'Manrope',
+              fontFamily: constant.font,
               fontWeight: FontWeight.w700,
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
           child: Text(
             '21/05/2023',
             style: TextStyle(
-              color: Color(0xFFCB585A),
+              color: Color(constant.red),
               fontSize: 16,
-              fontFamily: 'Manrope',
+              fontFamily: constant.font,
               fontWeight: FontWeight.w700,
             ),
           ),

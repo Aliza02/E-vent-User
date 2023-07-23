@@ -28,8 +28,8 @@ class OfferToggler extends StatelessWidget {
                     width: Get.width * .4,
                     height: Get.height * .08,
                     decoration: BoxDecoration(
-                      border: Border.all(color: kofferColor),
-                      color: kWhiteColor,
+                      border: Border.all(color: Color(constant.blue)),
+                      color: Color(constant.white),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -41,7 +41,7 @@ class OfferToggler extends StatelessWidget {
                         const Spacer(),
                         Text(
                           'Make an offer',
-                          style: TextStyle(color: kofferColor),
+                          style: TextStyle(color: Color(constant.blue)),
                         ),
                         const Spacer(),
                       ],
@@ -84,7 +84,7 @@ class OfferToggler extends StatelessWidget {
                               ? 'assets/icons/make_offer_selected.svg'
                               : 'assets/icons/make_offer_unselected.svg',
                           label: 'Make an offer',
-                          buttonColor: kofferColor,
+                          buttonColor: Color(constant.blue),
                         ),
                         SizedBox(width: Get.width * .02),
                         CustomElevatedButton(
@@ -94,7 +94,7 @@ class OfferToggler extends StatelessWidget {
                               ? 'assets/icons/customize_offer_selected.svg'
                               : 'assets/icons/customize_offer_unselected.svg',
                           label: 'Customization Details',
-                          buttonColor: kPrimaryColor,
+                          buttonColor: Color(constant.red),
                         ),
                       ],
                     ),

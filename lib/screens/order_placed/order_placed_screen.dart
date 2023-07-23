@@ -4,6 +4,8 @@ import 'package:eventually_user/widget/text_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../constants/constant.dart';
+
 class OrderPlacedScreen extends StatelessWidget {
   const OrderPlacedScreen({super.key});
 
@@ -24,35 +26,35 @@ class OrderPlacedScreen extends StatelessWidget {
                 width: Get.width * .9,
               ),
               SizedBox(height: Get.height * .01),
-              const Text(
+              Text(
                 'Congratulations!',
                 style: TextStyle(
-                  color: Color(0xFFCB585A),
+                  color: Color(constant.red),
                   fontSize: 24,
-                  fontFamily: 'Manrope',
+                  fontFamily: constant.font,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               SizedBox(height: Get.height * .01),
-              const Text(
+              Text(
                 'Your order number is : 123456',
                 style: TextStyle(
-                  color: Color(0xFF555454),
+                  color: const Color(0xFF555454),
                   fontSize: 18,
-                  fontFamily: 'Manrope',
+                  fontFamily: constant.font,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               SizedBox(height: Get.height * .01),
-              const SizedBox(
+              SizedBox(
                 width: 278,
                 child: Text(
                   'Your order has been placed successfully and you are one step closer to making your dream event a reality.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xFF555454),
+                    color: const Color(0xFF555454),
                     fontSize: 12,
-                    fontFamily: 'Manrope',
+                    fontFamily: constant.font,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/constant.dart';
+
 class OrderLocation extends StatelessWidget {
   const OrderLocation({
     super.key,
@@ -13,26 +15,26 @@ class OrderLocation extends StatelessWidget {
       children: [
         SizedBox(
           width: Get.width * .18,
-          child: const Text(
+          child: Text(
             'Location',
             style: TextStyle(
-              color: Color(0xFF555454),
+              color: const Color(0xFF555454),
               fontSize: 14,
-              fontFamily: 'Manrope',
+              fontFamily: constant.font,
               fontWeight: FontWeight.w700,
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
           // width: 258,
           child: Text(
             softWrap: true,
             maxLines: 2,
             'XYZ building XZ block, Latifabad, Hyd. ',
             style: TextStyle(
-              color: Color(0xFFCB585A),
+              color: Color(constant.red),
               fontSize: 16,
-              fontFamily: 'Manrope',
+              fontFamily: constant.font,
               fontWeight: FontWeight.w700,
             ),
           ),

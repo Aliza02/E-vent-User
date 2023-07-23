@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/constant.dart';
+
 class PriceAndPeopleText extends StatelessWidget {
   const PriceAndPeopleText({
     super.key,
@@ -7,16 +9,16 @@ class PriceAndPeopleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Price',
           textAlign: TextAlign.justify,
           style: TextStyle(
-            color: Color(0x7F555454),
+            color: const Color(0x7F555454),
             fontSize: 12,
-            fontFamily: 'Manrope',
+            fontFamily: constant.font,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -24,9 +26,9 @@ class PriceAndPeopleText extends StatelessWidget {
           'Person',
           textAlign: TextAlign.right,
           style: TextStyle(
-            color: Color(0x7F555454),
+            color: const Color(0x7F555454),
             fontSize: 12,
-            fontFamily: 'Manrope',
+            fontFamily: constant.font,
             fontWeight: FontWeight.w700,
           ),
         )

@@ -22,13 +22,13 @@ class OfferNCustomTexts extends StatelessWidget {
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: kTextColor,
+              color: Color(constant.grey),
             ),
           ),
           Text(
             package,
             style: TextStyle(
-              color: kPrimaryColor,
+              color: Color(constant.red),
               fontWeight: FontWeight.w700,
               fontSize: 12,
             ),

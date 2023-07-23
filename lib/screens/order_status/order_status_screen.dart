@@ -53,16 +53,16 @@ class OrderStatusScreen extends StatelessWidget {
               const ProductCategories(),
               SizedBox(height: Get.height * .015),
               const PriceAndPeopleText(),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     '50,000 Rs',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
-                      color: Color(0xFF555454),
+                      color: const Color(0xFF555454),
                       fontSize: 24,
-                      fontFamily: 'Manrope',
+                      fontFamily: constant.font,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -70,9 +70,9 @@ class OrderStatusScreen extends StatelessWidget {
                     '100',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: Color(0xFF555454),
+                      color: const Color(0xFF555454),
                       fontSize: 24,
-                      fontFamily: 'Manrope',
+                      fontFamily: constant.font,
                       fontWeight: FontWeight.w700,
                     ),
                   )
@@ -110,7 +110,7 @@ class OrderStatusScreen extends StatelessWidget {
             style: TextStyle(
               color: color,
               fontSize: 11,
-              fontFamily: 'Manrope',
+              fontFamily: constant.font,
               fontWeight: FontWeight.w800,
             ),
           ),

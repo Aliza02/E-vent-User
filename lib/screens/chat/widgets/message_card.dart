@@ -56,8 +56,8 @@ class _MessageCardState extends State<MessageCard> {
                                       : Get.width * 0.04),
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: kSecondaryMessageColor, width: 2),
-                                color: kPrimaryColor,
+                                    color: Color(constant.red), width: 2),
+                                color: Color(constant.red),
                                 // borderRadius: const BorderRadius.only(
                                 //   topLeft: Radius.circular(15),
                                 //   topRight: Radius.circular(15),
@@ -85,7 +85,8 @@ class _MessageCardState extends State<MessageCard> {
                             child: Text(
                               MyDateUtil.getFormattedTime(
                                   context: context, time: widget.message.sent),
-                              style: TextStyle(fontSize: 13, color: kTextColor),
+                              style: TextStyle(
+                                  fontSize: 13, color: Color(constant.grey)),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -109,8 +110,8 @@ class _MessageCardState extends State<MessageCard> {
     //             ? Get.width * .03
     //             : Get.width * 0.04),
     //         decoration: BoxDecoration(
-    //             border: Border.all(color: kSecondaryMessageColor, width: 2),
-    //             color: kPrimaryColor,
+    //             border: Border.all(color: Color(constant.red), width: 2),
+    //             color: Color(constant.red),
     //             borderRadius: const BorderRadius.only(
     //               topLeft: Radius.circular(30),
     //               topRight: Radius.circular(30),
@@ -143,7 +144,7 @@ class _MessageCardState extends State<MessageCard> {
     //       child: Text(
     //         MyDateUtil.getFormattedTime(
     //             context: context, time: widget.message.sent),
-    //         style: TextStyle(fontSize: 13, color: kSecondaryMessageColor),
+    //         style: TextStyle(fontSize: 13, color: Color(constant.red)),
     //       ),
     //     )
     //   ],
@@ -180,7 +181,7 @@ class _MessageCardState extends State<MessageCard> {
                                               : Get.width * 0.04),
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: kMsgContainerColor,
+                                            color: Color(constant.white),
                                             width: 2),
                                         color: Colors.transparent,
                                         borderRadius: const BorderRadius.only(
@@ -199,7 +200,7 @@ class _MessageCardState extends State<MessageCard> {
                                             style: TextStyle(
                                                 // overflow: TextOverflow.fade,
                                                 fontSize: 18,
-                                                color: kofferColor,
+                                                color: Color(constant.blue),
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Obx(
@@ -222,7 +223,7 @@ class _MessageCardState extends State<MessageCard> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: kLightPrimaryColor,
+                                        color: Color(constant.lightPink),
                                         borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(12),
                                         ),
@@ -237,7 +238,8 @@ class _MessageCardState extends State<MessageCard> {
                                         children: [
                                           Text(
                                             'Shadi Package',
-                                            style: TextStyle(color: kTextColor),
+                                            style: TextStyle(
+                                                color: Color(constant.grey)),
                                           ),
                                           Obx(
                                             () => TextButton(
@@ -245,7 +247,7 @@ class _MessageCardState extends State<MessageCard> {
                                                 _btnController
                                                     .viewMoreLessText(),
                                                 style: TextStyle(
-                                                    color: kPrimaryColor),
+                                                    color: Color(constant.red)),
                                               ),
                                               onPressed: () {
                                                 _btnController.toggleViewMore();
@@ -271,7 +273,8 @@ class _MessageCardState extends State<MessageCard> {
                             child: Text(
                               MyDateUtil.getFormattedTime(
                                   context: context, time: widget.message.sent),
-                              style: TextStyle(fontSize: 13, color: kTextColor),
+                              style: TextStyle(
+                                  fontSize: 13, color: Color(constant.grey)),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -303,8 +306,8 @@ class _MessageCardState extends State<MessageCard> {
                                   ? Get.width * .03
                                   : Get.width * 0.04),
                           decoration: BoxDecoration(
-                            border:
-                                Border.all(color: kMsgContainerColor, width: 2),
+                            border: Border.all(
+                                color: Color(constant.white), width: 2),
                             color: Colors.transparent,
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(15),
@@ -327,7 +330,7 @@ class _MessageCardState extends State<MessageCard> {
                           right: 20,
                           bottom: 12,
                           child: Icon(Icons.done_rounded,
-                              color: kSecondaryMessageColor, size: 20),
+                              color: Color(constant.red), size: 20),
                         ),
                         Positioned(
                           bottom: 0,
@@ -337,7 +340,8 @@ class _MessageCardState extends State<MessageCard> {
                             child: Text(
                               MyDateUtil.getFormattedTime(
                                   context: context, time: widget.message.sent),
-                              style: TextStyle(fontSize: 13, color: kTextColor),
+                              style: TextStyle(
+                                  fontSize: 13, color: Color(constant.grey)),
                               textAlign: TextAlign.left,
                             ),
                           ),

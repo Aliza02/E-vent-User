@@ -4,10 +4,15 @@ class Constant {
   var font = 'Manrope';
   var onboardingFont = 'signika';
   int red = 0xFFCB585A;
+  int blue = 0xff4285f4;
   int black = 0xFF000000;
   int white = 0xFFFFFFFF;
+  int lightPink = 0x40CB585A;
+  int icon = 0xFF292D32;
   // int background = 0xFFFAFAFA;
+
   int grey = 0xFF555555;
+  int lightGreen = 0xFF43FD6C;
 
   // page indicator colors:
   List<int> pageIndicator = [0xFFBBDEFF, 0xFFFFD4A1, 0xFFC6F988];
@@ -15,25 +20,24 @@ class Constant {
 
 Constant constant = Constant();
 
-TextStyle kBlackTextStyle = const TextStyle(
+TextStyle kBlackTextStyle = TextStyle(
   color: Colors.black,
   fontSize: 16,
-  fontFamily: 'Manrope',
+  fontFamily: constant.font,
   fontWeight: FontWeight.w800,
 );
 TextStyle kRedTextStyle = TextStyle(
   color: Color(constant.red),
   fontSize: 16,
-  fontFamily: 'Manrope',
+  fontFamily: constant.font,
   fontWeight: FontWeight.w800,
 );
-TextStyle k8TextStyle = const TextStyle(
+TextStyle k8TextStyle = TextStyle(
   color: Colors.black,
   fontSize: 8,
-  fontFamily: 'Manrope',
+  fontFamily: constant.font,
   fontWeight: FontWeight.w600,
 );
-
 List<BoxShadow>? shadowsBelow = [
   const BoxShadow(
     color: Color(0x0C1C252C),
@@ -51,14 +55,4 @@ List<BoxShadow>? shadowsAbove = [
   )
 ];
 
-Color kSecondaryMessageColor = const Color(0xFFCB585A);
-Color kSecondaryMessageColorLight = const Color.fromARGB(255, 214, 242, 255);
-Color kOnlineColor = const Color.fromARGB(255, 209, 255, 210);
-Color kPrimaryColor = const Color(0xFFCB585A);
-Color kIconColor = const Color(0xFF292D32);
-Color kdpColor = const Color(0x40CB585A);
-Color kTextColor = const Color(0xFF555555);
-Color kMsgContainerColor = const Color(0xFFE8E9EB);
-Color kofferColor = const Color(0xff4285f4);
-Color kWhiteColor = Colors.white;
-Color kLightPrimaryColor = const Color.fromARGB(255, 245, 231, 231);
+// Color kSecndaryMessageColorLight = const Color.fromARGB(255, 214, 242, 255);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/constant.dart';
+
 class ListOrderButton extends StatelessWidget {
   const ListOrderButton({
     super.key,
@@ -27,8 +29,10 @@ class ListOrderButton extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: const TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Manrope'),
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              fontFamily: constant.font),
         ),
       ),
     );

@@ -45,21 +45,21 @@ class CheckOutScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Payment Method',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Manrope',
+                          fontFamily: constant.font,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      const Text(
+                      Text(
                         'Choose a payment method',
                         style: TextStyle(
-                          color: Color(0xFF555454),
+                          color: const Color(0xFF555454),
                           fontSize: 12,
-                          fontFamily: 'Manrope',
+                          fontFamily: constant.font,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -128,12 +128,12 @@ class CheckOutScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Delivery',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Manrope',
+                          fontFamily: constant.font,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -144,7 +144,7 @@ class CheckOutScreen extends StatelessWidget {
                             width: 11,
                             height: 11,
                             decoration: ShapeDecoration(
-                              color: const Color(0xFFCB585A),
+                              color: Color(constant.red),
                               shape: const OvalBorder(
                                 side: BorderSide(
                                     width: 0.50, color: Color(0xFFCB585A)),
@@ -153,13 +153,13 @@ class CheckOutScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             'House# 12/98 XYZ Building, Latifabad Hyd.',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -180,12 +180,12 @@ class CheckOutScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             'Add another location',
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -213,12 +213,12 @@ class CheckOutScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Order Summary',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Manrope',
+                          fontFamily: constant.font,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -226,23 +226,23 @@ class CheckOutScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             'Cost',
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             '50,000',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -252,23 +252,23 @@ class CheckOutScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             'Discount',
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             '-',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -278,23 +278,23 @@ class CheckOutScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             'Advance (20 %)',
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             '10,000',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -304,23 +304,23 @@ class CheckOutScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             'Delivery',
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             '250',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 12,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -330,23 +330,23 @@ class CheckOutScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             'Total Price',
                             style: TextStyle(
-                              color: Color(0xFF3C191E),
+                              color: const Color(0xFF3C191E),
                               fontSize: 18,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          const Text(
+                          Text(
                             'Rs 10,250',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: Color(0xFF555454),
+                              color: const Color(0xFF555454),
                               fontSize: 18,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w700,
                             ),
                           )

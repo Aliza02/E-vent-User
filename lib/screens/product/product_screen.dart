@@ -63,12 +63,12 @@ class _ProductScreenState extends State<ProductScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       '50,000 Rs',
                       style: TextStyle(
-                        color: Color(0xFF555454),
+                        color: const Color(0xFF555454),
                         fontSize: 24,
-                        fontFamily: 'Manrope',
+                        fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -76,18 +76,18 @@ class _ProductScreenState extends State<ProductScreen> {
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Select a date',
                       style: TextStyle(
-                        color: Color(0xFF555454),
+                        color: const Color(0xFF555454),
                         fontSize: 14,
-                        fontFamily: 'Manrope',
+                        fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
                 Row(
@@ -170,12 +170,12 @@ class _ProductScreenState extends State<ProductScreen> {
                             _showDatePicker(context, DatePickerMode.day);
                           },
                           style: buttonStyle,
-                          child: const Text(
+                          child: Text(
                             'DD',
                             style: TextStyle(
-                              color: Color(0x7F555454),
+                              color: const Color(0x7F555454),
                               fontSize: 16,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -188,13 +188,13 @@ class _ProductScreenState extends State<ProductScreen> {
                           _showMonthPicker(context);
                         },
                         style: buttonStyle,
-                        child: const Text(
+                        child: Text(
                           'MM',
                           textAlign: TextAlign.justify,
                           style: TextStyle(
-                            color: Color(0x7F555454),
+                            color: const Color(0x7F555454),
                             fontSize: 16,
-                            fontFamily: 'Manrope',
+                            fontFamily: constant.font,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -208,13 +208,13 @@ class _ProductScreenState extends State<ProductScreen> {
                             _showDatePicker(context, DatePickerMode.year);
                           },
                           style: buttonStyle,
-                          child: const Text(
+                          child: Text(
                             'YYYY',
                             textAlign: TextAlign.justify,
                             style: TextStyle(
-                              color: Color(0x7F555454),
+                              color: const Color(0x7F555454),
                               fontSize: 16,
-                              fontFamily: 'Manrope',
+                              fontFamily: constant.font,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -224,37 +224,37 @@ class _ProductScreenState extends State<ProductScreen> {
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Select a location',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        color: Color(0xFF555454),
+                        color: const Color(0xFF555454),
                         fontSize: 14,
-                        fontFamily: 'Manrope',
+                        fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Spacer()
+                    const Spacer()
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
                 TextFormField(
-                  style: const TextStyle(
-                    color: Color(0x7F555454),
+                  style: TextStyle(
+                    color: const Color(0x7F555454),
                     fontSize: 16,
-                    fontFamily: 'Manrope',
+                    fontFamily: constant.font,
                     fontWeight: FontWeight.w700,
                   ),
                   decoration: InputDecoration(
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     hintText: 'Enter the address',
-                    hintStyle: const TextStyle(
-                      color: Color(0x7F555454),
+                    hintStyle: TextStyle(
+                      color: const Color(0x7F555454),
                       fontSize: 16,
-                      fontFamily: 'Manrope',
+                      fontFamily: constant.font,
                       fontWeight: FontWeight.w700,
                     ),
                     enabledBorder: OutlineInputBorder(
@@ -274,19 +274,19 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 ),
                 SizedBox(height: Get.height * .01),
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Select a Duration',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        color: Color(0xFF555454),
+                        color: const Color(0xFF555454),
                         fontSize: 14,
-                        fontFamily: 'Manrope',
+                        fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Spacer()
+                    const Spacer()
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
@@ -317,12 +317,12 @@ class _ProductScreenState extends State<ProductScreen> {
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: Get.width * .02),
-                      child: const Text(
+                      child: Text(
                         'Or',
                         style: TextStyle(
-                          color: Color(0x7F555454),
+                          color: const Color(0x7F555454),
                           fontSize: 12,
-                          fontFamily: 'Manrope',
+                          fontFamily: constant.font,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -340,13 +340,13 @@ class _ProductScreenState extends State<ProductScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(18),
                           onTap: () => Get.toNamed('/chat_screen'),
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               'Chat With Vendor',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.18,
-                                fontFamily: 'Manrope',
+                                fontFamily: constant.font,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),

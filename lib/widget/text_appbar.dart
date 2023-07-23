@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants/constant.dart';
+
 class TextAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TextAppBar({
     super.key,
@@ -20,10 +22,10 @@ class TextAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.black,
           fontSize: 16,
-          fontFamily: 'Manrope',
+          fontFamily: constant.font,
           fontWeight: FontWeight.w700,
         ),
       ),

@@ -48,12 +48,12 @@ class ConfirmationScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Personal Information',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
-                        fontFamily: 'Manrope',
+                        fontFamily: constant.font,
                         fontWeight: FontWeight.w800,
                       ),
                     ),

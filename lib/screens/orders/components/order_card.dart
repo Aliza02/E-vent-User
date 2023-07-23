@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/constant.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../widget/toggle_button.dart';
 
@@ -31,12 +32,12 @@ class OrderCard extends StatelessWidget {
                     Row(
                       children: [
                         show == true ? const ToggleButton() : const SizedBox(),
-                        const Text(
+                        Text(
                           'Saleem Caterers',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
-                            fontFamily: 'Manrope',
+                            fontFamily: constant.font,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -61,32 +62,32 @@ class OrderCard extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 'Shadi Package',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
-                                  fontFamily: 'Manrope',
+                                  fontFamily: constant.font,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
-                              const Text(
+                              Text(
                                 'Date : 21-05-2023',
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
-                                  color: Color(0xFF555454),
+                                  color: const Color(0xFF555454),
                                   fontSize: 8,
-                                  fontFamily: 'Manrope',
+                                  fontFamily: constant.font,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              const Text(
+                              Text(
                                 'Location : XYZ building XYZ block, Latifabad, Hyd.',
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
-                                  color: Color(0xFF555454),
+                                  color: const Color(0xFF555454),
                                   fontSize: 8,
-                                  fontFamily: 'Manrope',
+                                  fontFamily: constant.font,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -94,7 +95,7 @@ class OrderCard extends StatelessWidget {
                                   height: show != null
                                       ? Get.height * .02
                                       : Get.height * .04),
-                              const Row(
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -102,18 +103,18 @@ class OrderCard extends StatelessWidget {
                                     '50,000 Rs',
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
-                                      color: Color(0xFF9C0C0C),
+                                      color: const Color(0xFF9C0C0C),
                                       fontSize: 18,
-                                      fontFamily: 'Manrope',
+                                      fontFamily: constant.font,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                   Text(
                                     'per 100 person',
                                     style: TextStyle(
-                                      color: Color(0xFFA2A2A2),
+                                      color: const Color(0xFFA2A2A2),
                                       fontSize: 9,
-                                      fontFamily: 'Manrope',
+                                      fontFamily: constant.font,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),

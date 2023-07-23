@@ -53,10 +53,10 @@ class DurationButton extends StatelessWidget {
                     selectedTime.value != null
                         ? selectedTime.value!.format(context)
                         : buttonText,
-                    style: const TextStyle(
-                      color: Color(0xFF575A66),
+                    style: TextStyle(
+                      color: const Color(0xFF575A66),
                       fontSize: 14,
-                      fontFamily: 'Manrope',
+                      fontFamily: constant.font,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

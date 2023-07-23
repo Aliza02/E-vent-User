@@ -39,10 +39,10 @@ class _ChatUserCardState extends State<ChatUserCard> {
               //!for removing unnecessary corners in images
               borderRadius: BorderRadius.circular(Get.height * 0.3),
               child: CircleAvatar(
-                backgroundColor: kdpColor,
+                backgroundColor: Color(constant.lightPink),
                 child: Icon(
                   CupertinoIcons.person,
-                  color: kIconColor,
+                  color: Color(constant.icon),
                 ),
               ),
             ),
@@ -84,7 +84,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
           //             height: 15,
           //             decoration: BoxDecoration(
           //                 borderRadius: BorderRadius.circular(10),
-          //                 color: kPrimaryColor),
+          //                 color: Color(constant.red)),
           //           )
           //         : //message sent time
           //         Text(

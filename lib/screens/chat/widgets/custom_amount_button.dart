@@ -29,17 +29,20 @@ class CustomAmountButton extends StatelessWidget {
             side: BorderSide(
               color: selectedButtonIndex == index
                   ? Colors.transparent
-                  : kofferColor,
+                  : Color(constant.blue),
             ),
           ),
-          backgroundColor:
-              selectedButtonIndex == index ? kofferColor : Colors.white,
+          backgroundColor: selectedButtonIndex == index
+              ? Color(constant.blue)
+              : Colors.white,
         ),
         child: Text(
           amount,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: selectedButtonIndex == index ? Colors.white : kofferColor,
+            color: selectedButtonIndex == index
+                ? Colors.white
+                : Color(constant.blue),
           ),
         ),
       ),

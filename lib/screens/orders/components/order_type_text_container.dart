@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/constant.dart';
+
 class OrderTypeTextContainer extends StatelessWidget {
   const OrderTypeTextContainer({
     super.key,
@@ -27,10 +29,10 @@ class OrderTypeTextContainer extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(0xFF555454),
+            style: TextStyle(
+              color: const Color(0xFF555454),
               fontSize: 14,
-              fontFamily: 'Manrope',
+              fontFamily: constant.font,
               fontWeight: FontWeight.w700,
               // height: 18.43,
             ),

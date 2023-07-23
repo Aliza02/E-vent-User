@@ -76,7 +76,7 @@ class CustomStepper extends StatelessWidget {
                         ? Color(constant.red)
                         : Colors.grey,
                     fontSize: 8,
-                    fontFamily: 'Manrope',
+                    fontFamily: constant.font,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
@@ -90,7 +90,7 @@ class CustomStepper extends StatelessWidget {
                         ? Color(constant.red)
                         : Colors.grey,
                     fontSize: 8,
-                    fontFamily: 'Manrope',
+                    fontFamily: constant.font,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
@@ -106,7 +106,7 @@ class CustomStepper extends StatelessWidget {
                           ? Color(constant.red)
                           : Colors.grey,
                       fontSize: 8,
-                      fontFamily: 'Manrope',
+                      fontFamily: constant.font,
                       fontWeight: FontWeight.w800,
                     ),
                   ),

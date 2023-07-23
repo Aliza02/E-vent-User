@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/constant.dart';
 import '../../../controllers/product_controller.dart';
 
 import 'incr_decr_btn.dart';
@@ -20,10 +21,10 @@ class ChangePeopleCountRow extends StatelessWidget {
           Obx(
             () => Text(
               controller.peopleCount.toString(),
-              style: const TextStyle(
-                color: Color(0xFF555454),
+              style: TextStyle(
+                color: const Color(0xFF555454),
                 fontSize: 24,
-                fontFamily: 'Manrope',
+                fontFamily: constant.font,
                 fontWeight: FontWeight.w700,
               ),
             ),
