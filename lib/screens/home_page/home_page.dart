@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 )),
 
             Padding(
-              padding: const EdgeInsets.fromLTRB(20,0, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -119,9 +119,10 @@ class _HomePageState extends State<HomePage> {
             ),
             ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),  //(singleChildScrollable is already being used so disallow listview builder to scroll)
+                physics:
+                    const NeverScrollableScrollPhysics(), //(singleChildScrollable is already being used so disallow listview builder to scroll)
                 itemCount: restaurants.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   return RestaurantCard(restaurant: restaurants[index]);
                 }),
           ],
@@ -160,7 +161,7 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
           showUnselectedLabels:
               false, // Do not show labels for unselected items
           currentIndex: _currentIndex,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

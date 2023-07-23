@@ -61,7 +61,7 @@ class OrderPlacedScreen extends StatelessWidget {
               Button(
                   label: 'Continue Planning',
                   onPressed: () {
-                    Get.toNamed('/homepage');
+                    Get.offAllNamed('/homepage');
                   })
             ],
           ),

@@ -94,7 +94,7 @@ class OrderCard extends StatelessWidget {
                                   height: show != null
                                       ? Get.height * .02
                                       : Get.height * .04),
-                              Row(
+                              const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [

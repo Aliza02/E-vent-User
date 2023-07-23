@@ -76,7 +76,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Select a date',
@@ -224,7 +224,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Select a location',
@@ -274,7 +274,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 ),
                 SizedBox(height: Get.height * .01),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Select a Duration',
@@ -328,7 +328,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     Expanded(
-                      child: Container(
+                      child: Ink(
                         height: 38,
                         decoration: ShapeDecoration(
                           color: const Color(0xFF4285F4),
@@ -337,14 +337,18 @@ class _ProductScreenState extends State<ProductScreen> {
                           ),
                           shadows: shadowsBelow,
                         ),
-                        child: const Center(
-                          child: Text(
-                            'Chat With Vendor',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.18,
-                              fontFamily: 'Manrope',
-                              fontWeight: FontWeight.w700,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(18),
+                          onTap: () => Get.toNamed('/chat_screen'),
+                          child: const Center(
+                            child: Text(
+                              'Chat With Vendor',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.18,
+                                fontFamily: 'Manrope',
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
