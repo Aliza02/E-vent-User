@@ -141,6 +141,7 @@ class CustomBottomNabBar extends StatefulWidget {
 
 class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
   int _currentIndex = 0;
+
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -194,17 +195,22 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Settings',
-              activeIcon: Stack(children: [
-                Icon(Icons.settings, color: Color(0xFFCB585A)),
-                Positioned(
-                    top: 0.0,
-                    right: 0.0,
-                    child: Icon(
-                      Icons.brightness_1,
-                      size: 8.0, /*color: Colors.red*/
-                    ))
-              ]),
-            )
+              activeIcon: Stack(
+                children: [
+                  Icon(
+                    Icons.settings,
+                    color: Color(0xFFCB585A),
+                  ),
+                  Positioned(
+                      top: 0.0,
+                      right: 0.0,
+                      child: Icon(
+                        Icons.brightness_1,
+                        size: 8.0, /*color: Colors.red*/
+                      ))
+                ],
+              ),
+            ),
           ],
         ),
       ),

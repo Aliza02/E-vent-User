@@ -19,4 +19,6 @@ class NamedRoutes {
   static String verifyOrder = '/verify_order';
   static String verifiedOrder = '/verified_order';
   static String review = '/review';
+  static String locations = '/locations';
+  static String settings = '/settings';
 }

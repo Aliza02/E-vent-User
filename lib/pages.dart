@@ -7,6 +7,7 @@ import 'screens/checkout/checkout_screen.dart';
 import 'screens/confirmation/confirmation_screen.dart';
 import 'screens/forget_pasword/forget_password_screen.dart';
 import 'screens/home_page/home_page.dart';
+import 'screens/location/locations.dart';
 import 'screens/login.dart';
 import 'screens/onboard.dart';
 import 'screens/order_placed/order_placed_screen.dart';
@@ -19,6 +20,7 @@ import 'screens/orders/order_feedback.dart';
 import 'screens/orders/orders_screen.dart';
 import 'screens/otp_verification.dart';
 import 'screens/product/product_screen.dart';
+import 'screens/setting/settings.dart';
 import 'screens/signup.dart';
 
 class Pages {
@@ -49,5 +51,7 @@ class Pages {
     GetPage(name: NamedRoutes.verifyOrder, page: () => VerifyOrderScreen()),
     GetPage(name: NamedRoutes.verifiedOrder, page: () => VerifiedOrderScreen()),
     GetPage(name: NamedRoutes.review, page: () => ReviewScreen()),
+    GetPage(name: NamedRoutes.settings, page: () => const Settings()),
+    GetPage(name: NamedRoutes.locations, page: () => const Locations()),
   ];
 }
