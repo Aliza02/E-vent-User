@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../controllers/order_pic_controller.dart';
+import '../../routes.dart';
 import '../../widget/button.dart';
 import '../../widget/price_people_text.dart';
 import '../../widget/product_categories.dart';
@@ -57,7 +58,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(height: Get.height * .02),
                 const ProductTitleText(),
                 SizedBox(height: Get.height * .02),
-                const ProductCategories(),
+                const ProductDescription(
+                    description:
+                        'Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard. Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard.'),
                 SizedBox(height: Get.height * .01),
                 const PriceAndPeopleText(),
                 Row(
@@ -66,7 +69,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Text(
                       '50,000 Rs',
                       style: TextStyle(
-                        color: const Color(0xFF555454),
+                        color: Color(constant.lightGrey),
                         fontSize: 24,
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
@@ -81,7 +84,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Text(
                       'Select a date',
                       style: TextStyle(
-                        color: const Color(0xFF555454),
+                        color: Color(constant.lightGrey),
                         fontSize: 14,
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
@@ -230,7 +233,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       'Select a location',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        color: const Color(0xFF555454),
+                        color: Color(constant.lightGrey),
                         fontSize: 14,
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
@@ -280,7 +283,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       'Select a Duration',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        color: const Color(0xFF555454),
+                        color: Color(constant.lightGrey),
                         fontSize: 14,
                         fontFamily: constant.font,
                         fontWeight: FontWeight.w700,
@@ -311,7 +314,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         child: Button(
                       label: 'Add to Cart',
                       onPressed: () {
-                        Get.toNamed('/mycart');
+                        Get.toNamed(NamedRoutes.myCart);
                       },
                     )),
                     Container(
@@ -339,7 +342,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(18),
-                          onTap: () => Get.toNamed('/chat_screen'),
+                          onTap: () => Get.toNamed(NamedRoutes.chatScreen),
                           child: Center(
                             child: Text(
                               'Chat With Vendor',

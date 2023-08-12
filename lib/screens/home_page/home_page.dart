@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../routes.dart';
 import '../../widget/all_widgets.dart';
 import '../../widget/restuarant_card.dart';
 
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFFCB585A),
               ),
               onPressed: () {
-                Get.toNamed('/product');
+                Get.toNamed(NamedRoutes.product);
               },
             );
           },
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed('/order');
+              Get.toNamed(NamedRoutes.order);
             },
             icon: const Icon(
               Icons.notifications,

@@ -4,6 +4,7 @@ import 'package:eventually_user/widget/text_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../routes.dart';
 import '../../widget/toggle_button.dart';
 import '../home_page/home_page.dart';
 import '../orders/components/order_card.dart';
@@ -57,7 +58,7 @@ class CartScreen extends StatelessWidget {
                     'All Items',
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: const Color(0xFF555454),
+                      color: Color(constant.lightGrey),
                       fontSize: 16,
                       fontFamily: constant.font,
                       fontWeight: FontWeight.w500,
@@ -70,7 +71,7 @@ class CartScreen extends StatelessWidget {
                   child: Button(
                     label: 'Proceed',
                     onPressed: () {
-                      Get.toNamed('/order_confirmation');
+                      Get.toNamed(NamedRoutes.orderConfirmation);
                     },
                   ),
                 ),

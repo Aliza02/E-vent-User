@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../constants/constant.dart';
 
-class ProductCategories extends StatelessWidget {
-  const ProductCategories({
+class ProductDescription extends StatelessWidget {
+  const ProductDescription({
     super.key,
+    required this.description,
   });
-
+  final String description;
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard. Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard.',
+      description,
 
       // maxLines: 3,
       textAlign: TextAlign.justify,
       style: TextStyle(
-        color: const Color(0xFF555454),
+        color: Color(constant.lightGrey),
         fontSize: 12,
         fontFamily: constant.font,
         fontWeight: FontWeight.w500,
