@@ -1,3 +1,5 @@
+import 'package:eventually_user/screens/location/locations.dart';
+import 'package:eventually_user/screens/setting/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +20,8 @@ import '../screens/signup.dart';
 import 'bindings/all_controller_bindings.dart';
 import 'screens/forget_pasword/forget_password_screen.dart';
 import 'screens/product/product_screen.dart';
+import 'screens/setting/settings.dart';
+import 'screens/location/locations.dart';
 
 int? isViewed;
 void main() async {
@@ -57,6 +61,8 @@ class MyApp extends StatelessWidget {
             page: () => const ConfirmationScreen()),
         GetPage(name: '/checkout', page: () => const CheckOutScreen()),
         GetPage(name: '/chat_screen', page: () => const ChatHomeScreen()),
+        GetPage(name: '/settings', page:()=> const Settings()),
+        GetPage(name: '/locations', page:()=> const Locations()),
       ],
       //initialRoute: isViewed != null && isViewed != 0 ? '/onboard' : '/login',
       initialRoute: isViewed != 0 ? '/onboard' : '/login',
