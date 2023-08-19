@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/constant.dart';
+import '../routes.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -167,7 +168,7 @@ class _OnboardState extends State<Onboard> {
                           ),
                           onPressed: () async {
                             await _storedonBoaredInfo();
-                            Get.toNamed('/login');
+                            Get.toNamed(NamedRoutes.login);
                           },
                           child: Text(
                             'Plan Your First Event',

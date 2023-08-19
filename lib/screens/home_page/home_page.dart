@@ -1,9 +1,8 @@
-import 'package:eventually_user/screens/setting/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../routes.dart';
 import '../../widget/all_widgets.dart';
 import '../../widget/restuarant_card.dart';
-import 'package:eventually_user/screens/location/locations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFFCB585A),
               ),
               onPressed: () {
-                Get.toNamed('/product');
+                Get.toNamed(NamedRoutes.product);
               },
             );
           },
@@ -127,8 +126,6 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return RestaurantCard(restaurant: restaurants[index]);
                 }),
-
-
           ],
         ),
       ),
@@ -145,7 +142,6 @@ class CustomBottomNabBar extends StatefulWidget {
 class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
   int _currentIndex = 0;
 
-  
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -182,8 +178,6 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
                     ))
               ]),
             ),
-
-            
             BottomNavigationBarItem(
               icon: Icon(Icons.message_rounded),
               label: 'Messages',
@@ -198,33 +192,25 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
                     ))
               ]),
             ),
-            
-            
             BottomNavigationBarItem(
-              
-              
               icon: Icon(Icons.settings),
               label: 'Settings',
-              activeIcon: Stack(children: [
-                
-                Icon(Icons.settings, color: Color(0xFFCB585A),
-                
-                ),
-                
-                Positioned(
-                    top: 0.0,
-                    right: 0.0,
-                    child: Icon(
-                      Icons.brightness_1,
-                      size: 8.0, /*color: Colors.red*/
-                      
-                    ))
-              ],
-              
+              activeIcon: Stack(
+                children: [
+                  Icon(
+                    Icons.settings,
+                    color: Color(0xFFCB585A),
+                  ),
+                  Positioned(
+                      top: 0.0,
+                      right: 0.0,
+                      child: Icon(
+                        Icons.brightness_1,
+                        size: 8.0, /*color: Colors.red*/
+                      ))
+                ],
               ),
             ),
-
-
           ],
         ),
       ),

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
+import '../../routes.dart';
 import '../../widget/google_button.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -26,7 +27,7 @@ class ForgetPassword extends StatelessWidget {
               Heading(title: 'Forgot Password', heightFromTop: 0, fontSize: 28),
           leading: InkWell(
             onTap: () {
-              Get.toNamed('/login');
+              Get.toNamed(NamedRoutes.login);
             },
             borderRadius: BorderRadius.circular(50),
             child: const Icon(CupertinoIcons.back),
@@ -53,7 +54,7 @@ class ForgetPassword extends StatelessWidget {
                     Button(
                       label: 'Enter',
                       onPressed: () {
-                        Get.toNamed('/homepage');
+                        Get.toNamed(NamedRoutes.homepage);
                       },
                     ),
                     SizedBox(height: height * .015),

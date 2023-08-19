@@ -22,7 +22,7 @@ class ChangePeopleCountRow extends StatelessWidget {
             () => Text(
               controller.peopleCount.toString(),
               style: TextStyle(
-                color: const Color(0xFF555454),
+                color: Color(constant.lightGrey),
                 fontSize: 24,
                 fontFamily: constant.font,
                 fontWeight: FontWeight.w700,

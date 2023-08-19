@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants/constant.dart';
 import 'order_card.dart';
 import 'order_type_text_container.dart';
 
@@ -39,8 +40,9 @@ class AllOrders extends StatelessWidget {
               if (index == pStartingIndex) {
                 return Column(children: [
                   const SizedBox(height: 10),
-                  const OrderTypeTextContainer(
-                      text: 'Previous orders', color: Color(0xFF555454)),
+                  OrderTypeTextContainer(
+                      text: 'Previous orders',
+                      color: Color(constant.lightGrey)),
                   OrderCard()
                 ]);
               }

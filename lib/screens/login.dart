@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 //!project headers
 import '../constants/constant.dart';
+import '../routes.dart';
 import '../widget/logo.dart';
 import '../widget/button.dart';
 import '../widget/google_button.dart';
@@ -109,7 +110,7 @@ class _LoginState extends State<Login> {
                   const Spacer(),
                   InkWell(
                     onTap: () {
-                      Get.toNamed('/forgetpassword');
+                      Get.toNamed(NamedRoutes.forgetpassword);
                     },
                     child: Text(
                       'Forgot Password?',
@@ -129,12 +130,12 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.04, 0.0, 0.0),
                 child: InkWell(
                   // onTap: (){
-                  //   Get.toNamed('/homepage');
+                  //   Get.toNamed(NamedRoutes.homepage);
                   // },
                   child: Button(
                     label: 'Login',
                     onPressed: () {
-                      Get.toNamed('/homepage');
+                      Get.toNamed(NamedRoutes.homepage);
                     },
                   ),
                 ),
@@ -189,7 +190,7 @@ class _LoginState extends State<Login> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.toNamed('/signup');
+                      Get.toNamed(NamedRoutes.signup);
                     },
                     child: Text(
                       'Sign up',
