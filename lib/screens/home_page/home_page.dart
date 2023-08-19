@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed('/order');
+              Get.toNamed('/settings');
             },
             icon: const Icon(
               Icons.notifications,
