@@ -161,7 +161,7 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
           showUnselectedLabels:
               false, // Do not show labels for unselected items
           currentIndex: _currentIndex,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

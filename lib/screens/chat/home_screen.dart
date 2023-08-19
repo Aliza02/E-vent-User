@@ -75,7 +75,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 color: Color(constant.icon),
               ),
               onPressed: () {
-                // Get.back();
+                 Get.back();
               },
             ),
             title: _isSearching
