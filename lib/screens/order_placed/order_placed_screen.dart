@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
+import '../../routes.dart';
 
 class OrderPlacedScreen extends StatelessWidget {
   const OrderPlacedScreen({super.key});
@@ -39,7 +40,7 @@ class OrderPlacedScreen extends StatelessWidget {
               Text(
                 'Your order number is : 123456',
                 style: TextStyle(
-                  color: const Color(0xFF555454),
+                  color: Color(constant.lightGrey),
                   fontSize: 18,
                   fontFamily: constant.font,
                   fontWeight: FontWeight.w800,
@@ -52,7 +53,7 @@ class OrderPlacedScreen extends StatelessWidget {
                   'Your order has been placed successfully and you are one step closer to making your dream event a reality.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xFF555454),
+                    color: Color(constant.lightGrey),
                     fontSize: 12,
                     fontFamily: constant.font,
                     fontWeight: FontWeight.w500,
@@ -63,7 +64,7 @@ class OrderPlacedScreen extends StatelessWidget {
               Button(
                   label: 'Continue Planning',
                   onPressed: () {
-                    Get.offAllNamed('/homepage');
+                    Get.offAllNamed(NamedRoutes.homepage);
                   })
             ],
           ),

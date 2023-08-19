@@ -27,12 +27,12 @@ class CustomAmountButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             side: BorderSide(
-              color: selectedButtonIndex == index
+              color: selectedButtonIndex.value == index
                   ? Colors.transparent
                   : Color(constant.blue),
             ),
           ),
-          backgroundColor: selectedButtonIndex == index
+          backgroundColor: selectedButtonIndex.value == index
               ? Color(constant.blue)
               : Colors.white,
         ),
@@ -40,7 +40,7 @@ class CustomAmountButton extends StatelessWidget {
           amount,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: selectedButtonIndex == index
+            color: selectedButtonIndex.value == index
                 ? Colors.white
                 : Color(constant.blue),
           ),

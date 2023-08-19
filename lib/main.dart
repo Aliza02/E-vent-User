@@ -2,22 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../screens/login.dart';
-import '../screens/home_page/home_page.dart';
 import 'constants/custom_theme.dart';
-import 'screens/cart/cart_screen.dart';
-import 'screens/chat/home_screen.dart';
-import 'screens/checkout/checkout_screen.dart';
-import 'screens/confirmation/confirmation_screen.dart';
-import 'screens/order_placed/order_placed_screen.dart';
-import 'screens/orders/orders_screen.dart';
-import 'screens/order_status/order_status_screen.dart';
-import '../screens/onboard.dart';
-import '../screens/otp_verification.dart';
-import '../screens/signup.dart';
+import 'pages.dart';
+import 'routes.dart';
 import 'bindings/all_controller_bindings.dart';
-import 'screens/forget_pasword/forget_password_screen.dart';
-import 'screens/product/product_screen.dart';
 
 int? isViewed;
 void main() async {
@@ -40,32 +28,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.theme,
       initialBinding: AllControllerBinding(),
-      getPages: [
-        GetPage(name: '/onboard', page: () => const Onboard()),
-        GetPage(name: '/login', page: () => const Login()),
-        GetPage(name: '/signup', page: () => const Signup()),
-        GetPage(name: '/otpverification', page: () => const OtpVerification()),
-        GetPage(name: '/forgetpassword', page: () => const ForgetPassword()),
-        GetPage(name: '/homepage', page: () => const HomePage()),
-        GetPage(name: '/order', page: () => OrdersScreen()),
-        GetPage(name: '/orderstatus', page: () => OrderStatusScreen()),
-        GetPage(name: '/product', page: () => const ProductScreen()),
-        GetPage(name: '/mycart', page: () => CartScreen()),
-        GetPage(name: '/order_placed', page: () => const OrderPlacedScreen()),
-        GetPage(
-            name: '/order_confirmation',
-            page: () => const ConfirmationScreen()),
-        GetPage(name: '/checkout', page: () => const CheckOutScreen()),
-        GetPage(name: '/chat_screen', page: () => const ChatHomeScreen()),
-      ],
-      //initialRoute: isViewed != null && isViewed != 0 ? '/onboard' : '/login',
-      initialRoute: isViewed != 0 ? '/onboard' : '/login',
-      // routes: {
-      //   '/onboard': (context) => onboard(),
-      //   '/login': (context) => login(),
-      //   '/signup': (context) => signup(),
-      //   '/otpverification': (context) => otp_verification(),
-      // },
+      getPages: Pages.getPages,
+      //initialRoute: isViewed != null && isViewed != 0 ? NamedRoutes.onboard : NamedRoutes.login,
+      initialRoute: isViewed != 0 ? NamedRoutes.onboard : NamedRoutes.login,
     );
   }
 }

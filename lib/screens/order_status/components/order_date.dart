@@ -18,7 +18,7 @@ class OrderDate extends StatelessWidget {
           child: Text(
             'Date',
             style: TextStyle(
-              color: const Color(0xFF555454),
+              color: Color(constant.lightGrey),
               fontSize: 14,
               fontFamily: constant.font,
               fontWeight: FontWeight.w700,

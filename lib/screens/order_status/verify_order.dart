@@ -5,19 +5,15 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../controllers/order_pic_controller.dart';
 import '../../routes.dart';
-import '../../widget/price_people_text.dart';
 import '../../widget/product_categories.dart';
 import '../../widget/product_image_view.dart';
 import '../../widget/product_title_text.dart';
 import '../../widget/text_appbar.dart';
 import '../../constants/constant.dart';
-import 'components/order_date.dart';
-import 'components/order_duration.dart';
-import 'components/order_location.dart';
 
 // ignore: must_be_immutable
-class OrderStatusScreen extends StatelessWidget {
-  OrderStatusScreen({super.key});
+class VerifyOrderScreen extends StatelessWidget {
+  VerifyOrderScreen({super.key});
   final List<String> _list = [
     'Order\nPending',
     'Order\nCompleted/Verified',
@@ -26,7 +22,7 @@ class OrderStatusScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TextAppBar(title: 'Order Details'),
+      appBar: const TextAppBar(title: 'Verify Order'),
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * .08),
@@ -34,12 +30,13 @@ class OrderStatusScreen extends StatelessWidget {
           child: Column(
             children: [
               Text('Order Status', style: kBlackTextStyle),
+              //!progressor
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: Get.width * .02, vertical: Get.height * .02),
                 child: StepProgressIndicator(
                   totalSteps: _list.length,
-                  currentStep: 1,
+                  currentStep: 2,
                   size: Get.height * .08,
                   padding: Get.width * .02,
                   selectedColor: Color(constant.red),
@@ -53,61 +50,13 @@ class OrderStatusScreen extends StatelessWidget {
               SizedBox(height: Get.height * .015),
               const ProductDescription(
                   description:
-                      'Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard. Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard.'),
+                      'Kindly verify if your order has been completed. Also, don’t forget to submit a review as it helps vendors grow and improve. '),
               SizedBox(height: Get.height * .015),
-              const PriceAndPeopleText(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '50,000 Rs',
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      color: Color(constant.lightGrey),
-                      fontSize: 24,
-                      fontFamily: constant.font,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Text(
-                    '100',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color(constant.lightGrey),
-                      fontSize: 24,
-                      fontFamily: constant.font,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: Get.height * .015),
-              const OrderDate(),
-              const OrderLocation(),
-              const OrderDuration(),
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Text(
-                      'Order Completed? Verify here',
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(constant.lightGrey),
-                        fontSize: 10.52,
-                        fontFamily: constant.font,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  ActionButton(
-                    onTap: () => Get.toNamed(NamedRoutes.verifyOrder),
-                    color: Color(constant.green),
-                    text: 'Verify',
-                  )
-                ],
+              ActionButton(
+                onTap: () => Get.toNamed(NamedRoutes.verifiedOrder),
+                color: Color(constant.green),
+                text: 'Verify',
               )
             ],
           ),

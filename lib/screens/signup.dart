@@ -3,6 +3,7 @@ import 'package:eventually_user/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../routes.dart';
 import '../widget/button.dart';
 import '../widget/google_button.dart';
 import '../widget/heading.dart';
@@ -124,7 +125,7 @@ class _SignupState extends State<Signup> {
                 child: Button(
                     label: 'Create Account',
                     onPressed: () {
-                      Get.toNamed('/homepage');
+                      Get.toNamed(NamedRoutes.homepage);
                     }),
               ),
               SizedBox(height: height * 0.03),

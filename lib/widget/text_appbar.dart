@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../constants/constant.dart';
 
@@ -13,10 +11,7 @@ class TextAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: const Icon(CupertinoIcons.back, size: 24),
-        onPressed: () => Get.back(),
-      ),
+      leading: const BackButton(),
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,

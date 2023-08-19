@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../routes.dart';
 import '../../widget/all_widgets.dart';
 import '../../widget/restuarant_card.dart';
 
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFFCB585A),
               ),
               onPressed: () {
-                Get.toNamed('/product');
+                Get.toNamed(NamedRoutes.product);
               },
             );
           },
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed('/order');
+              Get.toNamed('/settings');
             },
             icon: const Icon(
               Icons.notifications,
@@ -140,6 +141,7 @@ class CustomBottomNabBar extends StatefulWidget {
 
 class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
   int _currentIndex = 0;
+
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -193,17 +195,22 @@ class _CustomBottomNabBarState extends State<CustomBottomNabBar> {
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Settings',
-              activeIcon: Stack(children: [
-                Icon(Icons.settings, color: Color(0xFFCB585A)),
-                Positioned(
-                    top: 0.0,
-                    right: 0.0,
-                    child: Icon(
-                      Icons.brightness_1,
-                      size: 8.0, /*color: Colors.red*/
-                    ))
-              ]),
-            )
+              activeIcon: Stack(
+                children: [
+                  Icon(
+                    Icons.settings,
+                    color: Color(0xFFCB585A),
+                  ),
+                  Positioned(
+                      top: 0.0,
+                      right: 0.0,
+                      child: Icon(
+                        Icons.brightness_1,
+                        size: 8.0, /*color: Colors.red*/
+                      ))
+                ],
+              ),
+            ),
           ],
         ),
       ),

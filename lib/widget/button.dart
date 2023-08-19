@@ -27,10 +27,10 @@ class _ButtonState extends State<Button> {
       /*onPressed: () {
         String? currentRoute = ModalRoute.of(context)?.settings.name;
 
-        if (currentRoute == '/homepage') {
-          Get.toNamed('/homepage');
-        } else if (currentRoute == '/login') {
-          Get.toNamed('/login');
+        if (currentRoute == NamedRoutes.homepage) {
+          Get.toNamed(NamedRoutes.homepage);
+        } else if (currentRoute == NamedRoutes.login) {
+          Get.toNamed(NamedRoutes.login);
         } else {
           // Handle any other cases or just do nothing
         }

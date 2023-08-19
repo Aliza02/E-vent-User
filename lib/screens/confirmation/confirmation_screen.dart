@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
+import '../../routes.dart';
 import 'components/confirmation_text_field.dart';
 
 class ConfirmationScreen extends StatelessWidget {
@@ -77,7 +78,7 @@ class ConfirmationScreen extends StatelessWidget {
             label: 'Confirm',
             onPressed: () {
               // if(_formKey.currentState.validate)
-              Get.toNamed('/checkout');
+              Get.toNamed(NamedRoutes.checkout);
             },
           ),
           SizedBox(height: Get.height * .01),
