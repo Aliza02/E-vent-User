@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../constants/colors.dart';
 import '../../constants/font.dart';
 import '../../constants/icons.dart';
 import '../../controllers/drawercontroller.dart';
+import '../../firebasemethods/userAuthentication.dart';
 import '../../routes.dart';
+import '../orders/orders_screen.dart';
+import '../setting/settings.dart';
 
 class MenuScreen extends GetView<drawerController> {
   MenuScreen({super.key});
@@ -15,13 +17,6 @@ class MenuScreen extends GetView<drawerController> {
   int currentindex = 0;
 
   final FirebaseAuth auth = FirebaseAuth.instance;
-
-  // final signupcontroller = Get.put(signUpController());
-  // final signincontroller = Get.put(signinController());
-
-  // String? userName = auth.currentUser?.displayName;
-
-  // final username=_auth.currentUser!.displayName;
 
   final List<String> menuItems = [
     'Orders',
@@ -49,6 +44,13 @@ class MenuScreen extends GetView<drawerController> {
     AppIcons.ProfileFill,
     AppIcons.helpCenterFill,
   ];
+
+  // final List<Widget> menuPages = [
+  //   OrdersScreen(),
+
+  //   Settings(),
+
+  // ];
 
   Widget buildMenuItems(BuildContext context, int index) {
     return Obx(
@@ -166,15 +168,8 @@ class MenuScreen extends GetView<drawerController> {
             const Spacer(),
             InkWell(
               onTap: () {
-                // auth.signOut();
-                FirebaseAuth.instance.signOut();
+                Signout();
                 Get.toNamed(NamedRoutes.login);
-                // Signout();
-                // signincontroller.emailController.clear();
-                // signincontroller.passwordController.clear();
-                // Get.offAllNamed('/login');
-
-                // Get.back();
               },
               child: Row(
                 children: [

@@ -7,4 +7,7 @@ class SignupController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  RxInt secondsRemainingforOtp = 59.obs;
+  RxString OTPCode = ''.obs;
+  RxBool successfullSignup = false.obs;
 }

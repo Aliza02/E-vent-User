@@ -30,36 +30,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-=======
-      bottomNavigationBar: const CustomBottomNabBar(),
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Color(0xFFCB585A),
-              ),
-              onPressed: () {
-                Get.toNamed(NamedRoutes.product);
-              },
-            );
-          },
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed('/settings');
-            },
-            icon: const Icon(
-              Icons.notifications,
-              color: Color(0xFFCB585A),
-            ),
-          ),
-        ],
-      ),
->>>>>>> 53d4f97438f3ba93aceb7db5fcce7eccd21e12c6
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -4,12 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //!project headers
 import '../constants/colors.dart';
 import '../constants/constant.dart';
 import '../controllers/login_controller.dart';
+import '../firebaseMethods/userAuthentication.dart';
 import '../routes.dart';
 import '../widget/logo.dart';
 import '../widget/button.dart';
@@ -196,7 +197,9 @@ class _LoginState extends State<Login> {
                   height: Get.height * 0.06,
                   margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.04, 0.0, 0.0),
                   child: logincontroller.isLoggedIn.value == true
-                      ? 
+                      ? const SpinKitFadingCircle(
+                          color: AppColors.pink,
+                        )
                       : Button(
                           label: 'Login',
                           onPressed: () async {
@@ -237,7 +240,11 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              const GoogleButton(),
+              InkWell(
+                  onTap: () {
+                    signInWithGoogle();
+                  },
+                  child: const GoogleButton()),
               SizedBox(
                 height: Get.height * 0.04,
               ),

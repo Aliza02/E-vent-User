@@ -1,11 +1,15 @@
+import 'dart:async';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../OTPMethods/otpMethods.dart';
 import '../controllers/signup_controller.dart';
 import '../firebasemethods/userAuthentication.dart';
+import '../routes.dart';
 import '../widget/button.dart';
 import '../widget/google_button.dart';
 import '../widget/heading.dart';
@@ -25,6 +29,20 @@ class _SignupState extends State<Signup> {
   bool isChecked = false;
 
   final signupcontroller = Get.put(SignupController());
+  late Timer timer;
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (signupcontroller.secondsRemainingforOtp.value > 0) {
+          signupcontroller.secondsRemainingforOtp.value--;
+        } else {
+          timer.cancel();
+          signupcontroller.secondsRemainingforOtp.value = 59;
+          generateOtp();
+        }
+      });
+    });
+  }
 
   void validation() async {
     if (signupcontroller.passwordController.text.isEmpty ||
@@ -94,13 +112,12 @@ class _SignupState extends State<Signup> {
         ),
       );
     } else {
-      signup(
-        email: signupcontroller.emailController.text,
-        confirmPassword: signupcontroller.confirmPasswordController.text,
-        name: signupcontroller.nameController.text,
-        password: signupcontroller.passwordController.text,
-        phone: signupcontroller.phoneController.text,
-      );
+      startTimer();
+      generateOtp();
+      // sendOTP();
+
+      print(signupcontroller.OTPCode.value);
+      Get.toNamed(NamedRoutes.otpVerification);
     }
   }
 
@@ -256,7 +273,12 @@ class _SignupState extends State<Signup> {
                   ),
                 ],
               ),
-              const GoogleButton(),
+              InkWell(
+                onTap: () {
+                  signInWithGoogle();
+                },
+                child: const GoogleButton(),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
