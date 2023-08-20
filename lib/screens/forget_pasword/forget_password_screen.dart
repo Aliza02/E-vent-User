@@ -49,7 +49,7 @@ class ForgetPassword extends StatelessWidget {
                     SizedBox(
                       height: height * .01,
                     ),
-                    CustomTextFormField(title: 'enter Email'),
+                    // CustomTextFormField(title: 'enter Email'),
                     SizedBox(height: height * .02),
                     Button(
                       label: 'Enter',

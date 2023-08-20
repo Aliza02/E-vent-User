@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 class PasswordField extends StatefulWidget {
   // TextEditingController passwordcontroller;
   String title;
-  PasswordField({super.key, required this.title});
+  TextEditingController passwordController = TextEditingController();
+  PasswordField(
+      {super.key, required this.title, required this.passwordController});
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -17,7 +19,7 @@ class _PasswordFieldState extends State<PasswordField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // controller: widget.passwordcontroller,
+      controller: widget.passwordController,
       obscureText: obscureText,
       decoration: InputDecoration(
         fillColor: const Color(0xFFEFEFEF).withOpacity(0.5),

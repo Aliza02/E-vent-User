@@ -21,8 +21,8 @@ class _OtpVerificationState extends State<OtpVerification> {
       width: width * 0.12,
       margin: EdgeInsets.fromLTRB(width * 0.02, height * 0.03, 0.0, 0.0),
       child: Center(
-        child: NumberField(title: ' ', maxLength: 1),
-      ),
+          // child: NumberField(title: ' ', maxLength: 1),
+          ),
     );
   }
 

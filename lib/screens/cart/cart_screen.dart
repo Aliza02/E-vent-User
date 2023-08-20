@@ -18,7 +18,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TextAppBar(title: 'My Cart'),
-      bottomNavigationBar: const CustomBottomNabBar(),
+      // bottomNavigationBar: const CustomBottomNabBar(),
       body: Column(
         children: [
           const CustomStepper(

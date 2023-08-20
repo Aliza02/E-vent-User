@@ -16,7 +16,7 @@ class CheckOutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TextAppBar(title: 'Checkout(1)'),
-      bottomNavigationBar: const CustomBottomNabBar(),
+      // bottomNavigationBar: const CustomBottomNabBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

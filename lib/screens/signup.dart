@@ -1,9 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/widget/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../routes.dart';
+import '../controllers/signup_controller.dart';
+import '../firebasemethods/userAuthentication.dart';
 import '../widget/button.dart';
 import '../widget/google_button.dart';
 import '../widget/heading.dart';
@@ -21,6 +23,87 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool isChecked = false;
+
+  final signupcontroller = Get.put(SignupController());
+
+  void validation() async {
+    if (signupcontroller.passwordController.text.isEmpty ||
+        signupcontroller.confirmPasswordController.text.isEmpty ||
+        signupcontroller.emailController.text.isEmpty ||
+        signupcontroller.nameController.text.isEmpty) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: 'Incomplete Fields',
+          message: 'Enter complete details ',
+          backgroundColor: Constant.pink,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else if (signupcontroller.passwordController.text.toString().length < 6 ||
+        signupcontroller.confirmPasswordController.text.toString().length < 6) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: 'Password is too short',
+          message: 'Password should be atleast 6 characters',
+          backgroundColor: Constant.pink,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else if (EmailValidator.validate(signupcontroller.emailController.text) ==
+        false) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: 'Invalid Email',
+          message: 'Enter a valid email',
+          backgroundColor: Constant.pink,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else if (signupcontroller.phoneController.text.toString().length < 11) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: 'Incorrect Number',
+          message: 'Enter correct Number',
+          backgroundColor: Constant.pink,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else if (signupcontroller.passwordController.text !=
+        signupcontroller.confirmPasswordController.text) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: 'Different Passwords',
+          message: 'Password and Confirm Password does not match',
+          backgroundColor: Constant.pink,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else if (isChecked == false) {
+      Get.showSnackbar(
+        GetSnackBar(
+          title: 'Agreement',
+          message: 'Agree to the terms and conditions',
+          backgroundColor: Constant.pink,
+          duration: const Duration(seconds: 2),
+          icon: const Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else {
+      signup(
+        email: signupcontroller.emailController.text,
+        confirmPassword: signupcontroller.confirmPasswordController.text,
+        name: signupcontroller.nameController.text,
+        password: signupcontroller.passwordController.text,
+        phone: signupcontroller.phoneController.text,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -53,27 +136,39 @@ class _SignupState extends State<Signup> {
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: CustomTextFormField(title: 'Full Name'),
+                child: CustomTextFormField(
+                    textcontroller: signupcontroller.nameController,
+                    title: 'Full Name'),
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: NumberField(title: 'Phone Number', maxLength: 11),
+                child: NumberField(
+                    phoneController: signupcontroller.phoneController,
+                    title: 'Phone Number',
+                    maxLength: 11),
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: CustomTextFormField(title: 'Email'),
+                child: CustomTextFormField(
+                    textcontroller: signupcontroller.emailController,
+                    title: 'Email'),
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: PasswordField(title: 'Password'),
+                child: PasswordField(
+                    passwordController: signupcontroller.passwordController,
+                    title: 'Password'),
               ),
               Container(
                 height: height * 0.05,
                 margin: EdgeInsets.fromLTRB(0.0, height * 0.02, 0.0, 0.0),
-                child: PasswordField(title: 'Confirm Password'),
+                child: PasswordField(
+                    passwordController:
+                        signupcontroller.confirmPasswordController,
+                    title: 'Confirm Password'),
               ),
               SizedBox(
                 height: height * 0.01,
@@ -125,7 +220,8 @@ class _SignupState extends State<Signup> {
                 child: Button(
                     label: 'Create Account',
                     onPressed: () {
-                      Get.toNamed(NamedRoutes.homepage);
+                      validation();
+                      print('validate');
                     }),
               ),
               SizedBox(height: height * 0.03),
