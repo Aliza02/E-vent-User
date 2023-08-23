@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../routes.dart';
@@ -14,40 +15,21 @@ class _HomePageState extends State<HomePage> {
   final List<CategoryBox> categories = [
     const CategoryBox(
         image: 'assets/images/photographer.jpg', name: 'Photographers'),
-    const CategoryBox(image: 'assets/images/venues.jpg', name: 'Venues'),
+    const CategoryBox(image: 'assets/images/venues.jpg', name: 'Venue'),
     const CategoryBox(image: 'assets/images/caterers.jpg', name: 'Caterers'),
     // Add more categories here...
   ];
+
+  late List<String> userId = [];
+
+  Map<int, String> categoryMap = {
+    0: 'Photographer',
+    1: 'Venue',
+    2: 'Caterers',
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomBottomNabBar(),
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Color(0xFFCB585A),
-              ),
-              onPressed: () {
-                Get.toNamed(NamedRoutes.product);
-              },
-            );
-          },
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed('/settings');
-            },
-            icon: const Icon(
-              Icons.notifications,
-              color: Color(0xFFCB585A),
-            ),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -88,7 +70,51 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
-                    return categories[index];
+                    return GestureDetector(
+                        onTap: () async {
+                          print('sda');
+                          final categoryName = categoryMap[index];
+                          print(categoryMap[index]);
+                          print(categoryName);
+
+                          await FirebaseFirestore.instance
+                              .collection('User')
+                              .where('Business Category',
+                                  isEqualTo: categoryName)
+                              .get()
+                              .then((value) => {
+                                    value.docs.forEach((element) {
+                                      print(element.data());
+                                      print(element.id);
+
+                                      userId.add(element.id);
+                                      // Get.toNamed(Routes.vendorList, arguments: element.id);
+                                    })
+                                  });
+
+                          print(userId.length);
+                          // print(abc);
+
+                          // await FirebaseFirestore.instance
+                          //     .collection("Services")
+                          //     .get()
+                          //     .then((value) => {
+                          //           value.docs.forEach((element) {
+                          //             // print(element.data());
+                          //             // print(element.id);
+                          //             if (element.id == categoryName) {
+                          //               // print(element.id);
+                          //               FirebaseFirestore.instance
+                          //                   .collection("Services")
+                          //                   .doc(element.id)
+                          //                   .get()
+                          //                   .then((value) =>
+                          //                       {print(value.data())});
+                          //             }
+                          //           })
+                          //         });
+                        },
+                        child: categories[index]);
                   },
                 )),
 
@@ -132,6 +158,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+// <<<<<<< HEAD
 
 class CustomBottomNabBar extends StatefulWidget {
   const CustomBottomNabBar({Key? key}) : super(key: key);

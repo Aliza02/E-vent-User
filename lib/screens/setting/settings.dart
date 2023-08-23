@@ -143,7 +143,3 @@ class Settings extends StatelessWidget {
     );
   }
 }
-
-
-
-

@@ -1,3 +1,4 @@
+import 'package:eventually_user/screens/drawer/drawerScreen.dart';
 import 'package:get/get.dart';
 
 import 'routes.dart';
@@ -53,5 +54,6 @@ class Pages {
     GetPage(name: NamedRoutes.review, page: () => ReviewScreen()),
     GetPage(name: NamedRoutes.settings, page: () => const Settings()),
     GetPage(name: NamedRoutes.locations, page: () => const Locations()),
+    GetPage(name: NamedRoutes.drawer, page: () => drawerScreen()),
   ];
 }

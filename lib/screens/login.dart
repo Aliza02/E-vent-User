@@ -1,9 +1,16 @@
 //!Flutter packages
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //!project headers
+import '../constants/colors.dart';
 import '../constants/constant.dart';
+import '../controllers/login_controller.dart';
+import '../firebaseMethods/userAuthentication.dart';
 import '../routes.dart';
 import '../widget/logo.dart';
 import '../widget/button.dart';
@@ -22,10 +29,66 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool isChecked = false;
+
+  final logincontroller = Get.put(LoginController());
+
+  saveRememberMeStatus(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('rememberMe', value);
+  }
+
+  Future<void> _login() async {
+    try {
+      logincontroller.isLoggedIn.value = true;
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: logincontroller.emailController.text,
+              password: logincontroller.passwordController.text);
+
+      if (userCredential.user != null) {
+        if (logincontroller.isRemember.value) {
+          saveRememberMeStatus(true);
+          Get.toNamed('/drawer');
+        }
+        Get.toNamed('/drawer');
+      }
+
+      logincontroller.isLoggedIn.value = false;
+    } on FirebaseAuthException catch (e) {
+      print('Failed to log in: ${e.message}');
+    }
+  }
+
+  void validate() async {
+    if (logincontroller.emailController.text.isEmpty ||
+        logincontroller.passwordController.text.isEmpty) {
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: 'Incomplete Fields',
+          message: 'Enter complete details ',
+          backgroundColor: AppColors.pink,
+          duration: Duration(seconds: 2),
+          icon: Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else if (EmailValidator.validate(logincontroller.emailController.text) ==
+        false) {
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: 'Incorrect Email Format',
+          message: 'Enter a correct email',
+          backgroundColor: AppColors.pink,
+          duration: Duration(seconds: 2),
+          icon: Icon(Icons.incomplete_circle_rounded),
+        ),
+      );
+    } else {
+      _login();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height;
-    // double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -55,6 +118,7 @@ class _LoginState extends State<Login> {
                 height: Get.height * 0.07,
                 margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.03, 0.0, 0.0),
                 child: CustomTextFormField(
+                  textcontroller: logincontroller.emailController,
                   title: 'Email',
                   // controller: Get.put,
                 ),
@@ -62,7 +126,9 @@ class _LoginState extends State<Login> {
               Container(
                 height: Get.height * 0.07,
                 margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.03, 0.0, 0.0),
-                child: PasswordField(title: 'Password'),
+                child: PasswordField(
+                    title: 'Password',
+                    passwordController: logincontroller.passwordController),
               ),
               SizedBox(
                 height: Get.height * 0.01,
@@ -90,6 +156,7 @@ class _LoginState extends State<Login> {
                       onChanged: (bool? value) {
                         setState(() {
                           isChecked = value!;
+                          logincontroller.isRemember.value = value;
                         });
                       },
                     ),
@@ -124,20 +191,21 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              Container(
-                width: Get.width * 0.4,
-                height: Get.height * 0.06,
-                margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.04, 0.0, 0.0),
-                child: InkWell(
-                  // onTap: (){
-                  //   Get.toNamed(NamedRoutes.homepage);
-                  // },
-                  child: Button(
-                    label: 'Login',
-                    onPressed: () {
-                      Get.toNamed(NamedRoutes.homepage);
-                    },
-                  ),
+              Obx(
+                () => Container(
+                  width: Get.width * 0.4,
+                  height: Get.height * 0.06,
+                  margin: EdgeInsets.fromLTRB(0.0, Get.height * 0.04, 0.0, 0.0),
+                  child: logincontroller.isLoggedIn.value == true
+                      ? const SpinKitFadingCircle(
+                          color: AppColors.pink,
+                        )
+                      : Button(
+                          label: 'Login',
+                          onPressed: () async {
+                            validate();
+                          },
+                        ),
                 ),
               ),
               SizedBox(height: Get.height * 0.03),
@@ -172,7 +240,11 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              const GoogleButton(),
+              InkWell(
+                  onTap: () {
+                    signInWithGoogle();
+                  },
+                  child: const GoogleButton()),
               SizedBox(
                 height: Get.height * 0.04,
               ),
