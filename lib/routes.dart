@@ -21,4 +21,5 @@ class NamedRoutes {
   static String review = '/review';
   static String locations = '/locations';
   static String settings = '/settings';
+  static String drawer = '/drawer';
 }

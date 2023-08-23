@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constant {
+  static Color pink = Color(0xFFCB585A);
   var font = 'Manrope';
   var onboardingFont = 'signika';
   int red = 0xFFCB585A;

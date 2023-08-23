@@ -35,17 +35,17 @@ class CustomTheme {
       dialBackgroundColor: Color(constant.white),
       dayPeriodColor: Colors.white,
       dayPeriodTextColor: Color(constant.black),
-      cancelButtonStyle: TextButton.styleFrom(
-        primary: Colors.white, // Set the text color of the cancel button
-        backgroundColor: Color(
-            constant.red), // Set the background color of the cancel button
-      ),
-      confirmButtonStyle: TextButton.styleFrom(
-        primary:
-            Color(constant.red), // Set the text color of the confirm button
-        backgroundColor: Color(
-            constant.red), // Set the background color of the confirm button
-      ),
+      // cancelButtonStyle: TextButton.styleFrom(
+      //   primary: Colors.white, // Set the text color of the cancel button
+      //   backgroundColor: Color(
+      //       constant.red), // Set the background color of the cancel button
+      // ),
+      // confirmButtonStyle: TextButton.styleFrom(
+      //   primary:
+      //       Color(constant.red), // Set the text color of the confirm button
+      //   backgroundColor: Color(
+      //       constant.red), // Set the background color of the confirm button
+      // ),
       hourMinuteColor: Colors.white,
       hourMinuteTextColor: Color(constant.black),
       hourMinuteTextStyle: const TextStyle(

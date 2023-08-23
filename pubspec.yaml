@@ -40,8 +40,20 @@ dependencies:
   step_progress_indicator: ^1.0.2
   intl: ^0.18.1
   custom_clippers: ^2.0.0
+  
   flutter_animated_button: ^2.0.3
   cached_network_image: ^3.2.3
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.7.3
+  cloud_firestore: ^4.8.5
+  email_validator: ^2.1.17
+  flutter_zoom_drawer: ^3.1.1
+  flutter_spinkit: ^5.2.0
+  otp: ^3.1.4
+  flutter_otp_text_field: ^1.1.1
+  http: ^0.13.6
+  google_sign_in: ^6.1.4
+ 
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +80,27 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/icons/home.svg
+    - assets/icons/home_fill.svg
+    - assets/icons/messages2.svg
+    - assets/icons/messages2_fill.svg
+    - assets/icons/setting.svg
+    - assets/icons/setting_fill.svg
+    - assets/images/profileimage.png
+    - assets/icons/order_fill.svg
+    - assets/icons/order.svg
+    - assets/icons/payment.svg
+    - assets/icons/payment_fill.svg
+    - assets/icons/Share.svg
+    - assets/icons/share_fill.svg
+    - assets/icons/Profile.svg
+    - assets/icons/profile_fill.svg
+    - assets/icons/helpCenter.svg
+    - assets/icons/helpCenter_fill.svg
+    - assets/icons/logout.svg
 
+
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
