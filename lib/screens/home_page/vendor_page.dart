@@ -31,33 +31,104 @@ class VendorDetailsScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("About"),
-                  style: ElevatedButton.styleFrom(
+                Container(
+                  width: 100.40,
+                  height: 44.10,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFCB585A),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        //color: Color(0x7FCB585A),
+                        blurRadius: 12,
+                        offset: Offset(4, 1.54),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "About",
+                      style: TextStyle(color: Colors.white),  // Ensure text color contrasts well with button color
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,  // Set to transparent to utilize Container's color
+                      shadowColor: Colors.transparent,  // Set to transparent to utilize Container's shadow
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Services"),
-                  style: ElevatedButton.styleFrom(
+
+                Container(
+                  width: 100.40,
+                  height: 44.10,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFCB585A),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        //color: Color(0x7FCB585A),
+                        blurRadius: 12,
+                        offset: Offset(4, 1.54),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Services",
+                      style: TextStyle(color: Colors.white),  // Ensure text color contrasts well with button color
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,  // Set to transparent to utilize Container's color
+                      shadowColor: Colors.transparent,  // Set to transparent to utilize Container's shadow
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Reviews"),
-                  style: ElevatedButton.styleFrom(
+                Container(
+                  width: 100.40,
+                  height: 44.10,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFCB585A),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        //color: Color(0x7FCB585A),
+                        blurRadius: 12,
+                        offset: Offset(4, 1.54),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Reviews",
+                      style: TextStyle(color: Colors.white),  // Ensure text color contrasts well with button color
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,  // Set to transparent to utilize Container's color
+                      shadowColor: Colors.transparent,  // Set to transparent to utilize Container's shadow
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                     ),
                   ),
-                ),
+                )
+
               ],
             ),
             SizedBox(height: 20),
