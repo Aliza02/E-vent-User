@@ -203,7 +203,8 @@ class _LoginState extends State<Login> {
                       : Button(
                           label: 'Login',
                           onPressed: () async {
-                            validate();
+                            Get.toNamed('/drawer');
+                            // validate();
                           },
                         ),
                 ),

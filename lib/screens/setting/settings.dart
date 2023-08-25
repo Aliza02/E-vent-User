@@ -56,7 +56,7 @@ class Settings extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                child: const Row(children: [
+                child:  Row(children: [
                   ImageIcon(AssetImage('assets/images/Vector.png')),
                   // Image(image: AssetImage('images/Vector.jpg'),),
                   // Icon(Icons.key),
@@ -75,7 +75,7 @@ class Settings extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                child: const Row(children: [
+                child:  Row(children: [
                   ImageIcon(AssetImage('assets/images/notification.png')),
                   // Icon(Icons.notifications),
                   SizedBox(
@@ -93,7 +93,7 @@ class Settings extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                child: const Row(children: [
+                child:  Row(children: [
                   ImageIcon(AssetImage('assets/images/Group.png')),
                   // Icon(Icons.lock),
                   SizedBox(
@@ -111,7 +111,7 @@ class Settings extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                child: const Row(children: [
+                child:  Row(children: [
                   ImageIcon(AssetImage('assets/images/faq.png')),
                   // Icon(Icons.format_quote),
                   SizedBox(
@@ -129,7 +129,7 @@ class Settings extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                child: const Row(children: [
+                child:  Row(children: [
                   ImageIcon(AssetImage('assets/images/location.png')),
                   // Icon(Icons.location_city),
                   SizedBox(
