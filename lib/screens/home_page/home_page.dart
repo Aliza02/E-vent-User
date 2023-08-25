@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/screens/home_page/vendor_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../routes.dart';
@@ -144,14 +145,28 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            ListView.builder(
-                shrinkWrap: true,
-                physics:
-                    const NeverScrollableScrollPhysics(), //(singleChildScrollable is already being used so disallow listview builder to scroll)
-                itemCount: restaurants.length,
-                itemBuilder: (context, index) {
-                  return RestaurantCard(restaurant: restaurants[index]);
-                }),
+            GestureDetector(
+              onTap: (){
+                Get.toNamed('vendor_page');
+                // Get.toNamed(NamedRoutes.vendorScreen);
+                },
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics:
+                      const NeverScrollableScrollPhysics(), //(singleChildScrollable is already being used so disallow listview builder to scroll)
+                  itemCount: restaurants.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => VendorDetailsScreen(restaurant: restaurants[index]),
+                        ));
+                      },
+                      child: RestaurantCard(restaurant: restaurants[index]),
+                    );
+                    //return RestaurantCard(restaurant: restaurants[index]);
+                  }),
+            ),
           ],
         ),
       ),

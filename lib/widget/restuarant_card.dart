@@ -57,7 +57,6 @@ List<Restaurant> restaurants = [
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
-
   const RestaurantCard({super.key, required this.restaurant});
 
   @override
