@@ -16,7 +16,7 @@ class VendorDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(restaurant.imageUrl, height: 200, fit: BoxFit.cover),
+            Center(child: Image.network(restaurant.imageUrl, height: 200, fit: BoxFit.cover)),
             SizedBox(height: 20),
             Center(
               child: Text(
