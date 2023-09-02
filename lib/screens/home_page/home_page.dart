@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/screens/home_page/search_screen.dart';
 import 'package:eventually_user/screens/home_page/vendor_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../routes.dart';
 import '../../widget/all_widgets.dart';
-import '../../widget/restuarant_card.dart';
+import '../../widget/vendor_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,9 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // late Restaurant restaurant;
   final List<CategoryBox> categories = [
     const CategoryBox(
-        image: 'assets/images/photographer.jpg', name: 'Photographers'),
+        image: 'assets/images/photographer.jpg', name: 'Photographer'),
     const CategoryBox(image: 'assets/images/venues.jpg', name: 'Venue'),
     const CategoryBox(image: 'assets/images/caterers.jpg', name: 'Caterers'),
     // Add more categories here...
@@ -73,27 +75,49 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                         onTap: () async {
-                          print('sda');
-                          final categoryName = categoryMap[index];
-                          print(categoryMap[index]);
-                          print(categoryName);
+                          // Get.toNamed(NamedRoutes.vendorSearch);
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) {
+                          //     return VendorDetailsScreen(
+                          //         restaurant: restaurants[0]);
+                          //   }),
+                          // );
 
-                          await FirebaseFirestore.instance
-                              .collection('User')
-                              .where('Business Category',
-                                  isEqualTo: categoryName)
-                              .get()
-                              .then((value) => {
-                                    value.docs.forEach((element) {
-                                      print(element.data());
-                                      print(element.id);
+                          print(categories[index].name);
 
-                                      userId.add(element.id);
-                                      // Get.toNamed(Routes.vendorList, arguments: element.id);
-                                    })
-                                  });
+                          // final categoryName = categoryMap[index];
+                          // print(categoryMap[index]);
+                          // print(categoryName);
 
-                          print(userId.length);
+                          // await FirebaseFirestore.instance
+                          //     .collection('User')
+                          //     .where('Business Category',
+                          //         isEqualTo: categories[index].name)
+                          //     .get()
+                          //     .then((value) => {
+                          //           value.docs.forEach((element) {
+                          //             // print(element.data());
+                          //             // print(element.id);
+                          //             // print(element['name']);
+
+                          //             userId.add(element.id);
+                          //             // vendors.add(
+                          //             //   Vendor(
+                          //             //       imageUrl:
+                          //             //           'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+                          //             //       name: element['Business Name'],
+                          //             //       address:
+                          //             //           element['Business Location'],
+                          //             //       rating: 2.4,
+                          //             //       reviewCount: 34,
+                          //             //       id: 5),
+                          //             // );
+                          //             // Get.toNamed(Routes.vendorList, arguments: element.id);
+                          //           })
+                          //         });
+
+                          // print(userId.length);
                           // print(abc);
 
                           // await FirebaseFirestore.instance
@@ -104,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                           //             // print(element.data());
                           //             // print(element.id);
                           //             if (element.id == categoryName) {
-                          //               // print(element.id);
+                          //               print(element.id);
                           //               FirebaseFirestore.instance
                           //                   .collection("Services")
                           //                   .doc(element.id)
@@ -114,6 +138,10 @@ class _HomePageState extends State<HomePage> {
                           //             }
                           //           })
                           //         });
+                          Get.to(
+                            () => search_screen(),
+                            arguments: categories[index].name,
+                          );
                         },
                         child: categories[index]);
                   },
@@ -146,23 +174,27 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.toNamed('vendor_page');
                 // Get.toNamed(NamedRoutes.vendorScreen);
-                },
+              },
               child: ListView.builder(
                   shrinkWrap: true,
                   physics:
                       const NeverScrollableScrollPhysics(), //(singleChildScrollable is already being used so disallow listview builder to scroll)
-                  itemCount: restaurants.length,
+                  itemCount: vendors.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => VendorDetailsScreen(restaurant: restaurants[index]),
-                        ));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //   builder: (context) =>
+                        //       VendorDetailsScreen(restaurant: vendors[index]),
+                        // ));
                       },
-                      child: RestaurantCard(restaurant: restaurants[index]),
+                      child: VendorCard(
+                        vendorBusinessName: 'abc',
+                        vendorBusinessLocation: 'xyz',
+                      ),
                     );
                     //return RestaurantCard(restaurant: restaurants[index]);
                   }),

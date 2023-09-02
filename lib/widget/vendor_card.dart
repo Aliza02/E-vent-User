@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Restaurant {
+class Vendor {
   final int id;
   final String imageUrl;
   final String name;
@@ -8,7 +8,7 @@ class Restaurant {
   final double rating;
   final int reviewCount;
 
-  Restaurant(
+  Vendor(
       {required this.imageUrl,
       required this.name,
       required this.address,
@@ -17,8 +17,8 @@ class Restaurant {
       required this.id});
 }
 
-List<Restaurant> restaurants = [
-  Restaurant(
+List<Vendor> vendors = [
+  Vendor(
       id: 1,
       imageUrl:
           'https://images.unsplash.com/photo-1511018556340-d16986a1c194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJha2VyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60',
@@ -26,7 +26,7 @@ List<Restaurant> restaurants = [
       address: 'House # 184/61 Block A Latifabad Unit 6',
       rating: 4.8,
       reviewCount: 213),
-  Restaurant(
+  Vendor(
     id: 2,
     imageUrl:
         'https://images.unsplash.com/photo-1479044769763-c28e05b5baa5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -35,7 +35,7 @@ List<Restaurant> restaurants = [
     rating: 4.3,
     reviewCount: 200,
   ),
-  Restaurant(
+  Vendor(
     id: 3,
     imageUrl:
         'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
@@ -44,7 +44,7 @@ List<Restaurant> restaurants = [
     rating: 4.7,
     reviewCount: 300,
   ),
-  Restaurant(
+  Vendor(
     id: 4,
     imageUrl:
         'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
@@ -55,9 +55,14 @@ List<Restaurant> restaurants = [
   ),
 ];
 
-class RestaurantCard extends StatelessWidget {
-  final Restaurant restaurant;
-  const RestaurantCard({super.key, required this.restaurant});
+class VendorCard extends StatelessWidget {
+  // final Vendor vendors;
+  final String vendorBusinessName;
+  final String vendorBusinessLocation;
+  const VendorCard(
+      {super.key,
+      required this.vendorBusinessName,
+      required this.vendorBusinessLocation});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +84,7 @@ class RestaurantCard extends StatelessWidget {
                     height: 150, // Set this to the desired height
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Image.network(
-                      restaurant.imageUrl,
+                      'https://images.unsplash.com/photo-1511018556340-d16986a1c194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJha2VyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60',
                       fit: BoxFit
                           .cover, // This makes the image scale down to fit within the box while maintaining its aspect ratio.
                     ),
@@ -92,7 +97,7 @@ class RestaurantCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      restaurant.name,
+                      vendorBusinessName,
                       style: const TextStyle(
                           fontFamily: 'Manrope-ExtraBold',
                           fontWeight: FontWeight.bold,
@@ -112,7 +117,7 @@ class RestaurantCard extends StatelessWidget {
                             width:
                                 4.0), // Add some space between the icon and the text
                         Text(
-                          restaurant.address,
+                          vendorBusinessLocation,
                           style: const TextStyle(
                             fontFamily: 'Manrope-Regular',
                             fontSize: 14,
@@ -123,7 +128,7 @@ class RestaurantCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: const EdgeInsets.only(right: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -136,8 +141,8 @@ class RestaurantCard extends StatelessWidget {
                     const SizedBox(
                         width:
                             4.0), // Add some space between the icon and the text
-                    Text(
-                      "${restaurant.rating} (${restaurant.reviewCount} reviews)",
+                    const Text(
+                      "2.4 (24 reviews)",
                       style: const TextStyle(
                           fontFamily: 'Manrope-Bold',
                           fontWeight: FontWeight.bold,

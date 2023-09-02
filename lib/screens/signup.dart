@@ -293,7 +293,7 @@ class _SignupState extends State<Signup> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.back();
+                      Get.toNamed(NamedRoutes.login);
                     },
                     child: Text(
                       'Sign In',

@@ -23,4 +23,5 @@ class NamedRoutes {
   static String settings = '/settings';
   static String drawer = '/drawer';
   static String vendorScreen = '/vendor_page';
+  static String vendorSearch = '/vendor_search';
 }
