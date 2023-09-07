@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/constants/constant.dart';
+import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/vendor_detail_controller.dart';
 import 'package:eventually_user/routes.dart';
+import 'package:eventually_user/screens/home_page/vendor_page.dart';
 import 'package:eventually_user/widget/vendor_card.dart';
 import 'package:eventually_user/widget/searchbar.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +27,13 @@ class _search_screenState extends State<search_screen> {
   @override
   Widget build(BuildContext context) {
     var argument = Get.arguments;
-    print(argument);
+    var businessCategory = argument;
+    final vendorController = Get.put(vendorDetailController());
+    final homePageController = Get.put(homepage_controller());
+    print(businessCategory);
     // final CollectionReference abc =
     //     FirebaseFirestore.instance.collection('User');
-    final CollectionReference user =
-        FirebaseFirestore.instance.collection('User');
-    // .where('name', isEqualTo: 'Aliza');
-    Map<String, dynamic> data;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -86,18 +89,20 @@ class _search_screenState extends State<search_screen> {
                     StreamBuilder(
                         stream: FirebaseFirestore.instance
                             .collection('User')
-                            .where('Business Category', isEqualTo: argument)
+                            .where('Business Category',
+                                isEqualTo:
+                                    homePageController.businessCategory.value)
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
+                            late DocumentSnapshot document;
                             return ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 //(singleChildScrollable is already being used so disallow listview builder to scroll)
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
-                                  DocumentSnapshot document =
-                                      snapshot.data!.docs[index];
+                                  document = snapshot.data!.docs[index];
                                   //  final shhot= FirebaseFirestore.instance.collection('User').where('Business Category',isEqualTo:'Photographer').get();
 
                                   // data = document.data() as Map<String, dynamic>;
@@ -107,11 +112,58 @@ class _search_screenState extends State<search_screen> {
                                   //   onTap: () {},
                                   //   child: VendorCard(vendors: vendors[index]),
                                   // );
-                                  return VendorCard(
-                                    vendorBusinessName:
-                                        document['Business Name'],
-                                    vendorBusinessLocation:
-                                        document['Business Location'],
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      int selected = index;
+                                      document = snapshot.data!.docs[selected];
+                                      print("click");
+                                      await FirebaseFirestore.instance
+                                          .collection('Services')
+                                          .doc(document['Business Category'])
+                                          .collection(document['userId'])
+                                          .get()
+                                          .then((value) {
+                                        value.docs.forEach((element) async {
+                                          print(element.data());
+                                          await FirebaseFirestore.instance
+                                              .collection('Services')
+                                              .doc(
+                                                  document['Business Category'])
+                                              .collection(document['userId'])
+                                              .doc(element.id)
+                                              .get()
+                                              .then((value) {
+                                            vendorController.serviceName
+                                                .add(value['Service Name']);
+                                            vendorController.servicePrice
+                                                .add(value['Service Price']);
+                                            vendorController.noOfPerson
+                                                .add(value['NoOfPerson']);
+                                            vendorController.serviceDescription
+                                                .add(value[
+                                                    'Service Description']);
+                                            vendorController.serviceImages
+                                                .add(value['image1']);
+                                          });
+                                        });
+                                      });
+
+                                      Get.to(
+                                        () => VendorDetailsScreen(),
+                                        arguments: [
+                                          document['Business Name'],
+                                          document['Business Category'],
+                                          document['userId'],
+                                          document['Business Location'],
+                                        ],
+                                      );
+                                    },
+                                    child: VendorCard(
+                                      vendorBusinessName:
+                                          document['Business Name'],
+                                      vendorBusinessLocation:
+                                          document['Business Location'],
+                                    ),
                                   );
                                 });
                           } else {

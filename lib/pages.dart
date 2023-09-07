@@ -55,6 +55,7 @@ class Pages {
     GetPage(name: NamedRoutes.settings, page: () => const Settings()),
     GetPage(name: NamedRoutes.locations, page: () => const Locations()),
     GetPage(name: NamedRoutes.drawer, page: () => drawerScreen()),
+
     // GetPage(name: NamedRoutes.vendorScreen, page: () => VendorDetailsScreen(restaurant: ,)),
   ];
 }

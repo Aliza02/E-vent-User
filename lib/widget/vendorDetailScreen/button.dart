@@ -1,5 +1,4 @@
 import 'package:eventually_user/constants/constant.dart';
-import 'package:eventually_user/constants/font.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,31 +24,10 @@ class _ButtonState extends State<Button> {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      /*onPressed: () {
-        String? currentRoute = ModalRoute.of(context)?.settings.name;
-
-        if (currentRoute == NamedRoutes.homepage) {
-          Get.toNamed(NamedRoutes.homepage);
-        } else if (currentRoute == NamedRoutes.login) {
-          Get.toNamed(NamedRoutes.login);
-        } else {
-          // Handle any other cases or just do nothing
-        }
-      },*/
-
-      // onPressed: () {
-      //   if (GetUtils.isEmail(Get.find<TextEditingController>().text)) {
-      //     storage.write('email', emailController.text);
-      //   } else {
-      //     Get.snackbar(
-      //         'Error writing', 'email provided was invalid',
-      //         snackPosition: SnackPosition.BOTTOM);
-      //   }
-      // },
       child: Text(widget.label,
           style: TextStyle(
             fontFamily: constant.font,
-            fontWeight: AppFonts.bold,
+            fontWeight: FontWeight.w600,
             fontSize: Get.width * 0.04,
             color: Colors.white,
           )),

@@ -42,7 +42,7 @@ dependencies:
   custom_clippers: ^2.0.0
   
   flutter_animated_button: ^2.0.3
-  cached_network_image: ^3.2.3
+  # cached_network_image: ^3.2.3
   firebase_core: ^2.15.1
   firebase_auth: ^4.7.3
   cloud_firestore: ^4.8.5
