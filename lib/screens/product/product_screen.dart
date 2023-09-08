@@ -1,5 +1,8 @@
 import 'package:eventually_user/constants/constant.dart';
+import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/product_controller.dart';
 import 'package:eventually_user/screens/home_page/home_page.dart';
+import 'package:eventually_user/widget/BottomNavBar/bottomNavBar.dart';
 import 'package:eventually_user/widget/text_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,37 +47,58 @@ class _ProductScreenState extends State<ProductScreen> {
   );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final arguments = Get.arguments;
+    final serviceName = arguments[0];
+    final serviceDesc = arguments[1];
+    final servicePrice = arguments[2];
+    final noOfPerson = arguments[3];
+
+    final OrderController controller = Get.put(OrderController());
+    final homePageController = Get.put(homepage_controller());
+
+    controller.priceRange.value = servicePrice;
+    return SafeArea(
       // bottomNavigationBar: const CustomBottomNabBar(),
-      appBar: const TextAppBar(title: ''),
-      body: SafeArea(
-        child: Container(
+
+      child: Scaffold(
+        appBar: const TextAppBar(title: ''),
+        bottomNavigationBar: bottomNavBar(),
+        body: Container(
           padding: EdgeInsets.symmetric(horizontal: Get.width * .07),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 ProductImageView(orderPicController: orderPicController),
                 SizedBox(height: Get.height * .02),
-                const ProductTitleText(),
+                ProductTitleText(title: serviceName),
                 SizedBox(height: Get.height * .02),
-                const ProductDescription(
-                    description:
-                        'Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard. Biryani, Qorma, Kheer, Kabab, Gulab Jamun, Pulao, Chapati, Naan, Broast & Custard.'),
+                ProductDescription(
+                  description: serviceDesc,
+                ),
                 SizedBox(height: Get.height * .01),
                 const PriceAndPeopleText(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '50,000 Rs',
-                      style: TextStyle(
-                        color: Color(constant.lightGrey),
-                        fontSize: 24,
-                        fontFamily: constant.font,
-                        fontWeight: FontWeight.w700,
+                    Obx(
+                      () => Text(
+                        "${controller.priceRange} Rs",
+                        style: TextStyle(
+                          color: Color(constant.lightGrey),
+                          fontSize: 24,
+                          fontFamily: constant.font,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                    ChangePeopleCountRow()
+                    Obx(
+                      () => homePageController.businessCategory.value ==
+                              'Photographer'
+                          ? const SizedBox()
+                          : ChangePeopleCountRow(
+                              people: noOfPerson,
+                            ),
+                    ),
                   ],
                 ),
                 SizedBox(height: Get.height * .01),
@@ -94,76 +118,6 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 Row(
                   children: [
-                    // Container(
-                    //   width: 100,
-                    //   height: 40,
-                    //   decoration: ShapeDecoration(
-                    //     color: Colors.white,
-                    //     shape: RoundedRectangleBorder(
-                    //       side: BorderSide(
-                    //         width: 0.50,
-                    //         strokeAlign: BorderSide.strokeAlignCenter,
-                    //         color: Color(0xFFCB585A),
-                    //       ),
-                    //       borderRadius: BorderRadius.circular(8),
-                    //     ),
-                    //     shadows: [
-                    //       BoxShadow(
-                    //         color: Color(0x0C1C252C),
-                    //         blurRadius: 8,
-                    //         offset: Offset(0, 4),
-                    //         spreadRadius: 0,
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
-                    // Container(
-                    //   width: 100,
-                    //   height: 40,
-                    //   decoration: ShapeDecoration(
-                    //     color: Colors.white,
-                    //     shape: RoundedRectangleBorder(
-                    //       side: BorderSide(
-                    //         width: 0.50,
-                    //         strokeAlign: BorderSide.strokeAlignCenter,
-                    //         color: Color(0xFFCB585A),
-                    //       ),
-                    //       borderRadius: BorderRadius.circular(8),
-                    //     ),
-                    //     shadows: [
-                    //       BoxShadow(
-                    //         color: Color(0x0C1C252C),
-                    //         blurRadius: 8,
-                    //         offset: Offset(0, 4),
-                    //         spreadRadius: 0,
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
-                    // Container(
-                    //   width: 100,
-                    //   height: 40,
-                    //   decoration: ShapeDecoration(
-                    //     color: Colors.white,
-                    //     shape: RoundedRectangleBorder(
-                    //       side: BorderSide(
-                    //         width: 0.50,
-                    //         strokeAlign: BorderSide.strokeAlignCenter,
-                    //         color: Color(0xFFCB585A),
-                    //       ),
-                    //       borderRadius: BorderRadius.circular(8),
-                    //     ),
-                    //     shadows: [
-                    //       BoxShadow(
-                    //         color: Color(0x0C1C252C),
-                    //         blurRadius: 8,
-                    //         offset: Offset(0, 4),
-                    //         spreadRadius: 0,
-                    //       )
-                    //     ],
-                    //   ),
-                    // )
-
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(right: Get.width * .04),
@@ -173,7 +127,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           },
                           style: buttonStyle,
                           child: Text(
-                            'DD',
+                            selectedDate.day.toString(),
                             style: TextStyle(
                               color: const Color(0x7F555454),
                               fontSize: 16,
@@ -187,11 +141,11 @@ class _ProductScreenState extends State<ProductScreen> {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                          _showMonthPicker(context);
+                          // _showMonthPicker(context);
                         },
                         style: buttonStyle,
                         child: Text(
-                          'MM',
+                          selectedDate.month.toString(),
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                             color: const Color(0x7F555454),
@@ -207,11 +161,11 @@ class _ProductScreenState extends State<ProductScreen> {
                         padding: EdgeInsets.only(left: Get.width * .04),
                         child: ElevatedButton(
                           onPressed: () {
-                            _showDatePicker(context, DatePickerMode.year);
+                            // _showDatePicker(context, DatePickerMode.year);
                           },
                           style: buttonStyle,
                           child: Text(
-                            'YYYY',
+                            selectedYear.toString(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               color: const Color(0x7F555454),
@@ -261,14 +215,14 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
-                        width: 0.50,
+                        width: 1.0,
                         color: Color(0xFF4285F4),
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
-                        width: 0.50,
+                        width: 1.0,
                         color: Color(0xFF4285F4),
                       ),
                       borderRadius: BorderRadius.circular(12),
@@ -305,7 +259,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: Get.height * .005),
+                SizedBox(height: Get.height * .009),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

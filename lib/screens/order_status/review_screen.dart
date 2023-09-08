@@ -27,7 +27,7 @@ class ReviewScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 ProductImageView(orderPicController: orderPicController),
-                const ProductTitleText(),
+                const ProductTitleText(title: 'abc'),
                 Text('Order Number: 098765', style: kRedTextStyle),
                 SizedBox(height: Get.height * .015),
                 Text(

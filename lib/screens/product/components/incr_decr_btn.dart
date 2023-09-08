@@ -16,7 +16,7 @@ class IncrDecrPeopleBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        icon == Icons.add
+        icon == Icons.add && controller.peopleCount.value > 0
             ? controller.increasePeopleCount()
             : controller.decreasePeopleCount();
       },

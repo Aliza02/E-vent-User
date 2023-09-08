@@ -35,7 +35,7 @@ class DurationButton extends StatelessWidget {
           color: Colors.white,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              width: 0.50,
+              width: 1.0,
               strokeAlign: BorderSide.strokeAlignCenter,
               color: Color(constant.red),
             ),

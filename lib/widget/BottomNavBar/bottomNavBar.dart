@@ -1,3 +1,4 @@
+import 'package:eventually_user/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -40,6 +41,7 @@ class bottomNavBar extends StatelessWidget {
                 IconButton(
                     onPressed: () {
                       pagecontroller.changeIndex(0);
+                      Get.offAllNamed(NamedRoutes.drawer);
                     },
                     icon: Obx(
                       () => pagecontroller.currentindex.value == 0
@@ -49,6 +51,8 @@ class bottomNavBar extends StatelessWidget {
                 IconButton(
                     onPressed: () {
                       pagecontroller.changeIndex(1);
+
+                      // Get.offAllNamed(NamedRoutes.chatScreen);
                     },
                     icon: Obx(
                       () => pagecontroller.currentindex.value == 1

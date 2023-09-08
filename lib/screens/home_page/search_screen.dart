@@ -19,6 +19,8 @@ class search_screen extends StatefulWidget {
 }
 
 class _search_screenState extends State<search_screen> {
+  final vendorController = Get.put(vendorDetailController());
+  final homePageController = Get.put(homepage_controller());
   @override
   void initState() {
     super.initState();
@@ -28,8 +30,7 @@ class _search_screenState extends State<search_screen> {
   Widget build(BuildContext context) {
     var argument = Get.arguments;
     var businessCategory = argument;
-    final vendorController = Get.put(vendorDetailController());
-    final homePageController = Get.put(homepage_controller());
+
     print(businessCategory);
     // final CollectionReference abc =
     //     FirebaseFirestore.instance.collection('User');
@@ -103,20 +104,14 @@ class _search_screenState extends State<search_screen> {
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   document = snapshot.data!.docs[index];
-                                  //  final shhot= FirebaseFirestore.instance.collection('User').where('Business Category',isEqualTo:'Photographer').get();
 
-                                  // data = document.data() as Map<String, dynamic>;
-                                  // shhot.then((value) => print(value.docs[0].data()));
-
-                                  // return GestureDetector(
-                                  //   onTap: () {},
-                                  //   child: VendorCard(vendors: vendors[index]),
-                                  // );
                                   return GestureDetector(
                                     onTap: () async {
                                       int selected = index;
                                       document = snapshot.data!.docs[selected];
                                       print("click");
+                                      vendorController.userId
+                                          .add(document['userId']);
                                       await FirebaseFirestore.instance
                                           .collection('Services')
                                           .doc(document['Business Category'])
@@ -144,9 +139,15 @@ class _search_screenState extends State<search_screen> {
                                                     'Service Description']);
                                             vendorController.serviceImages
                                                 .add(value['image1']);
+                                            vendorController.serviceImages
+                                                .add(value['image2']);
+                                            vendorController.serviceImages
+                                                .add(value['image3']);
                                           });
                                         });
                                       });
+
+                                      print('added');
 
                                       Get.to(
                                         () => VendorDetailsScreen(),

@@ -45,7 +45,7 @@ class VerifyOrderScreen extends StatelessWidget {
                 ),
               ),
               ProductImageView(orderPicController: orderPicController),
-              const ProductTitleText(),
+              const ProductTitleText(title: 'abc'),
               Text('Order Number: 098765', style: kRedTextStyle),
               SizedBox(height: Get.height * .015),
               const ProductDescription(

@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import '../constants/constant.dart';
 
 class ProductTitleText extends StatelessWidget {
-  const ProductTitleText({
-    super.key,
-  });
+  final String title;
+  const ProductTitleText({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Shadi Package',
+      title,
       style: TextStyle(
         color: Color(constant.black),
         fontSize: 24,

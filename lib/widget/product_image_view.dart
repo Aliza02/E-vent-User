@@ -1,3 +1,4 @@
+import 'package:eventually_user/controllers/vendor_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,12 +6,13 @@ import '../controllers/order_pic_controller.dart';
 import '../screens/order_status/components/image_counter_row.dart';
 
 class ProductImageView extends StatelessWidget {
-  const ProductImageView({
+  ProductImageView({
     super.key,
     required this.orderPicController,
   });
 
   final OrderPicController orderPicController;
+  final vendorController = Get.put(vendorDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,8 @@ class ProductImageView extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  'assets/images/caterers.jpg',
+                child: Image.network(
+                  "https://images.unsplash.com/photo-1511018556340-d16986a1c194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJha2VyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
                   fit: BoxFit.fill,
                 ),
               ),

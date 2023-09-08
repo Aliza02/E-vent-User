@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/constants/colors.dart';
 import 'package:eventually_user/constants/font.dart';
 import 'package:eventually_user/controllers/vendor_detail_controller.dart';
+import 'package:eventually_user/screens/product/product_screen.dart';
 import 'package:eventually_user/widget/BottomNavBar/bottomNavBar.dart';
 import 'package:eventually_user/widget/all_widgets.dart';
 import 'package:eventually_user/widget/vendorDetailScreen/text.dart';
@@ -77,9 +78,17 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
         ),
         itemCount: vendorController.serviceName.length,
         itemBuilder: (context, index) {
+          print('builder');
+          print(vendorController.serviceName.length);
           return GestureDetector(
             onTap: () {
               print(index);
+              Get.to(() => ProductScreen(), arguments: [
+                vendorController.serviceName[index],
+                vendorController.serviceDescription[index],
+                vendorController.servicePrice[index],
+                vendorController.noOfPerson[index],
+              ]);
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -129,7 +138,9 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                         ),
                         SizedBox(height: Get.height * 0.004),
                         Text(
-                          "${vendorController.servicePrice[index]} per ${vendorController.noOfPerson[index]} person",
+                          "${vendorController.servicePrice[index]}/${vendorController.noOfPerson[index]} person",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: Get.width * 0.03,
                             fontFamily: AppFonts.manrope,
@@ -234,7 +245,22 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                vendorController.noOfPerson.clear();
+                vendorController.serviceDescription.clear();
+                vendorController.serviceName.clear();
+                vendorController.serviceImages.clear();
+                vendorController.servicePrice.clear();
+                vendorController.showAbout.value = true;
+                vendorController.showReview.value = false;
+                vendorController.showServices.value = false;
+                print('all list clear');
+                Get.back();
+              },
+              icon: const Icon(Icons.arrow_back_ios, color: AppColors.pink)),
+        ),
         bottomNavigationBar: bottomNavBar(),
         body: /*Enter body content here...Text("hi")*/
             SingleChildScrollView(

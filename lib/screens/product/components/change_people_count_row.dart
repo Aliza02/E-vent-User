@@ -7,12 +7,12 @@ import '../../../controllers/product_controller.dart';
 import 'incr_decr_btn.dart';
 
 class ChangePeopleCountRow extends StatelessWidget {
-  ChangePeopleCountRow({
-    super.key,
-  });
+  final people;
+  ChangePeopleCountRow({super.key, required this.people});
   final OrderController controller = Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
+    controller.peopleCount.value = int.parse(this.people);
     return SizedBox(
       child: Row(
         children: [
@@ -20,7 +20,7 @@ class ChangePeopleCountRow extends StatelessWidget {
           SizedBox(width: Get.width * .01),
           Obx(
             () => Text(
-              controller.peopleCount.toString(),
+              controller.peopleCount.value.toString(),
               style: TextStyle(
                 color: Color(constant.lightGrey),
                 fontSize: 24,
