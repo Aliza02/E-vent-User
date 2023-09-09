@@ -53,6 +53,8 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   http: ^0.13.6
   google_sign_in: ^6.1.4
+  flutter_stripe: ^9.4.0
+  flutter_dotenv: ^5.1.0
  
 
 dev_dependencies:
@@ -78,6 +80,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/.env
     - assets/images/
     - assets/icons/
     - assets/icons/home.svg

@@ -42,9 +42,8 @@ class Pages {
     GetPage(
         name: NamedRoutes.orderPlaced, page: () => const OrderPlacedScreen()),
     GetPage(
-        name: NamedRoutes.orderConfirmation,
-        page: () => const ConfirmationScreen()),
-    GetPage(name: NamedRoutes.checkout, page: () => const CheckOutScreen()),
+        name: NamedRoutes.orderConfirmation, page: () => ConfirmationScreen()),
+    GetPage(name: NamedRoutes.checkout, page: () => CheckOutScreen()),
     GetPage(name: NamedRoutes.chatScreen, page: () => const ChatHomeScreen()),
     GetPage(
         name: NamedRoutes.orderCancellation, page: () => OrderCancellation()),

@@ -4,9 +4,14 @@ import 'package:get/get.dart';
 import '../../../constants/constant.dart';
 
 class ConfirmationTextFieldRow extends StatelessWidget {
+  final TextEditingController controller;
+  final TextInputType inputType;
+
   const ConfirmationTextFieldRow({
     super.key,
     required this.title,
+    required this.controller,
+    required this.inputType,
   });
   final String title;
   @override
@@ -14,7 +19,7 @@ class ConfirmationTextFieldRow extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: Get.width * .15,
+          width: Get.width * .2,
           child: Text(
             title,
             style: k8TextStyle,
@@ -25,6 +30,8 @@ class ConfirmationTextFieldRow extends StatelessWidget {
             // width: Get.width * .6,
             height: 34,
             child: TextFormField(
+              keyboardType: inputType,
+              controller: controller,
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Please enter your $title';
@@ -37,19 +44,19 @@ class ConfirmationTextFieldRow extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                 enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(width: 0.40, color: Color(constant.red)),
+                  borderSide: BorderSide(width: 1, color: Color(constant.red)),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    width: 0.40,
+                    width: 1,
                     color: Color(constant.red),
                   ),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 hintText: title,
-                hintStyle: const TextStyle(color: Colors.grey, fontSize: 8),
+                hintStyle:
+                    TextStyle(color: Colors.grey, fontSize: Get.width * 0.03),
               ),
             ),
           ),

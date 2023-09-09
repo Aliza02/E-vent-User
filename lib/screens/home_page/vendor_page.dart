@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/constants/colors.dart';
 import 'package:eventually_user/constants/font.dart';
+import 'package:eventually_user/controllers/homepage_controller.dart';
 import 'package:eventually_user/controllers/vendor_detail_controller.dart';
 import 'package:eventually_user/screens/product/product_screen.dart';
 import 'package:eventually_user/widget/BottomNavBar/bottomNavBar.dart';
@@ -22,6 +23,7 @@ class VendorDetailsScreen extends StatefulWidget {
 class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
   var arguments = Get.arguments;
   final vendorController = Get.put(vendorDetailController());
+  final homePageController = Get.put(homepage_controller());
 
   List reviews = [
     'very nice services',
@@ -88,6 +90,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                 vendorController.serviceDescription[index],
                 vendorController.servicePrice[index],
                 vendorController.noOfPerson[index],
+                homePageController.businessName.value,
               ]);
             },
             child: Container(

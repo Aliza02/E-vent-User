@@ -112,6 +112,11 @@ class _search_screenState extends State<search_screen> {
                                       print("click");
                                       vendorController.userId
                                           .add(document['userId']);
+                                      homePageController.businessName.value =
+                                          document['Business Name'];
+                                      print(homePageController
+                                          .businessName.value);
+
                                       await FirebaseFirestore.instance
                                           .collection('Services')
                                           .doc(document['Business Category'])

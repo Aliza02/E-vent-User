@@ -1,3 +1,4 @@
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,11 +9,27 @@ import '../../../widget/toggle_button.dart';
 
 // ignore: must_be_immutable
 class OrderCard extends StatelessWidget {
-  OrderCard({super.key, this.show});
+  final String vendorName;
+  final String vendorServiceName;
+  final String location;
+  final String price;
+  final String noOfPerson;
+  final date;
+
+  OrderCard(
+      {super.key,
+      this.show,
+      required this.vendorName,
+      required this.vendorServiceName,
+      required this.location,
+      required this.price,
+      required this.date,
+      required this.noOfPerson});
   final controller = Get.put(ToggleButtonController());
   bool? show = false;
   @override
   Widget build(BuildContext context) {
+    final placeorderController = Get.put(placeOrderController());
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: Get.width * .03, vertical: Get.height * .015),
@@ -33,9 +50,9 @@ class OrderCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        show == true ? const ToggleButton() : const SizedBox(),
+                        const ToggleButton(),
                         Text(
-                          'Saleem Caterers',
+                          vendorName,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
@@ -65,7 +82,7 @@ class OrderCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Shadi Package',
+                                vendorServiceName,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -74,7 +91,7 @@ class OrderCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Date : 21-05-2023',
+                                "${date.day}-${date.month}-${date.year}",
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   color: Color(constant.lightGrey),
@@ -84,7 +101,7 @@ class OrderCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Location : XYZ building XYZ block, Latifabad, Hyd.',
+                                location,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   color: Color(constant.lightGrey),
@@ -94,7 +111,7 @@ class OrderCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'per 100 person',
+                                "per ${noOfPerson} person",
                                 style: TextStyle(
                                   color: const Color(0xFFA2A2A2),
                                   fontSize: 9,
@@ -112,7 +129,7 @@ class OrderCard extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '50,000 Rs',
+                                    "${price} Rs",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                       color: const Color(0xFF9C0C0C),
@@ -166,33 +183,37 @@ class OrderCard extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            children: [
-              const Spacer(),
-              Container(
-                width: 8,
-                height: 8,
-                decoration: ShapeDecoration(
-                  color: Color(constant.lightRed),
-                  shape: const OvalBorder(),
-                ),
-              ),
-              const SizedBox(width: 10),
-              InkWell(
-                onTap: () => Get.toNamed(NamedRoutes.orderCancellation),
-                child: Text(
-                  'Cancel order',
-                  style: TextStyle(
-                    color: Color(constant.lightRed),
-                    fontSize: 9,
-                    fontFamily: constant.font,
-                    fontWeight: FontWeight.w700,
-                    height: 1.30,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-            ],
+          Obx(
+            () => placeorderController.cartEnable.value == true
+                ? Row(
+                    children: [
+                      const Spacer(),
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: ShapeDecoration(
+                          color: Color(constant.lightRed),
+                          shape: const OvalBorder(),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      InkWell(
+                        onTap: () => Get.toNamed(NamedRoutes.orderCancellation),
+                        child: Text(
+                          'Cancel order',
+                          style: TextStyle(
+                            color: Color(constant.lightRed),
+                            fontSize: 9,
+                            fontFamily: constant.font,
+                            fontWeight: FontWeight.w700,
+                            height: 1.30,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
+                  )
+                : const SizedBox(),
           ),
         ],
       ),

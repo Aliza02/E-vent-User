@@ -8,4 +8,5 @@ class homepage_controller extends GetxController {
   final RxInt count = 0.obs;
 
   final RxString businessCategory = ''.obs;
+  final RxString businessName = ''.obs;
 }

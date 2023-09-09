@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +23,9 @@ void main() async {
 
   isViewed = prefs.getInt('onboard');
   isLoggedin = prefs.getBool('rememberMe');
+  Stripe.publishableKey =
+      "pk_test_51No9dKEputI98S5Hwvm0RkqB0qYtXPE3HgWEFX4wNfyP6V9BH9uWmOvKk6bo0Y0Ssfb9PQfHWBhJmU3jpueCUOMJ00rLqXT9CY";
+  await dotenv.load(fileName: "assets/.env");
   runApp(const MyApp());
 }
 

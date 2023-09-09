@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/screens/home_page/home_page.dart';
 import 'package:eventually_user/widget/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 import '../../routes.dart';
 import '../../widget/text_appbar.dart';
@@ -10,7 +15,57 @@ import '../cart/components/custom_stepper.dart';
 import '../orders/components/order_card.dart';
 
 class CheckOutScreen extends StatelessWidget {
-  const CheckOutScreen({super.key});
+  CheckOutScreen({super.key});
+
+  Map<String, dynamic>? paymentIntent;
+  void makePayment() async {
+    print('asd');
+    try {
+      paymentIntent = await createPaymentIntent();
+      var gpay = const PaymentSheetGooglePay(
+        merchantCountryCode: "USD",
+        currencyCode: "USD",
+        testEnv: true,
+      );
+      Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+          paymentIntentClientSecret: paymentIntent!["client_secret"],
+          merchantDisplayName: 'EventuAlly',
+          googlePay: gpay,
+        ),
+      );
+
+      displayPaymentSheet();
+    } catch (e) {}
+  }
+
+  void displayPaymentSheet() async {
+    try {
+      await Stripe.instance.presentPaymentSheet();
+      print('done');
+    } catch (e) {}
+  }
+
+  createPaymentIntent() async {
+    try {
+      Map<String, dynamic> body = {
+        "amount": "1000",
+        "currency": "USD",
+      };
+
+      var response = await http.post(
+        Uri.parse('https://api.stripe.com/v1/payment_intents'),
+        body: body,
+        headers: {
+          "Authorization": 'Bearer ${dotenv.env['STRIPE_SECRET']}',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+      );
+
+      return json.decode(response.body);
+    } catch (e) {}
+    // throw Exception(e.String());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +83,7 @@ class CheckOutScreen extends StatelessWidget {
                   ['Checkout', true]
                 ],
               ),
-              SizedBox(height: Get.height * .24, child: OrderCard()),
+              // SizedBox(height: Get.height * .24, child: OrderCard()),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: Get.width * .03),
                 child: Container(
@@ -79,9 +134,15 @@ class CheckOutScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: Get.width * .05),
-                          Image.asset(
-                            'assets/images/easypaisa.png',
-                            width: Get.width * .2,
+                          InkWell(
+                            onTap: () {
+                              makePayment();
+                              print('done payment');
+                            },
+                            child: Image.asset(
+                              'assets/images/easypaisa.png',
+                              width: Get.width * .2,
+                            ),
                           )
                         ],
                       ),

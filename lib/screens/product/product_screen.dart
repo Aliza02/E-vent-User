@@ -1,5 +1,6 @@
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/controllers/product_controller.dart';
 import 'package:eventually_user/screens/home_page/home_page.dart';
 import 'package:eventually_user/widget/BottomNavBar/bottomNavBar.dart';
@@ -52,9 +53,11 @@ class _ProductScreenState extends State<ProductScreen> {
     final serviceDesc = arguments[1];
     final servicePrice = arguments[2];
     final noOfPerson = arguments[3];
+    final businessName = arguments[4];
 
     final OrderController controller = Get.put(OrderController());
     final homePageController = Get.put(homepage_controller());
+    final placeorderController = Get.put(placeOrderController());
 
     controller.priceRange.value = servicePrice;
     return SafeArea(
@@ -85,7 +88,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         "${controller.priceRange} Rs",
                         style: TextStyle(
                           color: Color(constant.lightGrey),
-                          fontSize: 24,
+                          fontSize: Get.width * 0.03,
                           fontFamily: constant.font,
                           fontWeight: FontWeight.w700,
                         ),
@@ -165,7 +168,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           },
                           style: buttonStyle,
                           child: Text(
-                            selectedYear.toString(),
+                            selectedDate.year.toString(),
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               color: const Color(0x7F555454),
@@ -197,6 +200,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 SizedBox(height: Get.height * .01),
                 TextFormField(
+                  controller: controller.location,
                   style: TextStyle(
                     color: const Color(0x7F555454),
                     fontSize: 16,
@@ -267,7 +271,25 @@ class _ProductScreenState extends State<ProductScreen> {
                         child: Button(
                       label: 'Add to Cart',
                       onPressed: () {
-                        Get.toNamed(NamedRoutes.myCart);
+                        placeorderController.serviceName.add(serviceName);
+                        placeorderController.servicePrice
+                            .add(controller.priceRange.value);
+                        placeorderController.vendorName.add(businessName);
+                        placeorderController.location
+                            .add(controller.location.text);
+                        placeorderController.noOfPerson.add(noOfPerson);
+                        placeorderController.date.add(selectedDate);
+                        placeorderController.cartEnable.value = true;
+                        Get.toNamed(
+                          NamedRoutes.myCart,
+                          // arguments: [
+                          //   serviceName,
+                          //   controller.priceRange.value,
+                          //   businessName,
+                          //   controller.location.text,
+                          //   selectedDate,
+                          // ],
+                        );
                       },
                     )),
                     Container(

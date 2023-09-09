@@ -1,5 +1,6 @@
 import 'package:eventually_user/controllers/homepage_controller.dart';
 import 'package:eventually_user/controllers/vendor_detail_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
@@ -7,6 +8,7 @@ class OrderController extends GetxController {
   final homePageController = Get.put(homepage_controller());
   final RxInt peopleCount = 0.obs;
   final RxString priceRange = ''.obs;
+  final TextEditingController location = TextEditingController();
 
   void increasePeopleCount() {
     if (priceRange.value.contains('-')) {
@@ -61,6 +63,7 @@ class OrderController extends GetxController {
     } else {
       int abc = int.parse(priceRange.value);
       abc += 500;
+      peopleCount.value += 50;
       priceRange.value = "$abc";
     }
 

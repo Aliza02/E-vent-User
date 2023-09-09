@@ -1,4 +1,5 @@
 import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/screens/home_page/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final homePageController = Get.put(homepage_controller());
+    final placeorderController = Get.put(placeOrderController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(

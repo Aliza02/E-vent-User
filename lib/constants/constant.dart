@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Constant {
   static Color pink = Color(0xFFCB585A);
@@ -40,7 +41,7 @@ TextStyle kRedTextStyle = TextStyle(
 );
 TextStyle k8TextStyle = TextStyle(
   color: Colors.black,
-  fontSize: 8,
+  fontSize: Get.width * 0.03,
   fontFamily: constant.font,
   fontWeight: FontWeight.w600,
 );
