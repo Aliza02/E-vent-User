@@ -1,5 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/constants/colors.dart';
+import 'package:eventually_user/constants/font.dart';
+import 'package:eventually_user/controllers/message_controller.dart';
+import 'package:eventually_user/firebaseMethods/userAuthentication.dart';
+import 'package:eventually_user/models/message_model.dart';
+import 'package:eventually_user/screens/chat/chat_screen.dart';
 import 'package:flutter/cupertino.dart.';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
@@ -14,40 +22,23 @@ class ChatHomeScreen extends StatefulWidget {
 }
 
 class _ChatHomeScreenState extends State<ChatHomeScreen> {
+  final msgController = Get.put(MessageController());
+
   //!for storing All users
-  final List<ChatUser> _list = [
-    ChatUser(
-      name: "John",
-      about: "Hello, I'm John!",
-      lastActive: "1685782402018",
-      id: "1",
-      isOnline: true,
-      pushToken: "ABC123",
-      email: "john@example.com",
-    ),
-    ChatUser(
-      name: "Alice",
-      about: "Hi, I'm Alice!",
-      lastActive: "1685782402018",
-      id: "2",
-      isOnline: false,
-      pushToken: "DEF456",
-      email: "alice@example.com",
-    ),
-    ChatUser(
-      name: "Bob",
-      about: "Hey, I'm Bob!",
-      lastActive: "1685782402018",
-      id: "3",
-      isOnline: true,
-      pushToken: "GHI789",
-      email: "bob@example.com",
-    ),
-  ];
+  final List<ChatUser> _list = [];
   //!for storing searched items
   final List<ChatUser> _searchlist = [];
   //!for storing search status
   bool _isSearching = false;
+  // final List<String> chatUserId = [];
+
+  String chatroomId(String vendor, String user) {
+    if (vendor.hashCode <= user.hashCode) {
+      return '$vendor$user';
+    } else {
+      return '$user$vendor';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +66,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 color: Color(constant.icon),
               ),
               onPressed: () {
-                 Get.back();
+                Get.back();
               },
             ),
             title: _isSearching
@@ -124,41 +115,125 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
             ],
           ),
           body: SafeArea(
-            child: (_list.isNotEmpty)
-                ? ListView.builder(
-                    // itemCount: _isSearching ? _searchlist.length : _list.length,
-                    itemCount: _isSearching ? _searchlist.length : _list.length,
-                    padding: EdgeInsets.symmetric(vertical: Get.height * 0.01),
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return ChatUserCard(
-                          user:
-                              _isSearching ? _searchlist[index] : _list[index]);
-                    },
-                  )
-                : const Center(
-                    child: Text(
-                      'No Connections found.',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
+            child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('messages')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    print('has data');
+                    // print(_msgController.chatUserId[1]);
+                    return msgController.chatUserId.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _isSearching
+                                ? _searchlist.length
+                                : msgController.chatUserId.length,
+                            itemBuilder: (context, index) {
+                              return StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection('User')
+                                    .doc(msgController.chatUserId[index])
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    _list.add(ChatUser(
+                                        name: snapshot.data!['Business Name'],
+                                        about: snapshot.data!['email'],
+                                        lastActive:
+                                            snapshot.data!['lastActive'],
+                                        id: 'weqe',
+                                        isOnline: false,
+                                        pushToken: "oo",
+                                        email: snapshot.data!['email']));
+                                    return GestureDetector(
+                                      onTap: () {
+                                        print("abc");
+
+                                        msgController.userName.value =
+                                            snapshot.data!['name'];
+                                        msgController.businessName.value =
+                                            snapshot.data!['Business Name'];
+                                        msgController.userId.value =
+                                            snapshot.data!['userId'];
+                                        String userId = auth.currentUser!.uid;
+
+                                        msgController.chatRoomId.value =
+                                            chatroomId(userId,
+                                                snapshot.data!['userId']);
+
+                                        print(msgController.chatRoomId.value);
+
+                                        Get.to(
+                                          () => ChatScreen(
+                                            user: ChatUser(
+                                                name: snapshot
+                                                    .data!['Business Name'],
+                                                about: snapshot.data!['email'],
+                                                lastActive: snapshot
+                                                    .data!['lastActive'],
+                                                id: 'sas',
+                                                isOnline: false,
+                                                pushToken: "oo",
+                                                email: snapshot.data!['email']),
+                                          ),
+                                        );
+                                      },
+                                      child: ChatUserCard(
+                                          user: _isSearching
+                                              ? _searchlist[index]
+                                              : _list[index]),
+                                    );
+                                  } else {
+                                    return Container();
+                                  }
+                                },
+                              );
+                            })
+                        : Center(
+                            child: Text(
+                              'No chats to display',
+                              style: TextStyle(
+                                color: AppColors.grey,
+                                fontWeight: AppFonts.bold,
+                                fontFamily: AppFonts.manrope,
+                                fontSize: Get.width * 0.06,
+                              ),
+                            ),
+                          );
+                  } else {
+                    return const Center(
+                      child: SpinKitFadingCircle(
+                        color: AppColors.pink,
+                      ),
+                    );
+                  }
+                }),
+
+            // child: (_list.isNotEmpty)
+            //     ? ListView.builder(
+            //         // itemCount: _isSearching ? _searchlist.length : _list.length,
+            //         itemCount: _isSearching ? _searchlist.length : _list.length,
+            //         padding: EdgeInsets.symmetric(vertical: Get.height * 0.01),
+            //         physics: const BouncingScrollPhysics(),
+            //         itemBuilder: (context, index) {
+            //           return ChatUserCard(
+            //               user:
+            //                   _isSearching ? _searchlist[index] : _list[index]);
+            //         },
+            //       )
+            //     : const Center(
+            //         child: Text(
+            //           'No Connections found.',
+            //           style: TextStyle(fontSize: 20),
+            //         ),
+            //       ),
           ),
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // TextButton(
 //                     child: Text(
@@ -172,4 +247,3 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
 //                             builder: (_) => ButtonWithBottomContainer()),
 //                       );
 //                     },),),
-          

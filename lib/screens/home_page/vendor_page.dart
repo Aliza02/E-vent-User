@@ -91,6 +91,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                 vendorController.servicePrice[index],
                 vendorController.noOfPerson[index],
                 homePageController.businessName.value,
+                arguments[2],
               ]);
             },
             child: Container(
@@ -105,7 +106,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                   ClipRRect(
                     child: Image.network(
                       height: Get.height * 0.14,
-                      vendorController.serviceImages[index],
+                      'https://images.unsplash.com/photo-1511018556340-d16986a1c194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJha2VyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60',
                       frameBuilder:
                           (context, child, frame, wasSynchronouslyLoaded) {
                         return Container(

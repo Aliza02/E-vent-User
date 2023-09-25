@@ -1,3 +1,4 @@
+import 'package:eventually_user/controllers/message_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,21 +7,41 @@ import '../../../controllers/offer_btn_controller.dart';
 import 'custom_amount_button.dart';
 import 'offer_custom_texts.dart';
 
-class ChatOfferContainer extends StatelessWidget {
-  ChatOfferContainer({
-    super.key,
-  });
+class ChatOfferContainer extends StatefulWidget {
+  final String sendby;
+  ChatOfferContainer({super.key, required this.sendby});
+
+  @override
+  State<ChatOfferContainer> createState() => _ChatOfferContainerState();
+}
+
+class _ChatOfferContainerState extends State<ChatOfferContainer> {
   // final MessageController _msgController = Get.find<MessageController>();
-  final ButtonController _buttonController = Get.find<ButtonController>();
+  final ButtonController _buttonController = Get.put(ButtonController());
+
+  final msgController = Get.put(MessageController());
+
+  late int price1, price2, price3;
+
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(msgController.servicePriceOnChatOffer.length);
+
+    price1 = msgController.servicePriceOnChatOffer[0];
+    price2 = msgController.servicePriceOnChatOffer[1];
+    price3 = msgController.servicePriceOnChatOffer[2];
+
+    //     msgController.servicePriceOnChatOffer[0].toString();
     return SafeArea(
       child: Obx(
         () => Container(
           margin: const EdgeInsets.fromLTRB(2, 0, 2, 0),
           width: Get.width * .9,
-          height: Get.height * .35,
+          height: Get.height * .45,
           child: Stack(
             children: [
               Positioned(
@@ -30,7 +51,7 @@ class ChatOfferContainer extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   width: Get.width * .9,
-                  height: Get.height * .3,
+                  height: Get.height * .4,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: _buttonController.isCatBtnToggled.value
@@ -47,7 +68,7 @@ class ChatOfferContainer extends StatelessWidget {
                         title: _buttonController.isCustomBtnToggled.value
                             ? 'Add Customization'
                             : 'Make an Offer',
-                        package: 'Shadi Package',
+                        package: msgController.serviceNameOnChatOffer.value,
                       ),
                       //don't wanna show in next widget
                       if (_buttonController.isCatBtnToggled.value)
@@ -55,7 +76,7 @@ class ChatOfferContainer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomAmountButton(
-                              amount: '45000',
+                              amount: price1.toString(),
                               index: 0,
                               selectedButtonIndex: _buttonController
                                   .selectedButtonIndex.value.obs,
@@ -64,7 +85,7 @@ class ChatOfferContainer extends StatelessWidget {
                             ),
                             SizedBox(width: Get.width * .01),
                             CustomAmountButton(
-                              amount: '35000',
+                              amount: price2.toString(),
                               index: 1,
                               selectedButtonIndex: _buttonController
                                   .selectedButtonIndex.value.obs,
@@ -73,7 +94,7 @@ class ChatOfferContainer extends StatelessWidget {
                             ),
                             SizedBox(width: Get.width * .01),
                             CustomAmountButton(
-                              amount: '30000',
+                              amount: price3.toString(),
                               index: 2,
                               selectedButtonIndex: _buttonController
                                   .selectedButtonIndex.value.obs,
@@ -185,7 +206,8 @@ class ChatOfferContainer extends StatelessWidget {
                                     Expanded(
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          _buttonController.sendOffer();
+                                          _buttonController
+                                              .sendOffer(widget.sendby);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(
@@ -215,28 +237,31 @@ class ChatOfferContainer extends StatelessWidget {
               Positioned(
                 left: Get.width * .4,
                 top: 0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: _buttonController.isCatBtnToggled.value
-                          ? Color(constant.blue)
-                          : Color(constant.red),
-                    ),
-                  ),
-                  child: IconButton(
-                      onPressed: () {
-                        _buttonController.toggleContainer();
-                      },
-                      highlightColor: Colors.transparent,
-                      color: _buttonController.isCatBtnToggled.value
-                          ? Color(constant.blue)
-                          : Color(constant.red),
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: _buttonController.isCatBtnToggled.value
+                            ? Color(constant.blue)
+                            : Color(constant.red),
                       ),
-                      icon: const Icon(Icons.keyboard_arrow_down_rounded)),
+                    ),
+                    child: IconButton(
+                        onPressed: () {
+                          _buttonController.toggleContainer();
+                        },
+                        highlightColor: Colors.transparent,
+                        color: _buttonController.isCatBtnToggled.value
+                            ? Color(constant.blue)
+                            : Color(constant.red),
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                        ),
+                        icon: const Icon(Icons.keyboard_arrow_down_rounded)),
+                  ),
                 ),
               ),
             ],

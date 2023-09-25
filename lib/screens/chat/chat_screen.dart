@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/controllers/message_controller.dart';
+import 'package:eventually_user/controllers/offer_btn_controller.dart';
+import 'package:eventually_user/models/message_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../constants/constant.dart';
-import '../../controllers/message_controller.dart';
-import '../../controllers/offer_btn_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../constants/colors.dart';
+import '../../firebasemethods/userAuthentication.dart';
 import '../../models/chat_user.dart';
 import 'widgets/chat_offer_toggler.dart';
 import 'widgets/message_card.dart';
@@ -17,11 +20,15 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  // final ButtonController _buttonController = Get.put(ButtonController());
-  // final MessageController _msgController = Get.put(MessageController());
+  final ButtonController _buttonController = Get.put(ButtonController());
+  late MessageModel message;
+  final _msgController = Get.put(MessageController());
 
-  final ButtonController _buttonController = Get.find<ButtonController>();
-  final MessageController _msgController = Get.find<MessageController>();
+  // final firebasecontroller = Get.put(firebaseController());
+  var arg = Get.arguments;
+  // late MessageModel message;
+  // final ButtonController _buttonController = Get.find<ButtonController>();
+  // final MessageController _msgController = Get.find<MessageController>();
   // _showEmoji for showing the value of showing or hiding emoji
   //_isUploading for checking if image is uploading or not
   bool _sendFile = false;
@@ -29,8 +36,11 @@ class _ChatScreenState extends State<ChatScreen> {
 
   //for handling text message changes
   final _textController = TextEditingController();
+  final controller = Get.put(ButtonController());
+
   @override
   Widget build(BuildContext context) {
+    // String msgSendBy = firebasecontroller.businessName.value;
     return SafeArea(
       child: WillPopScope(
         onWillPop: () {
@@ -44,11 +54,14 @@ class _ChatScreenState extends State<ChatScreen> {
           return Future.value(true);
         },
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
-              shape: Border(
+              backgroundColor: AppColors.appBar,
+              elevation: 0,
+              shape: const Border(
                 bottom: BorderSide(
-                  color: Color(
-                      constant.red), // Change the color to your desired color
+                  color:
+                      AppColors.pink, // Change the color to your desired color
                   width: 2.0,
                 ),
               ),
@@ -97,27 +110,148 @@ class _ChatScreenState extends State<ChatScreen> {
                 //     },
                 //   ),
                 // ),
-                Obx(
-                  () => Expanded(
-                    child: (_msgController.list.isNotEmpty)
-                        ? ListView.builder(
-                            reverse: true,
-                            itemCount: _msgController.list.length,
-                            padding: EdgeInsets.symmetric(
-                                vertical: Get.height * 0.01),
-                            // physics: const BouncingScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return MessageCard(
-                                message: _msgController.list[index],
-                                index: index,
-                              );
-                            },
-                          )
-                        : const Center(
-                            child: Text('Say Hii ... 🤭',
-                                style: TextStyle(fontSize: 20))),
-                  ),
+
+                Expanded(
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('messages')
+                          .doc(_msgController.chatRoomId.value)
+                          .collection('chat')
+                          .orderBy('sent')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        // print(
+                        //     "${auth.currentUser!.uid}${_msgController.userId.value}");
+                        if (snapshot.hasData) {
+                          print('chat screen');
+                          return ListView.builder(
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                // _msgController.viewMoreButtonLength.value =
+                                //     snapshot.data!.docs.length;
+
+                                // print(
+                                //     _msgController.viewMoreButtonLength.value);
+                                DocumentSnapshot doc =
+                                    snapshot.data!.docs[index];
+
+                                // if (_msgController
+                                //     .servicePriceOnChatOffer.isEmpty) {
+                                //   _buttonController.disableOffer.value = true;
+                                //   print('empty');
+                                // } else
+                                if (doc['type'] == 'offer' &&
+                                    _buttonController.fromProductScreen.value ==
+                                        true) {
+                                  if (doc['accept'] == 'true') {
+                                    _buttonController.acceptOfferList[index] =
+                                        true;
+                                  }
+                                } else if (doc['type'] == 'offer' &&
+                                    _buttonController.fromProductScreen.value ==
+                                        false) {
+                                  _msgController.serviceNameOnChatOffer.value =
+                                      doc['package'];
+                                  if (doc['accept'] == 'true') {
+                                    _buttonController.acceptOfferList[index] =
+                                        true;
+                                  }
+                                  print('off');
+
+                                  if (doc['amount'].length == 3) {
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']));
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 100);
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 200);
+                                  } else if (doc['amount'].length == 4) {
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']));
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 200);
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 300);
+                                  } else if (doc['amount'].length == 5) {
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']));
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 1000);
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 2000);
+                                  } else if (doc['amount'].length == 6) {
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']));
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 10000);
+                                    _msgController.servicePriceOnChatOffer
+                                        .add(int.parse(doc['amount']) + 20000);
+                                  }
+                                }
+
+                                print('message cards');
+                                return doc['type'] == 'text'
+                                    ? MessageCard(
+                                        serviceName: ' ',
+                                        sendby: doc['sendby'],
+                                        index: index,
+                                        message: MessageModel(
+                                            msg: doc['msg'],
+                                            toID: _msgController.userId.value,
+                                            read: '121',
+                                            type: MsgType.text,
+                                            fromID: auth.currentUser!.uid,
+                                            sent: doc['sent']),
+                                      )
+                                    : MessageCard(
+                                        serviceName: doc['package'],
+                                        sendby: doc['sendby'],
+                                        index: index,
+                                        message: MessageModel(
+                                            msg: doc['amount'],
+                                            toID: _msgController.userId.value,
+                                            read: doc['details'],
+                                            type: MsgType.offer,
+                                            fromID: auth.currentUser!.uid,
+                                            sent: doc['sent']),
+                                      );
+                                // : MessageCard(
+                                //     index: doc['sendby'],
+                                //     message: MessageModel(
+                                //         msg: doc['msg'],
+                                //         toID: '121',
+                                //         read: '121',
+                                //         type: MsgType.offer,
+                                //         fromID: '121',
+                                //         sent: '212'),
+                                //   );
+                              });
+                        }
+                        if (_msgController.servicePriceOnChatOffer.isEmpty) {
+                          _buttonController.disableOffer.value = true;
+                        }
+                        return Container();
+                      }),
                 ),
+
+                //  (_msgController.list.isNotEmpty)
+                //     ? ListView.builder(
+                //         reverse: true,
+                //         itemCount: _msgController.list.length,
+                //         padding: EdgeInsets.symmetric(
+                //             vertical: Get.height * 0.01),
+                //         // physics: const BouncingScrollPhysics(),
+                //         itemBuilder: (context, index) {
+                //           return MessageCard(
+                //             message: _msgController.list[index],
+                //             index: auth.currentUser!.uid,
+                //           );
+                //         },
+                //       )
+                //     : const Center(
+                //         child: Text('Say Hii ... 🤭',
+                //             style: TextStyle(fontSize: 20))),
+
                 if (isUploading)
                   const Align(
                     alignment: Alignment.centerRight,
@@ -128,7 +262,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                 SizedBox(height: Get.height * .01),
-                OfferToggler(),
+
+                OfferToggler(sendby: auth.currentUser!.displayName.toString()),
+
                 Obx(
                   () => !_buttonController.isExpanded.value
                       ? _chatInput()
@@ -158,20 +294,23 @@ class _ChatScreenState extends State<ChatScreen> {
       children: [
         //Back Button
         IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            _msgController.servicePriceOnChatOffer.clear();
+            Get.back();
+          },
           icon: const Icon(CupertinoIcons.back),
-          color: Color(constant.icon),
+          color: AppColors.black,
         ),
         Stack(
           children: [
             Positioned(
               child: Container(
                 margin: const EdgeInsets.all(0),
-                child: CircleAvatar(
-                  backgroundColor: Color(constant.lightPink),
+                child: const CircleAvatar(
+                  backgroundColor: AppColors.appBar,
                   child: Icon(
                     CupertinoIcons.person,
-                    color: Color(constant.grey),
+                    color: AppColors.grey,
                   ),
                 ),
               ),
@@ -201,16 +340,16 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Text(
                   widget.user.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: Color(constant.grey)),
+                      color: AppColors.grey),
                 ),
                 const SizedBox(width: 2),
-                Text(
-                  'Online',
-                  style: TextStyle(color: Color(constant.grey), fontSize: 12),
-                ),
+                // Text(
+                //   widget.user.isOnline.toString(),
+                //   style: TextStyle(color: AppColors.grey, fontSize: 12),
+                // ),
               ],
             ),
           ),
@@ -236,7 +375,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     setState(() => _sendFile = !_sendFile);
                   },
                   icon: const Icon(Icons.add, size: 26),
-                  color: Color(constant.icon),
+                  color: AppColors.black,
                 ),
                 SizedBox(
                   width: Get.width * .03,
@@ -255,7 +394,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Message ...',
-                      hintStyle: TextStyle(color: Color(constant.grey)),
+                      hintStyle: TextStyle(color: AppColors.grey),
                     ),
                   ),
                 ),
@@ -267,8 +406,47 @@ class _ChatScreenState extends State<ChatScreen> {
           //Message Send button
           MaterialButton(
               minWidth: 0,
-              onPressed: () {
+              onPressed: () async {
+                _msgController.list.clear();
                 if (_textController.text.isNotEmpty) {
+                  final Map<String, dynamic> message1 = {
+                    'msg': _textController.text,
+                    'toID': _msgController.userId.value,
+                    'read': 'true',
+                    'sendby': auth.currentUser!.displayName.toString(),
+                    'fromID': auth.currentUser!.uid,
+                    'sent': DateTime.now().millisecondsSinceEpoch.toString(),
+                    'type': 'text',
+                    // 'type':
+                  };
+                  await FirebaseFirestore.instance
+                      .collection('messages')
+                      .doc(_msgController.chatRoomId.value)
+                      .set(
+                    {
+                      'test': '12',
+                    },
+                    SetOptions(merge: true),
+                  );
+                  await FirebaseFirestore.instance
+                      .collection('messages')
+                      .doc(_msgController.chatRoomId.value)
+                      .collection('chat')
+                      .doc()
+                      .set(message1);
+
+                  await FirebaseFirestore.instance
+                      .collection('User')
+                      .doc(auth.currentUser!.uid)
+                      .set(
+                    {
+                      'lastActive':
+                          DateTime.now().millisecondsSinceEpoch.toString(),
+                    },
+                    SetOptions(merge: true),
+                  );
+
+                  print('sent');
                   _textController.text = '';
                   //Add the send logic
                 }
@@ -279,7 +457,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   bottom: 10, right: 5, left: 10, top: 10),
               child: Icon(
                 Icons.near_me_rounded,
-                color: Color(constant.red),
+                color: AppColors.pink,
               )
               // SvgPicture.asset(
               //   'assets/icons/send.svg',

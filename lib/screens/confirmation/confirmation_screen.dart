@@ -27,28 +27,28 @@ class ConfirmationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false, // set it to false
-        appBar: const TextAppBar(title: 'Confirmation'),
-        // bottomNavigationBar: const CustomBottomNabBar(),
-        body: SafeArea(
+    return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
+      appBar: const TextAppBar(title: 'Confirmation'),
+      body: SizedBox(
+        height: Get.height,
+        child: SafeArea(
+          // bottomNavigationBar: const CustomBottomNabBar(),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
-          children: [
-            const CustomStepper(
-              stepTitle: [
-                ['Cart', false],
-                ['Confirmation', true],
-                ['Checkout', false]
-              ],
-            ),
+              children: [
+                const CustomStepper(
+                  stepTitle: [
+                    ['Cart', false],
+                    ['Confirmation', true],
+                    ['Checkout', false]
+                  ],
+                ),
 
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
+                ListView.builder(
+                  // shrinkWrap: true,
+                  // physics: const NeverScrollableScrollPhysics(),
                   itemCount: placeorderController.serviceName.length,
                   itemBuilder: (context, index) {
                     if (placeorderController.serviceName.isEmpty) {
@@ -67,69 +67,69 @@ class ConfirmationScreen extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-            ),
 
-            // SizedBox(height: Get.height * .25, child: OrderCard()),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Get.width * .05),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: Get.width * .06, vertical: Get.width * .06),
-                width: double.infinity,
-                // height: Get.height * .4,
-                decoration: ShapeDecoration(
-                  shadows: shadowsAbove,
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Form(
-                  // key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Personal Information',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: Get.width * 0.05,
-                          fontFamily: constant.font,
-                          fontWeight: FontWeight.w800,
-                        ),
+                // SizedBox(height: Get.height * .25, child: OrderCard()),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * .05),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Get.width * .06, vertical: Get.width * .06),
+                    width: double.infinity,
+                    // height: Get.height * .4,
+                    decoration: ShapeDecoration(
+                      shadows: shadowsAbove,
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      SizedBox(height: Get.height * .02),
-                      ConfirmationTextFieldRow(
-                          title: 'First Name:',
-                          controller: placeorderController.firstName,
-                          inputType: TextInputType.text),
-                      SizedBox(height: Get.height * .02),
-                      ConfirmationTextFieldRow(
-                          title: 'Last Name:',
-                          controller: placeorderController.lastName,
-                          inputType: TextInputType.text),
-                      SizedBox(height: Get.height * .02),
-                      ConfirmationTextFieldRow(
-                          title: 'Phone No:',
-                          controller: placeorderController.phoneNo,
-                          inputType: TextInputType.phone),
-                    ],
+                    ),
+                    child: Form(
+                      // key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Personal Information',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: Get.width * 0.05,
+                              fontFamily: constant.font,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          SizedBox(height: Get.height * .02),
+                          ConfirmationTextFieldRow(
+                              title: 'First Name:',
+                              controller: placeorderController.firstName,
+                              inputType: TextInputType.text),
+                          SizedBox(height: Get.height * .02),
+                          ConfirmationTextFieldRow(
+                              title: 'Last Name:',
+                              controller: placeorderController.lastName,
+                              inputType: TextInputType.text),
+                          SizedBox(height: Get.height * .02),
+                          ConfirmationTextFieldRow(
+                              title: 'Phone No:',
+                              controller: placeorderController.phoneNo,
+                              inputType: TextInputType.phone),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const Spacer(),
+                Button(
+                  label: 'Confirm',
+                  onPressed: () {
+                    // if(_formKey.currentState.validate)
+                    Get.toNamed(NamedRoutes.checkout);
+                  },
+                ),
+                SizedBox(height: Get.height * .01),
+              ],
             ),
-            const Spacer(),
-            Button(
-              label: 'Confirm',
-              onPressed: () {
-                // if(_formKey.currentState.validate)
-                Get.toNamed(NamedRoutes.checkout);
-              },
-            ),
-            SizedBox(height: Get.height * .01),
-          ],
-        )),
+          ),
+        ),
       ),
     );
   }

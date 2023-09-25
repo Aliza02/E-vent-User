@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:eventually_user/constants/constant.dart';
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/screens/home_page/home_page.dart';
 import 'package:eventually_user/widget/button.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import '../cart/components/custom_stepper.dart';
 import '../orders/components/order_card.dart';
 
 class CheckOutScreen extends StatelessWidget {
+  final placeordercontroller = Get.put(placeOrderController());
   CheckOutScreen({super.key});
 
   Map<String, dynamic>? paymentIntent;
@@ -69,11 +71,16 @@ class CheckOutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const TextAppBar(title: 'Checkout(1)'),
+    int delivery = 250;
+    int advance = 5000;
+    int price = int.parse(placeordercontroller.servicePrice[0]);
+    int total = price + delivery + advance;
+    return SafeArea(
       // bottomNavigationBar: const CustomBottomNabBar(),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: const TextAppBar(title: 'Checkout(1)'),
+        body: SingleChildScrollView(
           child: Column(
             children: [
               const CustomStepper(
@@ -126,6 +133,34 @@ class CheckOutScreen extends StatelessWidget {
                             width: 11,
                             height: 11,
                             decoration: const ShapeDecoration(
+                              color: Color(0xFFCB585A),
+                              shape: OvalBorder(
+                                side: BorderSide(
+                                    width: 0.50, color: Color(0xFFCB585A)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: Get.width * .05),
+                          InkWell(
+                            onTap: () {
+                              // makePayment();
+                              print('done payment');
+                            },
+                            child: Text('COD'),
+
+                            //  Image.asset(
+                            //   'assets/images/easypaisa.png',
+                            //   width: Get.width * .2,
+                            // ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 11,
+                            height: 11,
+                            decoration: const ShapeDecoration(
                               color: Color(0xFFF9F9F9),
                               shape: OvalBorder(
                                 side: BorderSide(
@@ -136,14 +171,14 @@ class CheckOutScreen extends StatelessWidget {
                           SizedBox(width: Get.width * .05),
                           InkWell(
                             onTap: () {
-                              makePayment();
+                              // makePayment();
                               print('done payment');
                             },
                             child: Image.asset(
                               'assets/images/easypaisa.png',
                               width: Get.width * .2,
                             ),
-                          )
+                          ),
                         ],
                       ),
                       SizedBox(height: Get.height * .01),
@@ -216,7 +251,7 @@ class CheckOutScreen extends StatelessWidget {
                           ),
                           SizedBox(width: Get.width * .05),
                           Text(
-                            'House# 12/98 XYZ Building, Latifabad Hyd.',
+                            placeordercontroller.location[0],
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Color(constant.lightGrey),
@@ -299,7 +334,7 @@ class CheckOutScreen extends StatelessWidget {
                           ),
                           SizedBox(width: Get.width * .05),
                           Text(
-                            '50,000',
+                            placeordercontroller.servicePrice[0],
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Color(constant.lightGrey),
@@ -341,7 +376,7 @@ class CheckOutScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Advance (20 %)',
+                            'Advance',
                             style: TextStyle(
                               color: Color(constant.lightGrey),
                               fontSize: 12,
@@ -351,7 +386,7 @@ class CheckOutScreen extends StatelessWidget {
                           ),
                           SizedBox(width: Get.width * .05),
                           Text(
-                            '10,000',
+                            advance.toString(),
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Color(constant.lightGrey),
@@ -377,7 +412,7 @@ class CheckOutScreen extends StatelessWidget {
                           ),
                           SizedBox(width: Get.width * .05),
                           Text(
-                            '250',
+                            delivery.toString(),
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Color(constant.lightGrey),
@@ -403,7 +438,7 @@ class CheckOutScreen extends StatelessWidget {
                           ),
                           SizedBox(width: Get.width * .05),
                           Text(
-                            'Rs 10,250',
+                            total.toString(),
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Color(constant.lightGrey),

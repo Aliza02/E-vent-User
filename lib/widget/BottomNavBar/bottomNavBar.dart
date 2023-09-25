@@ -1,3 +1,4 @@
+import 'package:eventually_user/controllers/message_controller.dart';
 import 'package:eventually_user/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,7 @@ import '../../controllers/drawercontroller.dart';
 class bottomNavBar extends StatelessWidget {
   bottomNavBar({super.key});
   final pagecontroller = Get.put(drawerController());
+  final msgController = Get.put(MessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +41,19 @@ class bottomNavBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                    onPressed: () {
-                      pagecontroller.changeIndex(0);
-                      Get.offAllNamed(NamedRoutes.drawer);
-                    },
-                    icon: Obx(
-                      () => pagecontroller.currentindex.value == 0
-                          ? SvgPicture.asset(AppIcons.homeFill)
-                          : SvgPicture.asset(AppIcons.home),
-                    )),
+                  onPressed: () {
+                    pagecontroller.changeIndex(0);
+                    msgController.servicePriceOnChatOffer.clear();
+                    msgController.chatUserId.clear();
+                    print(msgController.chatUserId.length);
+                    Get.offAllNamed(NamedRoutes.drawer);
+                  },
+                  icon: Obx(
+                    () => pagecontroller.currentindex.value == 0
+                        ? SvgPicture.asset(AppIcons.homeFill)
+                        : SvgPicture.asset(AppIcons.home),
+                  ),
+                ),
                 IconButton(
                     onPressed: () {
                       pagecontroller.changeIndex(1);

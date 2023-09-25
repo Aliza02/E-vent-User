@@ -1,7 +1,14 @@
+import 'package:eventually_user/constants/colors.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/message_controller.dart';
+import 'package:eventually_user/controllers/offer_btn_controller.dart';
 import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/controllers/product_controller.dart';
+import 'package:eventually_user/controllers/vendor_detail_controller.dart';
+import 'package:eventually_user/firebaseMethods/userAuthentication.dart';
+import 'package:eventually_user/models/chat_user.dart';
+import 'package:eventually_user/screens/chat/chat_screen.dart';
 import 'package:eventually_user/screens/home_page/home_page.dart';
 import 'package:eventually_user/widget/BottomNavBar/bottomNavBar.dart';
 import 'package:eventually_user/widget/text_appbar.dart';
@@ -30,6 +37,8 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   OrderPicController orderPicController = Get.put(OrderPicController());
+  final msgController = Get.put(MessageController());
+  final btnController = Get.put(ButtonController());
   DateTime selectedDate = DateTime.now();
   int selectedMonth = DateTime.now().month;
   int selectedYear = DateTime.now().year;
@@ -54,17 +63,35 @@ class _ProductScreenState extends State<ProductScreen> {
     final servicePrice = arguments[2];
     final noOfPerson = arguments[3];
     final businessName = arguments[4];
+    final vendorId = arguments[5];
 
     final OrderController controller = Get.put(OrderController());
     final homePageController = Get.put(homepage_controller());
     final placeorderController = Get.put(placeOrderController());
+    final vendorController = Get.put(vendorDetailController());
+    final orderController = Get.put(OrderController());
+
+    String chatroomId(String vendor, String user) {
+      if (vendor.hashCode <= user.hashCode) {
+        return '$vendor$user';
+      } else {
+        return '$user$vendor';
+      }
+    }
 
     controller.priceRange.value = servicePrice;
     return SafeArea(
       // bottomNavigationBar: const CustomBottomNabBar(),
 
       child: Scaffold(
-        appBar: const TextAppBar(title: ''),
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                msgController.servicePriceOnChatOffer.clear();
+                Get.back();
+              },
+              icon: const Icon(Icons.arrow_back_ios, color: AppColors.pink)),
+        ),
         bottomNavigationBar: bottomNavBar(),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: Get.width * .07),
@@ -88,7 +115,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         "${controller.priceRange} Rs",
                         style: TextStyle(
                           color: Color(constant.lightGrey),
-                          fontSize: Get.width * 0.03,
+                          fontSize: Get.width * 0.06,
                           fontFamily: constant.font,
                           fontWeight: FontWeight.w700,
                         ),
@@ -144,7 +171,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                          // _showMonthPicker(context);
+                          _showDatePicker(context, DatePickerMode.day);
                         },
                         style: buttonStyle,
                         child: Text(
@@ -164,7 +191,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         padding: EdgeInsets.only(left: Get.width * .04),
                         child: ElevatedButton(
                           onPressed: () {
-                            // _showDatePicker(context, DatePickerMode.year);
+                            _showDatePicker(context, DatePickerMode.day);
                           },
                           style: buttonStyle,
                           child: Text(
@@ -268,30 +295,24 @@ class _ProductScreenState extends State<ProductScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                        child: Button(
-                      label: 'Add to Cart',
-                      onPressed: () {
-                        placeorderController.serviceName.add(serviceName);
-                        placeorderController.servicePrice
-                            .add(controller.priceRange.value);
-                        placeorderController.vendorName.add(businessName);
-                        placeorderController.location
-                            .add(controller.location.text);
-                        placeorderController.noOfPerson.add(noOfPerson);
-                        placeorderController.date.add(selectedDate);
-                        placeorderController.cartEnable.value = true;
-                        Get.toNamed(
-                          NamedRoutes.myCart,
-                          // arguments: [
-                          //   serviceName,
-                          //   controller.priceRange.value,
-                          //   businessName,
-                          //   controller.location.text,
-                          //   selectedDate,
-                          // ],
-                        );
-                      },
-                    )),
+                      child: Button(
+                        label: 'Add to Cart',
+                        onPressed: () {
+                          placeorderController.serviceName.add(serviceName);
+                          placeorderController.servicePrice
+                              .add(controller.priceRange.value);
+                          placeorderController.vendorName.add(businessName);
+                          placeorderController.location
+                              .add(controller.location.text);
+                          placeorderController.noOfPerson.add(noOfPerson);
+                          placeorderController.date.add(selectedDate);
+                          placeorderController.cartEnable.value = true;
+                          Get.toNamed(
+                            NamedRoutes.myCart,
+                          );
+                        },
+                      ),
+                    ),
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: Get.width * .02),
@@ -306,7 +327,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     Expanded(
-                      child: Ink(
+                      child: Container(
                         height: 38,
                         decoration: ShapeDecoration(
                           color: const Color(0xFF4285F4),
@@ -317,7 +338,112 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(18),
-                          onTap: () => Get.toNamed(NamedRoutes.chatScreen),
+                          onTap: () {
+                            msgController.servicePriceOnChatOffer.clear();
+                            ChatUser user = ChatUser(
+                              about: 'dsad',
+                              email: 'dasd',
+                              id: 'sad',
+                              isOnline: false,
+                              lastActive: 'dda',
+                              name: businessName,
+                              pushToken: 'dsad',
+                            );
+                            print('jkjl');
+                            msgController.chatRoomId.value = chatroomId(
+                                vendorController.userId.value,
+                                auth.currentUser!.uid);
+
+                            msgController.userName.value =
+                                auth.currentUser!.displayName!;
+
+                            msgController.serviceNameOnChatOffer.value =
+                                serviceName;
+                            btnController.fromProductScreen.value = true;
+                            msgController.businessName.value = businessName;
+
+                            if (controller.priceRange.value.contains('-')) {
+                              print('split');
+                              List<String> parts =
+                                  controller.priceRange.value.split('-');
+                              if (parts[0].length == 4) {
+                                int price = int.parse(parts[0]);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 100);
+                                btnController
+                                        .offerAmountEditingController.text =
+                                    msgController.servicePriceOnChatOffer[0]
+                                        .toString();
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 200);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 300);
+                              } else if (parts[0].length == 5) {
+                                int price = int.parse(parts[0]);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 1000);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 2000);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 3000);
+                              } else if (parts[0].length == 6) {
+                                int price = int.parse(parts[0]);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 10000);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 15000);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 20000);
+                              }
+                              print(
+                                  msgController.servicePriceOnChatOffer.length);
+                            } else {
+                              if (servicePrice.length == 4) {
+                                int price = int.parse(servicePrice);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 100);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 200);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 300);
+                              } else if (servicePrice.length == 5) {
+                                int price = int.parse(servicePrice);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 1000);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 2000);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 3000);
+                              } else if (servicePrice.length == 6) {
+                                int price = int.parse(servicePrice);
+
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 10000);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 15000);
+                                msgController.servicePriceOnChatOffer
+                                    .add(price - 20000);
+                              }
+                            }
+
+                            print(msgController.servicePriceOnChatOffer.length);
+
+                            Get.to(
+                              () => ChatScreen(
+                                user: user,
+                              ),
+                              arguments: serviceName,
+                            );
+                          },
                           child: Center(
                             child: Text(
                               'Chat With Vendor',

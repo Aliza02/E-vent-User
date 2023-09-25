@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/message_controller.dart';
 import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/screens/home_page/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../firebasemethods/userAuthentication.dart';
 import '../../widget/all_widgets.dart';
 import '../../widget/vendor_card.dart';
 
@@ -24,6 +27,42 @@ class _HomePageState extends State<HomePage> {
 
   late List<String> userId = [];
 
+  List<String> vendor = ['Ab photographer', 'Shadi Qila', 'Al Aziz Caterers'];
+  List<String> location = ['Latifabad', 'Qasimabad', 'Hirabad'];
+
+  final msgController = Get.put(MessageController());
+
+  void getResult() async {
+    msgController.chatUserId.clear();
+    await FirebaseFirestore.instance.collection('messages').get().then((value) {
+      value.docs.forEach((element) {
+        print(element.id);
+
+        if (element.id.contains(auth.currentUser!.uid)) {
+          print(element.id);
+          List<String> parts = element.id.split(auth.currentUser!.uid);
+
+          if (parts[1].contains(auth.currentUser!.uid)) {
+            print('oo');
+            msgController.chatUserId.add(parts[0]);
+          } else {
+            print('p');
+            msgController.chatUserId.add(parts[1]);
+
+            print(msgController.chatUserId[0]);
+          }
+          print(msgController.chatUserId.length);
+        }
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getResult();
+  }
+
   @override
   Widget build(BuildContext context) {
     final homePageController = Get.put(homepage_controller());
@@ -37,6 +76,7 @@ class _HomePageState extends State<HomePage> {
               margin: EdgeInsets.only(top: Get.height * 0.07),
               child: Column(
                 children: [
+                  // Text(userId[0]),
                   //row containing Categories heading and see all button
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -187,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                         shrinkWrap: true,
                         physics:
                             const NeverScrollableScrollPhysics(), //(singleChildScrollable is already being used so disallow listview builder to scroll)
-                        itemCount: vendors.length,
+                        itemCount: location.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
@@ -197,8 +237,8 @@ class _HomePageState extends State<HomePage> {
                               // ));
                             },
                             child: VendorCard(
-                              vendorBusinessName: 'abc',
-                              vendorBusinessLocation: 'xyz',
+                              vendorBusinessName: vendor[index],
+                              vendorBusinessLocation: location[index],
                             ),
                           );
                           //return RestaurantCard(restaurant: restaurants[index]);

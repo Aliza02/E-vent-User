@@ -12,11 +12,11 @@ class OrderPlacedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const TextAppBar(title: ''),
+    return SafeArea(
       // bottomNavigationBar: const CustomBottomNabBar(),
-      body: SafeArea(
-        child: Padding(
+      child: Scaffold(
+        appBar: const TextAppBar(title: ''),
+        body: Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.width * .06),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +64,7 @@ class OrderPlacedScreen extends StatelessWidget {
               Button(
                   label: 'Continue Planning',
                   onPressed: () {
-                    Get.offAllNamed(NamedRoutes.homepage);
+                    Get.offAllNamed(NamedRoutes.drawer);
                   })
             ],
           ),

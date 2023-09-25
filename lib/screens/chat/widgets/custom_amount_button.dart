@@ -22,7 +22,7 @@ class CustomAmountButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ElevatedButton(
-        onPressed: () => onPressed(amount, index),
+        onPressed: () => onPressed(amount.toString(), index),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
@@ -37,7 +37,7 @@ class CustomAmountButton extends StatelessWidget {
               : Colors.white,
         ),
         child: Text(
-          amount,
+          amount.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
             color: selectedButtonIndex.value == index

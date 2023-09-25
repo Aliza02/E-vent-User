@@ -10,5 +10,5 @@ class vendorDetailController extends GetxController {
   final RxList<String> serviceDescription = <String>[].obs;
   final RxList<String> serviceImages = <String>[].obs;
 
-  final RxList<String> userId = <String>[].obs;
+  final RxString userId = ''.obs;
 }

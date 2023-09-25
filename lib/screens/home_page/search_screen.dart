@@ -110,12 +110,14 @@ class _search_screenState extends State<search_screen> {
                                       int selected = index;
                                       document = snapshot.data!.docs[selected];
                                       print("click");
-                                      vendorController.userId
-                                          .add(document['userId']);
+                                      // vendorController.userId
+                                      //     .add(document['userId']);
                                       homePageController.businessName.value =
                                           document['Business Name'];
                                       print(homePageController
                                           .businessName.value);
+                                      vendorController.userId.value =
+                                          document['userId'];
 
                                       await FirebaseFirestore.instance
                                           .collection('Services')
