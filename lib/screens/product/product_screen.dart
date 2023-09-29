@@ -306,7 +306,8 @@ class _ProductScreenState extends State<ProductScreen> {
                               .add(controller.location.text);
                           placeorderController.noOfPerson.add(noOfPerson);
                           placeorderController.date.add(selectedDate);
-                          placeorderController.cartEnable.value = true;
+                          // placeorderController.enableCancelOrderButton.value =
+                          //     false;
                           Get.toNamed(
                             NamedRoutes.myCart,
                           );
@@ -484,6 +485,7 @@ class _ProductScreenState extends State<ProductScreen> {
         setState(() {
           selectedDate = date;
         });
+        print(selectedDate);
       };
     } else {
       initialDate = DateTime(selectedYear, selectedMonth);

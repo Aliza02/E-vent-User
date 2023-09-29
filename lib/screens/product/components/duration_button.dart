@@ -1,3 +1,4 @@
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../constants/constant.dart';
 
 class DurationButton extends StatelessWidget {
+  final placeorderController = Get.put(placeOrderController());
   final String imagePath;
   final String buttonText;
   final Rx<TimeOfDay?> selectedTime = Rx<TimeOfDay?>(null);
@@ -22,7 +24,16 @@ class DurationButton extends StatelessWidget {
     );
 
     if (pickedTime != null) {
-      selectedTime.value = pickedTime;
+      if (placeorderController.startTime.value != null) {
+        placeorderController.endTime.value = pickedTime;
+        selectedTime.value = pickedTime;
+      } else {
+        placeorderController.startTime.value = pickedTime;
+        selectedTime.value = pickedTime;
+      }
+
+      print(placeorderController.startTime.value);
+      print(placeorderController.endTime.value);
     }
   }
 

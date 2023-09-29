@@ -15,6 +15,7 @@ class OrderCard extends StatelessWidget {
   final String price;
   final String noOfPerson;
   final date;
+  final int index;
 
   OrderCard(
       {super.key,
@@ -24,9 +25,10 @@ class OrderCard extends StatelessWidget {
       required this.location,
       required this.price,
       required this.date,
-      required this.noOfPerson});
+      required this.noOfPerson,
+      required this.index});
   final controller = Get.put(ToggleButtonController());
-  bool? show = false;
+  bool? show = true;
   @override
   Widget build(BuildContext context) {
     final placeorderController = Get.put(placeOrderController());
@@ -40,7 +42,8 @@ class OrderCard extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: InkWell(
-              onTap: () => Get.toNamed(NamedRoutes.orderStatus),
+              onTap: () {},
+              // => Get.toNamed(NamedRoutes.orderStatus),
               borderRadius: BorderRadius.circular(20),
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -50,7 +53,17 @@ class OrderCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const ToggleButton(),
+                        Obx(
+                          () =>
+                              placeorderController.disableToggle.value == false
+                                  ? ToggleButton(
+                                      index: index,
+                                      enableAllItems: false,
+                                    )
+                                  : SizedBox(
+                                      width: Get.width * 0.06,
+                                    ),
+                        ),
                         Text(
                           vendorName,
                           style: TextStyle(
@@ -66,7 +79,16 @@ class OrderCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        show == true ? const ToggleButton() : const SizedBox(),
+                        show == true &&
+                                placeorderController.disableToggle.value ==
+                                    false
+                            ? ToggleButton(
+                                index: index,
+                                enableAllItems: false,
+                              )
+                            : SizedBox(
+                                width: Get.width * 0.06,
+                              ),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.asset(
@@ -184,7 +206,7 @@ class OrderCard extends StatelessWidget {
             ),
           ),
           Obx(
-            () => placeorderController.cartEnable.value == true
+            () => placeorderController.enableCancelOrderButton.value == true
                 ? Row(
                     children: [
                       const Spacer(),

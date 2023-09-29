@@ -2,12 +2,12 @@ import 'package:eventually_user/constants/colors.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/constants/font.dart';
 import 'package:eventually_user/controllers/cart_controller.dart';
+import 'package:eventually_user/controllers/offer_btn_controller.dart';
 import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/widget/all_widgets.dart';
 import 'package:eventually_user/widget/text_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../routes.dart';
 import '../../widget/toggle_button.dart';
 import '../home_page/home_page.dart';
@@ -18,15 +18,43 @@ import 'components/custom_stepper.dart';
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
   int currentStep = 0;
+  int currentindex = 0;
   @override
   Widget build(BuildContext context) {
     final placeorderController = Get.put(placeOrderController());
     final toggleController = Get.put(ToggleButtonController());
+    final btnController = Get.put(ButtonController());
 
     return SafeArea(
       child: Scaffold(
-        appBar: const TextAppBar(title: 'My Cart'),
-        // bottomNavigationBar: const CustomBottomNabBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              // placeordercontroller.firstName.clear();
+              // placeordercontroller.lastName.clear();
+              // placeordercontroller.phoneNo.clear();
+              btnController.selectedItemToCheckout.clear();
+
+              Get.back();
+            },
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            'My Cart',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontFamily: constant.font,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
         body: Column(
           children: [
             const CustomStepper(
@@ -41,11 +69,13 @@ class CartScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: placeorderController.serviceName.length,
                 itemBuilder: (context, index) {
+                  currentindex = index;
                   if (placeorderController.serviceName.isEmpty) {
                     print('empty');
                   }
                   print(index);
                   return OrderCard(
+                    index: index,
                     date: placeorderController.date[index],
                     vendorName: placeorderController.vendorName[index],
                     vendorServiceName: placeorderController.serviceName[index],
@@ -71,29 +101,31 @@ class CartScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const ToggleButton(),
-                  SizedBox(
-                    width: Get.width * .21,
-                    child: Text(
-                      'All Items',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: Color(constant.lightGrey),
-                        fontSize: 16,
-                        fontFamily: constant.font,
-                        fontWeight: FontWeight.w500,
-                        // height: 20.80,
-                      ),
-                    ),
-                  ),
+                  // ToggleButton(index: currentindex, enableAllItems: true),
+                  // SizedBox(
+                  //   width: Get.width * .21,
+                  //   child: Text(
+                  //     'All Items',
+                  //     textAlign: TextAlign.right,
+                  //     style: TextStyle(
+                  //       color: Color(constant.lightGrey),
+                  //       fontSize: 16,
+                  //       fontFamily: constant.font,
+                  //       fontWeight: FontWeight.w500,
+                  //       // height: 20.80,
+                  //     ),
+                  //   ),
+                  // ),
                   const Spacer(),
                   Expanded(
                     child: Obx(
-                      () => toggleController.isToggled.value == true
+                      () => btnController.selectedItemToCheckout.isNotEmpty
                           ? Button(
                               label: 'Proceed',
                               onPressed: () {
-                                placeorderController.cartEnable.value = false;
+                                placeorderController
+                                    .enableCancelOrderButton.value = false;
+                                placeorderController.disableToggle.value = true;
                                 Get.toNamed(NamedRoutes.orderConfirmation);
                               },
                             )

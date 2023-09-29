@@ -6,12 +6,14 @@ import '../../../constants/constant.dart';
 class ConfirmationTextFieldRow extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType inputType;
+  final int maxLength;
 
   const ConfirmationTextFieldRow({
     super.key,
     required this.title,
     required this.controller,
     required this.inputType,
+    required this.maxLength,
   });
   final String title;
   @override
@@ -30,6 +32,7 @@ class ConfirmationTextFieldRow extends StatelessWidget {
             // width: Get.width * .6,
             height: 34,
             child: TextFormField(
+              maxLength: maxLength,
               keyboardType: inputType,
               controller: controller,
               validator: (value) {
@@ -40,6 +43,7 @@ class ConfirmationTextFieldRow extends StatelessWidget {
               },
               style: k8TextStyle,
               decoration: InputDecoration(
+                counterText: '',
                 labelStyle: k8TextStyle,
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 0, horizontal: 12),

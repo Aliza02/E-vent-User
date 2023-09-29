@@ -1,3 +1,4 @@
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/screens/home_page/home_page.dart';
 import 'package:eventually_user/widget/button.dart';
 import 'package:eventually_user/widget/text_appbar.dart';
@@ -12,10 +13,10 @@ class OrderPlacedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final placeorderController = Get.put(placeOrderController());
     return SafeArea(
       // bottomNavigationBar: const CustomBottomNabBar(),
       child: Scaffold(
-        appBar: const TextAppBar(title: ''),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.width * .06),
           child: Column(
@@ -38,7 +39,7 @@ class OrderPlacedScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * .01),
               Text(
-                'Your order number is : 123456',
+                "Your Order Number is ${placeorderController.orderNumber.value}",
                 style: TextStyle(
                   color: Color(constant.lightGrey),
                   fontSize: 18,

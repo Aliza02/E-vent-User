@@ -29,6 +29,20 @@ class ButtonController extends GetxController
   RxList<bool> expansion = <bool>[].obs;
   RxList<bool> acceptOfferList = <bool>[].obs;
   RxBool acceptOffer = false.obs;
+  // list for selection of items in cart
+  RxList<bool> isSelected = <bool>[].obs;
+  // integer to enable proceed button on cart screen
+
+  RxInt selectedItem = 0.obs;
+
+  // list to store values of selected item in cart to proceed order with that item
+  RxList<int> selectedItemToCheckout = <int>[].obs;
+
+  // variable for bottomsheet to add order in cart
+
+  RxBool cartLoading = false.obs;
+  // enable proceed button on cart
+  RxBool enableProceed = false.obs;
 
   @override
   void onInit() {
@@ -37,6 +51,7 @@ class ButtonController extends GetxController
     for (int i = 0; i < 1000; i++) {
       expansion.add(false);
       acceptOfferList.add(false);
+      isSelected.add(false);
     }
     animationController = AnimationController(
       vsync: this,
