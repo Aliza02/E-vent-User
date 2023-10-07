@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import '../../../constants/constant.dart';
 
 class OrderLocation extends StatelessWidget {
+  final String location;
   const OrderLocation({
     super.key,
+    required this.location,
   });
 
   @override
@@ -28,9 +30,10 @@ class OrderLocation extends StatelessWidget {
         Expanded(
           // width: 258,
           child: Text(
+            location,
             softWrap: true,
             maxLines: 2,
-            'XYZ building XZ block, Latifabad, Hyd. ',
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: Color(constant.red),
               fontSize: 16,

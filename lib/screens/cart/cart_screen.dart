@@ -37,6 +37,7 @@ class CartScreen extends StatelessWidget {
               // placeordercontroller.firstName.clear();
               // placeordercontroller.lastName.clear();
               // placeordercontroller.phoneNo.clear();
+
               btnController.selectedItemToCheckout.clear();
 
               Get.back();
@@ -75,6 +76,12 @@ class CartScreen extends StatelessWidget {
                   }
                   print(index);
                   return OrderCard(
+                    status: 'dummy',
+                    userId: 'dummy',
+                    endTime: 'dummy',
+                    startTime: 'dummy',
+                    orderNo: '12345',
+                    serviceDesc: 'dummy',
                     index: index,
                     date: placeorderController.date[index],
                     vendorName: placeorderController.vendorName[index],

@@ -20,9 +20,9 @@ class MainScreen extends StatelessWidget {
   final pagecontroller = Get.put(drawerController());
 
   final List<Widget> _pages = [
-    HomePage(),
-    ChatHomeScreen(),
-    Settings(),
+    const HomePage(),
+    const ChatHomeScreen(),
+    const settings(),
   ];
 
   @override

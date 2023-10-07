@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/firebasemethods/userAuthentication.dart';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'message_controller.dart';
 class ButtonController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final MessageController _msgController = Get.find<MessageController>();
+  final placeorderController = Get.put(placeOrderController());
   // final firebasecontroller = Get.put(firebaseController());
 
   RxBool isExpanded = false.obs;
@@ -111,6 +113,7 @@ class ButtonController extends GetxController
         'package': _msgController.serviceNameOnChatOffer.value,
         'type': 'offer',
         'accept': 'false',
+        'service desciption': placeorderController.serviceDesc[0],
       },
       SetOptions(merge: true),
     );

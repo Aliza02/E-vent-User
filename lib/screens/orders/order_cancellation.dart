@@ -1,4 +1,6 @@
+import 'package:eventually_user/constants/colors.dart';
 import 'package:eventually_user/constants/constant.dart';
+import 'package:eventually_user/constants/font.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +16,31 @@ class OrderCancellation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arguments = Get.arguments;
+    String serviceName = arguments[0];
+    String orderNo = arguments[1];
     return Scaffold(
-      appBar: const TextAppBar(title: 'Order Cancellation'),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+        title: Text(
+          'Order Cancellation',
+          style: TextStyle(
+            color: AppColors.grey,
+            fontSize: Get.width * 0.05,
+            fontWeight: AppFonts.bold,
+            fontFamily: AppFonts.manrope,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * .08),
         child: Column(
@@ -23,7 +48,7 @@ class OrderCancellation extends StatelessWidget {
             const SizedBox(height: 20),
             ProductImageView(orderPicController: orderPicController),
             Text(
-              'Shadi Package',
+              serviceName,
               style: TextStyle(
                 color: Color(constant.icon),
                 fontSize: 24,
@@ -32,7 +57,7 @@ class OrderCancellation extends StatelessWidget {
               ),
             ),
             Text(
-              'Order Number: 098765',
+              "Order Number: $orderNo",
               style: TextStyle(
                 color: Color(constant.red),
                 fontSize: 14,
@@ -54,7 +79,12 @@ class OrderCancellation extends StatelessWidget {
             const SizedBox(height: 20),
             ActionButton(
               color: Color(constant.lightRed),
-              onTap: () => Get.toNamed(NamedRoutes.orderFeedBack),
+              onTap: () {
+                Get.toNamed(
+                  NamedRoutes.orderFeedBack,
+                  arguments: [serviceName, orderNo],
+                );
+              },
               text: 'Cancel',
             )
           ],

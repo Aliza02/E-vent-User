@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class placeOrderController extends GetxController {
   final RxList<String> serviceName = <String>[].obs;
   final RxList<String> servicePrice = <String>[].obs;
+  final RxList<String> serviceDesc = <String>[].obs;
   final RxList<String> location = <String>[].obs;
   final RxList<String> noOfPerson = <String>[].obs;
   final RxList<String> vendorName = <String>[].obs;
@@ -31,6 +32,7 @@ class placeOrderController extends GetxController {
   RxInt month = 0.obs;
   RxInt year = 0.obs;
 
-  final Rx<TimeOfDay> startTime = TimeOfDay.now().obs;
-  final Rx<TimeOfDay> endTime = TimeOfDay.now().obs;
+  final RxList<String> timeOfOrder = <String>[].obs;
+  // final RxString startTime = ''.obs;
+  // final RxString endTime = ''.obs;
 }

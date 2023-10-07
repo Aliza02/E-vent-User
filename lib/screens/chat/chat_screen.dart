@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/controllers/message_controller.dart';
 import 'package:eventually_user/controllers/offer_btn_controller.dart';
+import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/models/message_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final ButtonController _buttonController = Get.put(ButtonController());
   late MessageModel message;
   final _msgController = Get.put(MessageController());
+  final placeorderController = Get.put(placeOrderController());
 
   // final firebasecontroller = Get.put(firebaseController());
   var arg = Get.arguments;
@@ -143,6 +145,8 @@ class _ChatScreenState extends State<ChatScreen> {
                                 if (doc['type'] == 'offer' &&
                                     _buttonController.fromProductScreen.value ==
                                         true) {
+                                  placeorderController.serviceDesc
+                                      .add(doc['service description']);
                                   if (doc['accept'] == 'true') {
                                     _buttonController.acceptOfferList[index] =
                                         true;

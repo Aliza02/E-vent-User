@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/constants/font.dart';
+import 'package:eventually_user/controllers/order_btn_controller.dart';
 import 'package:eventually_user/screens/orders/components/action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +22,35 @@ class VerifyOrderScreen extends StatelessWidget {
     'Order\nCompleted/Verified',
   ];
   OrderPicController orderPicController = Get.put(OrderPicController());
+  final orderBtnController = Get.put(OrdersBtnController());
   @override
   Widget build(BuildContext context) {
+    var arguments = Get.arguments;
+    String serviceName = arguments[0];
+    String orderNo = arguments[1];
+    String userId = arguments[2];
     return Scaffold(
-      appBar: const TextAppBar(title: 'Verify Order'),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+        title: Text(
+          'Verify Orders',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: Get.width * .05,
+            fontFamily: AppFonts.manrope,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * .08),
@@ -45,8 +73,8 @@ class VerifyOrderScreen extends StatelessWidget {
                 ),
               ),
               ProductImageView(orderPicController: orderPicController),
-              const ProductTitleText(title: 'abc'),
-              Text('Order Number: 098765', style: kRedTextStyle),
+              ProductTitleText(title: serviceName),
+              Text("Order Number:${orderNo}", style: kRedTextStyle),
               SizedBox(height: Get.height * .015),
               const ProductDescription(
                   description:
@@ -54,7 +82,22 @@ class VerifyOrderScreen extends StatelessWidget {
               SizedBox(height: Get.height * .015),
               const SizedBox(height: 20),
               ActionButton(
-                onTap: () => Get.toNamed(NamedRoutes.verifiedOrder),
+                onTap: () async {
+                  await FirebaseFirestore.instance
+                      .collection('Orders')
+                      .doc(userId)
+                      .collection('bookings')
+                      .where('Order No', isEqualTo: orderNo)
+                      .get()
+                      .then((value) {
+                    value.docs.forEach((element) {
+                      element.reference.update({'status': 'Completed'});
+                    });
+                  });
+
+                  Get.toNamed(NamedRoutes.verifiedOrder,
+                      arguments: [serviceName, orderNo, userId]);
+                },
                 color: Color(constant.green),
                 text: 'Verify',
               )

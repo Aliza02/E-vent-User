@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       initialRoute: isViewed != 0
           ? NamedRoutes.onboard
           : isLoggedin == true
-              ? NamedRoutes.drawer
+              ? NamedRoutes.profile
               : NamedRoutes.login,
     );
   }

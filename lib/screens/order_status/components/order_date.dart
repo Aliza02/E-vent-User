@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import '../../../constants/constant.dart';
 
 class OrderDate extends StatelessWidget {
+  final date;
   const OrderDate({
     super.key,
+    required this.date,
   });
 
   @override
@@ -27,7 +29,7 @@ class OrderDate extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            '21/05/2023',
+            "${date.day}/${date.month}/${date.year}",
             style: TextStyle(
               color: Color(constant.red),
               fontSize: 16,

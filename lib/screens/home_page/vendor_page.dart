@@ -22,6 +22,7 @@ class VendorDetailsScreen extends StatefulWidget {
 
 class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
   var arguments = Get.arguments;
+
   final vendorController = Get.put(vendorDetailController());
   final homePageController = Get.put(homepage_controller());
 
@@ -69,6 +70,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
   }
 
   Widget serviceSection(BuildContext context) {
+    final VendorId = arguments[2];
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: GridView.builder(
@@ -91,7 +93,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                 vendorController.servicePrice[index],
                 vendorController.noOfPerson[index],
                 homePageController.businessName.value,
-                arguments[2],
+                VendorId,
               ]);
             },
             child: Container(

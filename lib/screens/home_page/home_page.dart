@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/controllers/homepage_controller.dart';
 import 'package:eventually_user/controllers/message_controller.dart';
+import 'package:eventually_user/controllers/order_btn_controller.dart';
 import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:eventually_user/screens/home_page/search_screen.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +32,11 @@ class _HomePageState extends State<HomePage> {
   List<String> location = ['Latifabad', 'Qasimabad', 'Hirabad'];
 
   final msgController = Get.put(MessageController());
+  final orderBtnController = Get.put(OrdersBtnController());
 
   void getResult() async {
-    msgController.chatUserId.clear();
     await FirebaseFirestore.instance.collection('messages').get().then((value) {
+      msgController.chatUserId.clear();
       value.docs.forEach((element) {
         print(element.id);
 
@@ -55,12 +57,32 @@ class _HomePageState extends State<HomePage> {
         }
       });
     });
+
+    // booking id
+    await FirebaseFirestore.instance.collection('Orders').get().then((value) {
+      orderBtnController.userIdToGetOrders.clear();
+      value.docs.forEach((element) {
+        print(element.id);
+
+        if (element.id.contains(auth.currentUser!.uid)) {
+          // print(element.id);
+          orderBtnController.userIdToGetOrders.add(element.id);
+
+          print(orderBtnController.userIdToGetOrders.length);
+        }
+      });
+    });
   }
+
+  void getIdForBookings() async {}
 
   @override
   void initState() {
     super.initState();
+    msgController.chatUserId.clear();
+    print(msgController.chatUserId.length);
     getResult();
+    getIdForBookings();
   }
 
   @override

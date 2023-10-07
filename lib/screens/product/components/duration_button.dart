@@ -2,6 +2,7 @@ import 'package:eventually_user/controllers/place_order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../constants/constant.dart';
 
@@ -16,7 +17,7 @@ class DurationButton extends StatelessWidget {
     required this.imagePath,
     required this.buttonText,
   });
-
+  int indexOfOrder = 0;
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
@@ -24,16 +25,14 @@ class DurationButton extends StatelessWidget {
     );
 
     if (pickedTime != null) {
-      if (placeorderController.startTime.value != null) {
-        placeorderController.endTime.value = pickedTime;
-        selectedTime.value = pickedTime;
-      } else {
-        placeorderController.startTime.value = pickedTime;
-        selectedTime.value = pickedTime;
-      }
+      selectedTime.value = pickedTime;
 
-      print(placeorderController.startTime.value);
-      print(placeorderController.endTime.value);
+      String selTime = '${pickedTime.hour}:${pickedTime.minute}:00';
+      placeorderController.timeOfOrder
+          .add(DateFormat.jm().format(DateFormat("hh:mm:ss").parse(selTime)));
+
+      print(placeorderController.timeOfOrder[indexOfOrder]);
+      indexOfOrder++;
     }
   }
 

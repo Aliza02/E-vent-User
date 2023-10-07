@@ -18,6 +18,10 @@ class VerifiedOrderScreen extends StatelessWidget {
   OrderPicController orderPicController = Get.put(OrderPicController());
   @override
   Widget build(BuildContext context) {
+    var arguments = Get.arguments;
+    String serviceName = arguments[0];
+    String orderNo = arguments[1];
+    String userId = arguments[2];
     return Scaffold(
       appBar: const TextAppBar(title: 'Verify Order'),
       body: SafeArea(
@@ -68,7 +72,10 @@ class VerifiedOrderScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ActionButton(
-                onTap: () => Get.toNamed(NamedRoutes.review),
+                onTap: () {
+                  Get.toNamed(NamedRoutes.review,
+                      arguments: [serviceName, orderNo, userId]);
+                },
                 color: Color(constant.red),
                 text: 'Submit a Review',
               )

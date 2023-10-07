@@ -43,6 +43,7 @@ class _MessageCardState extends State<MessageCard> {
   final placeorderController = Get.put(placeOrderController());
 
   String servicePrice = '';
+  String serviceDesc = '';
   String sendby = '';
   int sent = 0;
 
@@ -331,6 +332,8 @@ class _MessageCardState extends State<MessageCard> {
                                         servicePrice = element.data()['amount'];
 
                                         sendby = element.data()['sendby'];
+                                        serviceDesc = element
+                                            .data()['service description'];
 
                                         sent =
                                             int.parse(element.data()['sent']);
@@ -351,6 +354,8 @@ class _MessageCardState extends State<MessageCard> {
                                         .add(msgcontroller.businessName.value);
                                     placeorderController.location
                                         .add(locationController.text);
+                                    placeorderController.serviceDesc
+                                        .add(serviceDesc);
                                     placeorderController.noOfPerson
                                         .add(noOfPerson.text);
                                     placeorderController.date.add(selectedDate);

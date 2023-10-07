@@ -32,7 +32,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   final msgController = Get.put(MessageController());
   double advance = 0.0;
   // int total = 0.0;
-  int price = 0;
+  double price = 0;
   Map<String, dynamic>? paymentIntent;
 
   Future<void> makePayment() async {
@@ -131,8 +131,18 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   void calculateAmount() {
     for (int i = 0; i < btnController.selectedItemToCheckout.length; i++) {
       print(btnController.selectedItemToCheckout.length);
-      price = int.parse(placeordercontroller.servicePrice[i]);
-      advance += price * 0.2;
+      if (placeordercontroller.servicePrice[i].contains('-')) {
+        List<String> parts = placeordercontroller.servicePrice[i].split('-');
+        if (parts.length >= 3 || parts.length <= 6) {
+          int start = int.parse(parts[0]);
+          int end = int.parse(parts[1]);
+          price = (start + end) / 2;
+          advance += price * 0.2;
+        }
+      } else {
+        price = double.parse(placeordercontroller.servicePrice[i]);
+        advance += price * 0.2;
+      }
       // total =
     }
   }
@@ -170,8 +180,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     String firstName = placeordercontroller.firstName.text;
     String phoneNo = placeordercontroller.phoneNo.text;
     String orderNo = placeordercontroller.orderNumber.value;
-    String startTime = placeordercontroller.startTime.value.toString();
-    String endTime = placeordercontroller.endTime.value.toString();
+
     await FirebaseFirestore.instance
         .collection('Orders')
         .doc(msgController.chatRoomId.value)
@@ -185,6 +194,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       'Vendor Name': placeordercontroller.vendorName[index],
       'Service Name': placeordercontroller.serviceName[index],
       'Service Price': placeordercontroller.servicePrice[index],
+      'Service Description': placeordercontroller.serviceDesc[index],
       'location': placeordercontroller.location[index],
       'No of Person': placeordercontroller.noOfPerson[index],
       'Date of Delivery': placeordercontroller.date[index],
@@ -194,9 +204,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       'status': 'active',
       'isCancelled': false,
       'order placed': DateTime.now().millisecondsSinceEpoch,
-      'Start time': startTime,
-      'End time': endTime,
+      'Start time': placeordercontroller.timeOfOrder[0],
+      'End time': placeordercontroller.timeOfOrder[1],
+      'review': ' ',
+      'rating': ' ',
     });
+    Get.toNamed(NamedRoutes.orderPlaced);
   }
 
   @override
@@ -629,7 +642,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                               i++) {
                             sendOrder(i);
                           }
-                          Get.toNamed(NamedRoutes.orderPlaced);
                         }),
                   ],
                 ),

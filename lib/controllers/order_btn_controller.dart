@@ -20,4 +20,9 @@ class OrdersBtnController extends GetxController {
     allButtonColor.value = Color(constant.red);
     isFirstButtonActive.value = false;
   }
+
+  // store id of user to get orders
+
+  RxList<String> userIdToGetOrders = <String>[].obs;
+// store service description of order to display on verify screen
 }

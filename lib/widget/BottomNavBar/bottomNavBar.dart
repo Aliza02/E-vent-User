@@ -1,5 +1,6 @@
 import 'package:eventually_user/controllers/message_controller.dart';
 import 'package:eventually_user/routes.dart';
+import 'package:eventually_user/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -68,6 +69,7 @@ class bottomNavBar extends StatelessWidget {
                 IconButton(
                     onPressed: () {
                       pagecontroller.changeIndex(2);
+                      Get.to(() => profileScreen());
                     },
                     icon: Obx(
                       () => pagecontroller.currentindex.value == 2

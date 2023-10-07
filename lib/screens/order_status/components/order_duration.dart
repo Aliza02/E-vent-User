@@ -4,8 +4,12 @@ import 'package:get/get.dart';
 import '../../../constants/constant.dart';
 
 class OrderDuration extends StatelessWidget {
+  final String startTime;
+  final String endTime;
   const OrderDuration({
     super.key,
+    required this.startTime,
+    required this.endTime,
   });
 
   @override
@@ -26,7 +30,7 @@ class OrderDuration extends StatelessWidget {
           ),
         ),
         Text(
-          '6:00 pm to 12:00 am',
+          "${startTime} - ${endTime}",
           textAlign: TextAlign.justify,
           style: TextStyle(
             color: Color(constant.red),

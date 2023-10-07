@@ -103,6 +103,12 @@ class ConfirmationScreen extends StatelessWidget {
                   }
                   print(index);
                   return OrderCard(
+                    status: 'dummy',
+                    userId: 'dummy',
+                    endTime: 'dummy',
+                    startTime: 'dummy',
+                    orderNo: 'dummy',
+                    serviceDesc: 'dummy',
                     index: btnController.selectedItem.value,
                     date: placeorderController
                         .date[btnController.selectedItemToCheckout[index]],

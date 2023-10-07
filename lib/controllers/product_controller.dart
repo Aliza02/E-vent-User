@@ -66,10 +66,6 @@ class OrderController extends GetxController {
       peopleCount.value += 50;
       priceRange.value = "$abc";
     }
-
-    // if (peopleCount >= 400) {
-    //   peopleCount.value += 50;
-    // } else {}
   }
 
   void decreasePeopleCount() {
@@ -77,4 +73,7 @@ class OrderController extends GetxController {
       peopleCount.value--;
     }
   }
+
+  // doc id of orders collection of user to retreieve order information
+  RxString userOrderDocId = ''.obs;
 }

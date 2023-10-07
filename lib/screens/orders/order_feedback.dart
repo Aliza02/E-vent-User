@@ -15,6 +15,9 @@ class OrderFeedBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arguments = Get.arguments;
+    String serviceName = arguments[0];
+    String orderNo = arguments[1];
     return Scaffold(
       appBar: const TextAppBar(title: 'Order Cancellation'),
       body: Padding(
@@ -25,7 +28,7 @@ class OrderFeedBack extends StatelessWidget {
               const SizedBox(height: 20),
               ProductImageView(orderPicController: orderPicController),
               Text(
-                'Shadi Package',
+                serviceName,
                 style: TextStyle(
                   color: Color(constant.icon),
                   fontSize: 24,
@@ -34,7 +37,7 @@ class OrderFeedBack extends StatelessWidget {
                 ),
               ),
               Text(
-                'Order Number: 098765',
+                "Order Number: $orderNo",
                 style: TextStyle(
                   color: Color(constant.red),
                   fontSize: 14,

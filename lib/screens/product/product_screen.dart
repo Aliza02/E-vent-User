@@ -298,6 +298,9 @@ class _ProductScreenState extends State<ProductScreen> {
                       child: Button(
                         label: 'Add to Cart',
                         onPressed: () {
+                          msgController.chatRoomId.value = chatroomId(
+                              vendorController.userId.value,
+                              auth.currentUser!.uid);
                           placeorderController.serviceName.add(serviceName);
                           placeorderController.servicePrice
                               .add(controller.priceRange.value);
@@ -306,8 +309,10 @@ class _ProductScreenState extends State<ProductScreen> {
                               .add(controller.location.text);
                           placeorderController.noOfPerson.add(noOfPerson);
                           placeorderController.date.add(selectedDate);
-                          // placeorderController.enableCancelOrderButton.value =
-                          //     false;
+                          placeorderController.serviceDesc.add(serviceDesc);
+                          placeorderController.enableCancelOrderButton.value =
+                              false;
+                          placeorderController.disableToggle.value = false;
                           Get.toNamed(
                             NamedRoutes.myCart,
                           );
@@ -437,7 +442,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             }
 
                             print(msgController.servicePriceOnChatOffer.length);
-
+                            placeorderController.serviceDesc.add(serviceDesc);
                             Get.to(
                               () => ChatScreen(
                                 user: user,
