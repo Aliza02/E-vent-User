@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/constants/colors.dart';
 import 'package:eventually_user/constants/font.dart';
 import 'package:eventually_user/controllers/homepage_controller.dart';
+import 'package:eventually_user/controllers/product_controller.dart';
 import 'package:eventually_user/controllers/vendor_detail_controller.dart';
+import 'package:eventually_user/firebasemethods/userAuthentication.dart';
 import 'package:eventually_user/screens/product/product_screen.dart';
 import 'package:eventually_user/widget/BottomNavBar/bottomNavBar.dart';
 import 'package:eventually_user/widget/all_widgets.dart';
@@ -26,25 +28,41 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
   final vendorController = Get.put(vendorDetailController());
   final homePageController = Get.put(homepage_controller());
 
-  List reviews = [
-    'very nice services',
-    'No doubt, incredible services by them. I am very happy with their services. I will recommend to everyone.',
-    'I am very happy with their services. I will recommend to everyone.',
-    'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et',
-  ];
+  List<String> reviews = [];
+  List<int> ratings = [];
+  List userName = [];
+  int part1 = 0;
+  final orderController = Get.put(OrderController());
+  Future<void> getUserId() async {
+    reviews.clear();
 
-  List rating = [
-    4.8,
-    5,
-    2,
-    2.5,
-  ];
-  List userName = [
-    'Aliza Ansari',
-    'Kulsoom Ali',
-    'Aliza Ansari',
-    'Kulsoom Ali',
-  ];
+    await FirebaseFirestore.instance.collection('Orders').get().then((value) {
+      value.docs.forEach((element) async {
+        print(element.id);
+        if (element.id.contains(auth.currentUser!.uid)) {
+          orderController.userOrderDocId.value = element.id;
+        }
+      });
+    });
+    if (orderController.userOrderDocId.value.isNotEmpty) {
+      await FirebaseFirestore.instance
+          .collection('Orders')
+          .doc(orderController.userOrderDocId.value)
+          .collection('bookings')
+          .get()
+          .then((value) {
+        value.docs.forEach((element) {
+          reviews.add(element.data()['review']);
+          userName.add(element.data()['Customer Name']);
+          if (element.data()['rating'].toString().contains('.')) {
+            List<String> parts = element.data()['rating'].toString().split('.');
+            part1 = int.parse(parts[0]);
+          }
+          ratings.add(part1);
+        });
+      });
+    }
+  }
 
   Widget aboutSection(BuildContext context) {
     return Padding(
@@ -179,75 +197,81 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
   }
 
   Widget reviewSection(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: reviews.length,
-      itemBuilder: (context, index) {
-        return Container(
-          margin: EdgeInsets.symmetric(vertical: Get.height * 0.01),
-          padding: EdgeInsets.all(Get.width * 0.04),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.grey.withOpacity(0.3),
-                blurRadius: 5.0,
-                spreadRadius: 2.0,
-              ),
-            ],
-            borderRadius: BorderRadius.circular(5.0),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    userName[index],
-                    style: TextStyle(
-                      color: AppColors.grey,
-                      fontFamily: AppFonts.manrope,
-                      fontWeight: AppFonts.extraBold,
-                      fontSize: Get.width * 0.04,
+    return FutureBuilder(
+        future: getUserId(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: reviews.length,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.symmetric(vertical: Get.height * 0.01),
+                padding: EdgeInsets.all(Get.width * 0.04),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.grey.withOpacity(0.3),
+                      blurRadius: 5.0,
+                      spreadRadius: 2.0,
                     ),
-                  ),
-                  SizedBox(width: Get.width * 0.4),
-                  const Icon(
-                    Icons.star,
-                    color: Colors.orange,
-                    size: 18,
-                  ),
-                  Text(
-                    rating[index].toString(),
-                    style: TextStyle(
-                      color: AppColors.grey,
-                      fontFamily: AppFonts.manrope,
-                      fontWeight: AppFonts.extraBold,
-                      fontSize: Get.width * 0.04,
-                    ),
-                  ),
-                ],
-              ),
-              Text(
-                reviews[index],
-                style: TextStyle(
-                  color: AppColors.grey.withOpacity(0.5),
-                  fontFamily: AppFonts.manrope,
-                  fontWeight: AppFonts.medium,
-                  fontSize: Get.width * 0.028,
+                  ],
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          userName[index],
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: AppFonts.manrope,
+                            fontWeight: AppFonts.extraBold,
+                            fontSize: Get.width * 0.04,
+                          ),
+                        ),
+                        SizedBox(width: Get.width * 0.4),
+                        Spacer(),
+                        const Icon(
+                          Icons.star,
+                          color: Colors.orange,
+                          size: 18,
+                        ),
+                        Text(
+                          ratings[index].toString(),
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: AppFonts.manrope,
+                            fontWeight: AppFonts.extraBold,
+                            fontSize: Get.width * 0.04,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      reviews[index],
+                      style: TextStyle(
+                        color: AppColors.grey.withOpacity(0.5),
+                        fontFamily: AppFonts.manrope,
+                        fontWeight: AppFonts.medium,
+                        fontSize: Get.width * 0.028,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     final vendorController = Get.put(vendorDetailController());
+    final orderController = Get.put(OrderController());
 
     return SafeArea(
       child: Scaffold(
@@ -384,7 +408,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                               ),
                             )
                           : GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 vendorController.showReview.value = true;
                                 vendorController.showServices.value = false;
                                 vendorController.showAbout.value = false;

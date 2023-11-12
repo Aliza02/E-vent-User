@@ -2,6 +2,7 @@
 import 'package:eventually_user/widget/all_widgets.dart';
 import 'package:eventually_user/widget/text_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ComplainSuccess extends StatelessWidget {
   const ComplainSuccess({super.key});
@@ -10,12 +11,19 @@ class ComplainSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-appBar: TextAppBar(
-  title: "Help Center",
-  
-
-
-),
+appBar:  AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+        title: const Text('Help Center'),
+        centerTitle: true,
+      ),
 body: Center(
   child:   Column(
   

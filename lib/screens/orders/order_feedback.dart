@@ -71,7 +71,7 @@ class OrderFeedBack extends StatelessWidget {
               const SizedBox(height: 20),
               ActionButton(
                 color: Color(constant.red),
-                onTap: () => Get.toNamed(NamedRoutes.chatScreen),
+                onTap: () => Get.toNamed(NamedRoutes.drawer),
                 text: 'Submit',
               ),
               const SizedBox(height: 20),

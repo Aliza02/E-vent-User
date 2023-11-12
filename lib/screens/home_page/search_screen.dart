@@ -32,8 +32,6 @@ class _search_screenState extends State<search_screen> {
     var businessCategory = argument;
 
     print(businessCategory);
-    // final CollectionReference abc =
-    //     FirebaseFirestore.instance.collection('User');
 
     return SafeArea(
       child: Scaffold(
@@ -42,8 +40,6 @@ class _search_screenState extends State<search_screen> {
           leading: GestureDetector(
             onTap: () {
               Get.back();
-              // ZoomDrawer.of(context)?.toggle();
-              print('asda');
             },
             child: Icon(
               Icons.arrow_back_ios,
@@ -52,17 +48,6 @@ class _search_screenState extends State<search_screen> {
               weight: Get.width * 0.1,
             ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                // Get.toNamed(NamedRoutes.order);
-              },
-              icon: const Icon(
-                Icons.notifications,
-                color: Color(0xFFCB585A),
-              ),
-            ),
-          ],
         ),
         body: Column(
           children: [
@@ -99,8 +84,7 @@ class _search_screenState extends State<search_screen> {
                             late DocumentSnapshot document;
                             return ListView.builder(
                                 shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                //(singleChildScrollable is already being used so disallow listview builder to scroll)
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   document = snapshot.data!.docs[index];
@@ -109,16 +93,12 @@ class _search_screenState extends State<search_screen> {
                                     onTap: () async {
                                       int selected = index;
                                       document = snapshot.data!.docs[selected];
-                                      print("click");
-                                      // vendorController.userId
-                                      //     .add(document['userId']);
                                       homePageController.businessName.value =
                                           document['Business Name'];
                                       print(homePageController
                                           .businessName.value);
                                       vendorController.userId.value =
                                           document['userId'];
-
                                       await FirebaseFirestore.instance
                                           .collection('Services')
                                           .doc(document['Business Category'])
@@ -153,9 +133,6 @@ class _search_screenState extends State<search_screen> {
                                           });
                                         });
                                       });
-
-                                      print('added');
-
                                       Get.to(
                                         () => VendorDetailsScreen(),
                                         arguments: [

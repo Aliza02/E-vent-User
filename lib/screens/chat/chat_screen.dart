@@ -145,8 +145,8 @@ class _ChatScreenState extends State<ChatScreen> {
                                 if (doc['type'] == 'offer' &&
                                     _buttonController.fromProductScreen.value ==
                                         true) {
-                                  placeorderController.serviceDesc
-                                      .add(doc['service description']);
+                                  // placeorderController.serviceDesc
+                                  //     .add(doc['Service Description']);
                                   if (doc['accept'] == 'true') {
                                     _buttonController.acceptOfferList[index] =
                                         true;

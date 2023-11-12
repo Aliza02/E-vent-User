@@ -9,7 +9,6 @@ import 'package:flutter/cupertino.dart.';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-
 import '../../constants/constant.dart';
 import '../../models/chat_user.dart';
 import 'widgets/chat_user_card.dart';
@@ -60,15 +59,15 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            leading: IconButton(
-              icon: Icon(
-                CupertinoIcons.back,
-                color: Color(constant.icon),
-              ),
-              onPressed: () {
-                Get.back();
-              },
-            ),
+            // leading: IconButton(
+            //   icon: Icon(
+            //     CupertinoIcons.back,
+            //     color: Color(constant.icon),
+            //   ),
+            //   onPressed: () {
+            //     Get.back();
+            //   },
+            // ),
             title: _isSearching
                 ? TextField(
                     decoration: const InputDecoration(

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/controllers/firebaseController.dart';
 import 'package:eventually_user/controllers/homepage_controller.dart';
 import 'package:eventually_user/controllers/message_controller.dart';
 import 'package:eventually_user/controllers/order_btn_controller.dart';
 import 'package:eventually_user/controllers/place_order_controller.dart';
+import 'package:eventually_user/routes.dart';
 import 'package:eventually_user/screens/home_page/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final firebasecontroller = Get.put(firebaseController());
   // late Restaurant restaurant;
   final List<CategoryBox> categories = [
     const CategoryBox(
@@ -36,24 +39,20 @@ class _HomePageState extends State<HomePage> {
 
   void getResult() async {
     await FirebaseFirestore.instance.collection('messages').get().then((value) {
-      msgController.chatUserId.clear();
       value.docs.forEach((element) {
-        print(element.id);
-
         if (element.id.contains(auth.currentUser!.uid)) {
-          print(element.id);
           List<String> parts = element.id.split(auth.currentUser!.uid);
-
-          if (parts[1].contains(auth.currentUser!.uid)) {
+          print(parts);
+          if (parts[0].isEmpty) {
             print('oo');
-            msgController.chatUserId.add(parts[0]);
+            print(element.id);
+            msgController.chatUserId.add(parts[1]);
           } else {
             print('p');
-            msgController.chatUserId.add(parts[1]);
+            print('qq');
 
-            print(msgController.chatUserId[0]);
+            msgController.chatUserId.add(parts[0]);
           }
-          print(msgController.chatUserId.length);
         }
       });
     });
@@ -72,9 +71,16 @@ class _HomePageState extends State<HomePage> {
         }
       });
     });
-  }
 
-  void getIdForBookings() async {}
+    await FirebaseFirestore.instance.collection('User').get().then((value) {
+      value.docs.forEach((element) {
+        if (element.id.contains(auth.currentUser!.uid)) {
+          firebasecontroller.userName.value = element.data()['name'];
+          firebasecontroller.phone.value = element.data()['Phone'];
+        }
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -82,7 +88,6 @@ class _HomePageState extends State<HomePage> {
     msgController.chatUserId.clear();
     print(msgController.chatUserId.length);
     getResult();
-    getIdForBookings();
   }
 
   @override
@@ -100,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   // Text(userId[0]),
                   //row containing Categories heading and see all button
-                  Padding(
+                  const Padding(
                     padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,18 +118,18 @@ class _HomePageState extends State<HomePage> {
                               fontSize:
                                   22), //Theme.of(context).textTheme.headline4,
                         ),
-                        GestureDetector(
-                          onTap: () {/*see all logic goes here*/},
-                          child: const Text(
-                            'See All',
-                            style: TextStyle(
-                              fontFamily: 'Manrope-Bold',
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFCB585A),
-                              fontSize: 12,
-                            ),
-                          ),
-                        )
+                        // GestureDetector(
+                        //   onTap: () {/*see all logic goes here*/},
+                        //   child: const Text(
+                        //     'See All',
+                        //     style: TextStyle(
+                        //       fontFamily: 'Manrope-Bold',
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Color(0xFFCB585A),
+                        //       fontSize: 12,
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
@@ -139,81 +144,17 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                               onTap: () async {
-                                // Get.toNamed(NamedRoutes.vendorSearch);
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(builder: (context) {
-                                //     return VendorDetailsScreen(
-                                //         restaurant: restaurants[0]);
-                                //   }),
-                                // );
-
-                                print(categories[index].name);
-
-                                // final categoryName = categoryMap[index];
-                                // print(categoryMap[index]);
-                                // print(categoryName);
-
-                                // await FirebaseFirestore.instance
-                                //     .collection('User')
-                                //     .where('Business Category',
-                                //         isEqualTo: categories[index].name)
-                                //     .get()
-                                //     .then((value) => {
-                                //           value.docs.forEach((element) {
-                                //             // print(element.data());
-                                //             // print(element.id);
-                                //             // print(element['name']);
-
-                                //             userId.add(element.id);
-                                //             // vendors.add(
-                                //             //   Vendor(
-                                //             //       imageUrl:
-                                //             //           'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-                                //             //       name: element['Business Name'],
-                                //             //       address:
-                                //             //           element['Business Location'],
-                                //             //       rating: 2.4,
-                                //             //       reviewCount: 34,
-                                //             //       id: 5),
-                                //             // );
-                                //             // Get.toNamed(Routes.vendorList, arguments: element.id);
-                                //           })
-                                //         });
-
-                                // print(userId.length);
-                                // print(abc);
-
-                                // await FirebaseFirestore.instance
-                                //     .collection("Services")
-                                //     .get()
-                                //     .then((value) => {
-                                //           value.docs.forEach((element) {
-                                //             // print(element.data());
-                                //             // print(element.id);
-                                //             if (element.id == categoryName) {
-                                //               print(element.id);
-                                //               FirebaseFirestore.instance
-                                //                   .collection("Services")
-                                //                   .doc(element.id)
-                                //                   .get()
-                                //                   .then((value) =>
-                                //                       {print(value.data())});
-                                //             }
-                                //           })
-                                //         });
-
                                 homePageController.businessCategory.value =
                                     categories[index].name;
                                 Get.to(
-                                  () => search_screen(),
+                                  () => const search_screen(),
                                 );
                               },
                               child: categories[index]);
                         },
                       )),
 
-                  Padding(
+                  const Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,24 +167,24 @@ class _HomePageState extends State<HomePage> {
                               fontSize:
                                   22), //Theme.of(context).textTheme.headline4,
                         ),
-                        GestureDetector(
-                          onTap: () {/*see all logic goes here*/},
-                          child: const Text(
-                            'See All',
-                            style: TextStyle(
-                                fontFamily: 'Manrope-Bold',
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFCB585A),
-                                fontSize: 12),
-                          ),
-                        )
+                        // GestureDetector(
+                        //   onTap: () {/*see all logic goes here*/},
+                        //   child: const Text(
+                        //     'See All',
+                        //     style: TextStyle(
+                        //         fontFamily: 'Manrope-Bold',
+                        //         fontWeight: FontWeight.bold,
+                        //         color: Color(0xFFCB585A),
+                        //         fontSize: 12),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed('vendor_page');
-                      // Get.toNamed(NamedRoutes.vendorScreen);
+                      // Get.toNamed('/vendor_page');
+                      Get.toNamed(NamedRoutes.vendorScreen);
                     },
                     child: ListView.builder(
                         shrinkWrap: true,

@@ -114,15 +114,7 @@ class ReviewScreen extends StatelessWidget {
                             border: InputBorder.none,
                           ),
                         )
-                        // Text(
-                        //   'Write a Review...',
-                        //   style: TextStyle(
-                        //     color: Color(constant.fieldTextHint),
-                        //     fontSize: 16,
-                        //     fontFamily: constant.font,
-                        //     fontWeight: FontWeight.w500,
-                        //   ),
-                        // ),
+                       
                         ),
                   ],
                 ),

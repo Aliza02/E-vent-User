@@ -30,7 +30,7 @@ class MenuScreen extends GetView<drawerController> {
   final List<String> menuItems = [
     'Home',
     'Orders',
-    'Payment',
+    // 'Payment',
     // 'Tell a Friend',
     'Settings',
     'Profile',
@@ -40,7 +40,7 @@ class MenuScreen extends GetView<drawerController> {
   final List<String> menuIcons = [
     AppIcons.home,
     AppIcons.order,
-    AppIcons.payment,
+    // AppIcons.payment,
     // AppIcons.share,
     AppIcons.setting,
     AppIcons.Profile,
@@ -50,7 +50,7 @@ class MenuScreen extends GetView<drawerController> {
   final List<String> menuIconsFilled = [
     AppIcons.homeFill,
     AppIcons.orderFill,
-    AppIcons.paymentFill,
+    // AppIcons.paymentFill,
     // AppIcons.shareFill,
     AppIcons.settingFill,
     AppIcons.ProfileFill,
@@ -60,7 +60,7 @@ class MenuScreen extends GetView<drawerController> {
   final List<Widget> _drawerPages = [
     drawerScreen(),
     OrdersScreen(),
-    PaymentMethods(),
+    // PaymentMethods(),
     settings(),
     profileScreen(),
     Help(),

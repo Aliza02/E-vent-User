@@ -44,6 +44,7 @@ Future signup(
       'password': password,
       'confirmPassword': confirmPassword,
       'Phone': phone,
+      'userId': auth.currentUser!.uid,
     });
     signupcontroller.successfullSignup.value = false;
     Get.toNamed(NamedRoutes.drawer);

@@ -1,5 +1,8 @@
+import 'package:eventually_user/screens/Help_center/FAQs.dart';
+import 'package:eventually_user/screens/Help_center/complaint.dart';
 import 'package:eventually_user/screens/drawer/drawerScreen.dart';
 import 'package:eventually_user/screens/home_page/search_screen.dart';
+import 'package:eventually_user/screens/setting/privacy_policy.dart';
 import 'package:get/get.dart';
 import 'routes.dart';
 import 'screens/cart/cart_screen.dart';
@@ -165,6 +168,25 @@ class Pages {
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: 500),
     ),
+    GetPage(
+      name: NamedRoutes.faq,
+      page: () => FAQs(),
+      transition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: NamedRoutes.complaint,
+      page: () => Complaint(),
+      transition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+     GetPage(
+      name: NamedRoutes.complaint,
+      page: () => privacyPolicy(),
+      transition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
     // GetPage(name: NamedRoutes.vendorScreen, page: () => VendorDetailsScreen(restaurant: ,)),
   ];
 }

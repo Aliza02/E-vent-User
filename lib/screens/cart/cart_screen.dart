@@ -76,7 +76,7 @@ class CartScreen extends StatelessWidget {
                   }
                   print(index);
                   return OrderCard(
-                    status: 'dummy',
+                    status: ' ',
                     userId: 'dummy',
                     endTime: 'dummy',
                     startTime: 'dummy',

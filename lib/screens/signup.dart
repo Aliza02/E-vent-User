@@ -112,12 +112,13 @@ class _SignupState extends State<Signup> {
         ),
       );
     } else {
-      startTimer();
-      generateOtp();
-      // sendOTP();
-
-      print(signupcontroller.OTPCode.value);
-      Get.toNamed(NamedRoutes.otpVerification);
+      signup(
+        email: signupcontroller.emailController.text,
+        confirmPassword: signupcontroller.confirmPasswordController.text,
+        name: signupcontroller.nameController.text,
+        password: signupcontroller.passwordController.text,
+        phone: signupcontroller.phoneController.text,
+      );
     }
   }
 

@@ -40,12 +40,13 @@ class MyApp extends StatelessWidget {
       theme: CustomTheme.theme,
       initialBinding: AllControllerBinding(),
       getPages: Pages.getPages,
-      //initialRoute: isViewed != null && isViewed != 0 ? NamedRoutes.onboard : NamedRoutes.login,
+      // initialRoute: isViewed != null && isViewed != 0 ? NamedRoutes.onboard : NamedRoutes.login,
       initialRoute: isViewed != 0
           ? NamedRoutes.onboard
           : isLoggedin == true
-              ? NamedRoutes.profile
+              ? NamedRoutes.drawer
               : NamedRoutes.login,
+      // initialRoute: NamedRoutes.privacyPolicy,
     );
   }
 }

@@ -45,36 +45,6 @@ class MainScreen extends StatelessWidget {
               weight: Get.width * 0.1,
             ),
           ),
-
-          actions: [
-            IconButton(
-              onPressed: () {
-                Get.toNamed(NamedRoutes.order);
-              },
-              icon: const Icon(
-                Icons.notifications,
-                color: Color(0xFFCB585A),
-              ),
-            ),
-          ],
-          // actions: [
-          //   pagecontroller.currentindex.value == 4
-          //       ? PopupMenuButton(
-          //           icon: SvgPicture.asset(AppIcons.profileMenuIcon),
-          //           color: AppColors.cream,
-          //           itemBuilder: (BuildContext context) {
-          //             return options.map((String option) {
-          //               return PopupMenuItem(
-          //                 onTap: () {
-          //                   print(options.indexOf(option));
-          //                 },
-          //                 child: Text(option),
-          //               );
-          //             }).toList();
-          //           },
-          //         )
-          //       : Container(),
-          // ],
         ),
         body: Obx(
           () => _pages[pagecontroller.currentindex.value],

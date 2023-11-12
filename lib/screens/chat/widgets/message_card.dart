@@ -332,8 +332,8 @@ class _MessageCardState extends State<MessageCard> {
                                         servicePrice = element.data()['amount'];
 
                                         sendby = element.data()['sendby'];
-                                        serviceDesc = element
-                                            .data()['service description'];
+                                        // serviceDesc = element
+                                        //     .data()['service description'];
 
                                         sent =
                                             int.parse(element.data()['sent']);

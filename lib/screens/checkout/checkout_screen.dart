@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eventually_user/constants/constant.dart';
 import 'package:eventually_user/controllers/message_controller.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 import '../../routes.dart';
 import '../../widget/text_appbar.dart';
 import '../cart/components/custom_stepper.dart';

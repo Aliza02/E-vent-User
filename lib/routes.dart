@@ -25,4 +25,7 @@ class NamedRoutes {
   static String vendorScreen = '/vendor_page';
   static String vendorSearch = '/vendor_search';
   static String profile = '/profile';
+  static String faq='/faq';
+  static String complaint='/compaint';
+  static String privacyPolicy='/privacy';
 }

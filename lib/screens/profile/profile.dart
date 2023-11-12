@@ -1,5 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eventually_user/controllers/firebaseController.dart';
 import 'package:eventually_user/controllers/product_controller.dart';
+import 'package:eventually_user/routes.dart';
+import 'package:eventually_user/screens/orders/orders_screen.dart';
+import 'package:eventually_user/screens/profile/editProfile.dart';
+import 'package:eventually_user/screens/setting/settings.dart';
 import 'package:eventually_user/widget/profile/profileHeading.dart';
 import 'package:eventually_user/widget/profile/profileText.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +25,7 @@ class profileScreen extends StatefulWidget {
 
 class _profileScreenState extends State<profileScreen> {
   // final pagecontroller = Get.put(testController());
+  final firebasecontroller = Get.put(firebaseController());
   final orderController = Get.put(OrderController());
   List<String> reviews = [];
   List<int> ratings = [];
@@ -70,11 +76,31 @@ class _profileScreenState extends State<profileScreen> {
     });
   }
 
-  Widget pagesOnProfile(BuildContext context) {
-    return InkWell(
-      onTap: () {},
+  List<String> icons = [AppIcons.order, AppIcons.setting];
+  List<String> labels = ['Orders', 'Settings'];
+  List<Widget> pages = [
+    OrdersScreen(),
+    const settings(),
+  ];
+
+  Widget pagesOnProfile(BuildContext context, int index) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Row(
-        children: [],
+        children: [
+          SvgPicture.asset(icons[index]),
+          const SizedBox(
+            width: 20.0,
+          ),
+          Text(
+            labels[index],
+            style: TextStyle(
+              fontSize: Get.width * 0.05,
+              color: AppColors.grey,
+              fontFamily: AppFonts.manrope,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -96,7 +122,9 @@ class _profileScreenState extends State<profileScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => editProfile());
+              },
               icon: SvgPicture.asset(AppIcons.editPersonalInfo),
             ),
           ],
@@ -139,15 +167,20 @@ class _profileScreenState extends State<profileScreen> {
                                 child: CircleAvatar(
                                   radius: 50.0,
                                   backgroundColor: Colors.grey.withOpacity(0.2),
-                                  backgroundImage: const AssetImage(
-                                      'assets/images/profileimage.png'),
+                                  child: Icon(
+                                    Icons.person,
+                                    color: AppColors.black,
+                                    size: 45.0,
+                                  ),
+                                  // backgroundImage:
+                                  // const AssetImage(
+                                  //     'assets/images/profileimage.png'),
                                 ),
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: Get.width * 0.01),
                                 child: profileText(
-                                  title:
-                                      auth.currentUser!.displayName.toString(),
+                                  title: firebasecontroller.userName.value,
                                   fontColor: AppColors.grey.withOpacity(0.5),
                                   fontSize: Get.width * 0.04,
                                   fontWeight: AppFonts.bold,
@@ -173,26 +206,13 @@ class _profileScreenState extends State<profileScreen> {
                                   ),
                                 ],
                               ),
-                              const Spacer(),
-                              // InkWell(
-                              //   onTap: () {
-                              //     Get.toNamed('/editprofile');
-                              //   },
-                              //   child: Container(
-                              //     margin: EdgeInsets.only(
-                              //         top: Get.height * 0.02,
-                              //         right: Get.width * 0.04),
-                              //     child: SvgPicture.asset(
-                              //         AppIcons.editPersonalInfo),
-                              //   ),
-                              // ),
                             ],
                           ),
 
                           // Obx(
                           //   () =>
                           personalInfo(
-                            textTitle: auth.currentUser!.displayName.toString(),
+                            textTitle: firebasecontroller.userName.value,
                             fontSize: Get.width * 0.04,
                             icon: AppIcons.profileName,
                             height: Get.height * 0.02,
@@ -200,7 +220,9 @@ class _profileScreenState extends State<profileScreen> {
                           // ),
 
                           personalInfo(
-                            textTitle: phoneNo,
+                            textTitle: firebasecontroller.phone.value == ''
+                                ? 'xxxxxxxxxx'
+                                : firebasecontroller.phone.value,
                             fontSize: Get.width * 0.04,
                             icon: AppIcons.profilePhone,
                             height: Get.height * 0.02,
@@ -242,7 +264,7 @@ class _profileScreenState extends State<profileScreen> {
                                     //   () =>
                                     profileText(
                                       title:
-                                          "Congrats ${auth.currentUser!.displayName.toString()}",
+                                          "Congrats ${firebasecontroller.userName.value}",
                                       fontSize: Get.width * 0.055,
                                       fontWeight: AppFonts.extraBold,
                                       fontColor: AppColors.grey,
@@ -296,6 +318,58 @@ class _profileScreenState extends State<profileScreen> {
                                 ),
                               ),
                             ],
+                          ),
+                          Divider(
+                            color: AppColors.pink.withOpacity(0.6),
+                            height: 20.0,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(NamedRoutes.order);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(icons[0]),
+                                  const SizedBox(
+                                    width: 20.0,
+                                  ),
+                                  Text(
+                                    labels[0],
+                                    style: TextStyle(
+                                      fontSize: Get.width * 0.05,
+                                      color: AppColors.grey,
+                                      fontFamily: AppFonts.manrope,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(NamedRoutes.settings);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(icons[1]),
+                                  const SizedBox(
+                                    width: 20.0,
+                                  ),
+                                  Text(
+                                    labels[1],
+                                    style: TextStyle(
+                                      fontSize: Get.width * 0.05,
+                                      color: AppColors.grey,
+                                      fontFamily: AppFonts.manrope,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       );
